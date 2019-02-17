@@ -1,5 +1,11 @@
 const CONFIG = {
     BASE_ROOT              : 2,
+    THEME                  : {
+        COLOR: 'blue',
+    },
+    FOOTER_ICON            : 'phone',
+    SELECT_START           : true,
+    SELECT_TYPE            : 'items',
     TITLE                  : '西安画美',
     WEB_TITLE              : '西安画美',
     KST_URL                : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
@@ -29,32 +35,20 @@ const CONFIG = {
     SELECT_ITEMS           : {
         hello: {
             type   : 'select-item-group',
-            title  : '项目',
+            title  : '关键字',
             theme  : 'blue',
             next   : 'age',
             message: [
                 {
                     type     : 'left',
                     animation: 'left-default',
-                    value    : '您希望用哪种方式祛眼袋?',
+                    value    : '您好,请问有什么问题?',
                 },
             ],
             data   : {
                 items: [
                     {
-                        value    : '内切',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '外切',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '咨询了解',
+                        value    : 'CONFIG_KEYWORD',
                         show     : true,
                         animation: 'right-select',
                         el       : null,

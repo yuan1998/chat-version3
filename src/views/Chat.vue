@@ -54,7 +54,7 @@
 </template>
 
 <script>
-    import { cloneOf, pushHistory }                 from '@/utily/util'
+    import { cloneOf, pushHistory, oneOf }          from '@/utily/util'
     import MessagePop                               from '@/components/Message-Pop'
     import SelectBtnGroup                           from '@/components/SelectBtnGroup'
     import ComputePrice                             from '@/components/Computed-Price'
@@ -73,11 +73,11 @@
         },
         data() {
             return {
+                selectStart      : CONFIG.SELECT_START || false,
+                type             : CONFIG.SELECT_TYPE || 'default',
                 showJump         : false,
-                type             : 'default',
                 showComputePrice : false,
                 selectModule     : false,
-                selectStart      : false,
                 selectValues     : [],
                 currentSelectItem: null,
                 showSelect       : false,
@@ -113,8 +113,8 @@
                 }
             });
 
-            this.$bus.$on('scroll-bottom' , () => {
-                 this.scrollBottom();
+            this.$bus.$on('scroll-bottom', () => {
+                this.scrollBottom();
             });
 
             window.addEventListener('resize', () => {
@@ -160,9 +160,9 @@
             handleComputePrice() {
                 this.showComputePrice = true;
                 pushHistory();
-                window.addEventListener('popstate', this.browerBack.bind(this))
+                window.addEventListener('popstate', this.browserBack.bind(this))
             },
-            browerBack() {
+            browserBack() {
                 if (this.showComputePrice) {
                     this.handlePriceClose();
                 } else {
@@ -202,13 +202,9 @@
                 });
             },
             initChatMessage() {
-
                 if (!this.gBridge) {
-                    if (this.selectStart) {
-                        this.type = 'items';
-                    }
-                    else {
-                        this.type = 'question'
+                    if (!this.selectStart || !oneOf([ 'default', 'question', 'items' ], this.type)) {
+                        this.type = 'default';
                     }
                 }
 
@@ -281,13 +277,32 @@
 
                 return duration || 800
             },
+            specialItemValue(value) {
+                switch (value) {
+                    case 'CONFIG_KEYWORD':
+                        return CONFIG.KEYWORD;
+                        break;
+                }
+                return value;
+            },
+            cloneItem(next) {
+                let result = cloneOf(this.selectItems[ next ]) ;
+                result.data.items.forEach((item) => {
+                    item.value = this.specialItemValue(item.value);
+                });
+                return result;
+            },
             nextSelectItems(next) {
                 this.hideSelect();
 
-                next && this.scrollToLastRight();
+                let result = null;
+                if (next) {
+                    this.scrollToLastRight();
+                    result = this.cloneItem(next);
+                }
 
                 setTimeout(() => {
-                    this.currentSelectItem = next ? cloneOf(this.selectItems[ next ]) : null;
+                    this.currentSelectItem = result;
                     this.switchSelectItem();
                 }, this.currentSelectItem ? 500 : 0);
             },

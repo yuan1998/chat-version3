@@ -4,8 +4,11 @@
              v-for="(each , index) in selectItems"
              :style="!each.show &&'opacity:0;'"
              :key="index">
-            <div class="item" :class="item.theme" @click="handleSelectItem($event ,each)">
-                {{ each.value }}
+            <div class="item"
+                 :class="item.theme"
+                 :ref="'item' + index"
+                 @click="handleSelectItem('item' + index ,each)">
+                <p>{{ each.value }}</p>
             </div>
         </div>
     </div>
@@ -22,13 +25,13 @@
             }
         },
         methods : {
-            handleSelectItem(evt, item) {
+            handleSelectItem(ref, item) {
                 if (this.selected || !item) {
                     return;
                 }
                 this.selected = !this.selected;
                 item.type     = 'right';
-                item.el       = evt.target;
+                item.el       = this.$refs[ref];
                 if (item.event) {
                     this.$emit(item.event, item);
                     return

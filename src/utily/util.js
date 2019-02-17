@@ -63,3 +63,8 @@ export const parseStringMethod = (string) => {
         params
     }
 };
+
+
+export const oneOf = (arr ,val) => {
+    return arr.includes(val);
+}

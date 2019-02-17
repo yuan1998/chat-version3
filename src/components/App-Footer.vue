@@ -65,7 +65,7 @@
         data() {
             return {
                 inputFocus: false,
-                icon      : 'phone',
+                icon      : CONFIG.FOOTER_ICON || 'camera',
                 tel: CONFIG.TEL
             }
         },
