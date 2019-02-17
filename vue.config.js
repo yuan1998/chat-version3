@@ -9,6 +9,7 @@ module.exports = {
             config.externals({
                 'vue-router': 'VueRouter',
                 'animejs'   : 'anime',
+                'moment'   : 'moment',
                 'jquery'    : 'jQuery',
                 vuex        : 'Vuex',
                 vue         : 'Vue',
