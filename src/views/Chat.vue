@@ -33,9 +33,9 @@
              v-if="unreadCount > 0">
             {{ unreadCount }}
         </div>
-        <AwesomePicker ref="picker"
-                       @close="pickerClose"
+        <AwesomePicker @close="pickerClose"
                        @confirm="pickerConfirm"
+                       ref="picker"
                        textTitle="请输入年龄"
                        :maskHide="false"
                        :hideCancel="true"
@@ -246,7 +246,7 @@
                             setTimeout(() => {
                                 this.$refs.picker.show();
                                 this.showFooter(false);
-                                
+
                                 this.$bus.$emit('input-blur');
                             }, CONFIG.DEFAULT_AGE_PICKER_TIME)
                         }, 200)

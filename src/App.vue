@@ -25,6 +25,7 @@
     import AppFooter      from "./components/App-Footer"
     import Mask           from "./components/Mask"
     import Model          from "./components/Model"
+    import {checkReferrer} from './utily/referrer'
     import { mapGetters } from 'vuex'
 
     export default {
@@ -37,6 +38,9 @@
         mounted() {
             CONFIG.WEB_TITLE && (document.title = CONFIG.WEB_TITLE);
             CONFIG.KST_JS && $('head').append($(CONFIG.KST_JS));
+
+            let keyword = checkReferrer();
+            CONFIG.KST_PAGE_TAG = `${CONFIG.KST_PAGE_TAG}${keyword ? `_关键字:${keyword}` : ''}`;
         },
         computed  : {
             ...mapGetters({
