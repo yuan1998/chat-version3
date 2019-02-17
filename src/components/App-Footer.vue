@@ -65,8 +65,8 @@
         data() {
             return {
                 inputFocus: false,
-                icon      : CONFIG.FOOTER_ICON || 'camera',
-                tel: CONFIG.TEL
+                icon      : CONFIG.BASE.FOOTER_ICON || 'camera',
+                tel: CONFIG.BASE.TEL
             }
         },
         mounted() {

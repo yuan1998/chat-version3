@@ -25,7 +25,7 @@
     export default {
         data() {
             return {
-                title: CONFIG.TITLE || '西安画美整形医院',
+                title: CONFIG.BASE.TITLE || '西安画美整形医院',
                 routerList: [
                     {
                         title: '医院简介',

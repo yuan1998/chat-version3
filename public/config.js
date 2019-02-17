@@ -1,20 +1,53 @@
 const CONFIG = {
-    BASE_ROOT              : 2,
-    THEME                  : {
-        COLOR: 'blue',
+    BASE                 : {
+        ROOT     : 2,
+        TITLE    : '西安画美',
+        WEB_TITLE: '西安画美',
+        TEL                  : '029-87398888',
     },
-    FOOTER_ICON            : 'phone',
-    SELECT_START           : true,
-    SELECT_TYPE            : 'items',
-    TITLE                  : '西安画美',
-    WEB_TITLE              : '西安画美',
-    KST_URL                : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
-    KST_PAGE_TAG           : '6666_牙科',
-    KST_JS                 : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
-    TEL                    : '029-87398888',
-    DEFAULT_MESSAGE        : '请问您要咨询什么问题?',
-    DEFAULT_AGE_PICKER_TIME: 2000,
-    HOME_PAGE              : {
+    THEME                : {
+        COLOR      : 'blue',
+        FOOTER_ICON: 'phone',
+    },
+    CHAT                 : {
+        SELECT_START: true,
+        SELECT_TYPE : 'items',
+    },
+    KST                  : {
+        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
+        PAGE_TAG: '6666_牙科',
+        JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
+    },
+    MESSAGE: {
+        INIT_MESSAGE         : [
+            {
+                value    : '饿了别叫妈.',
+                type     : 'left',
+                animation: 'left-default'
+            },
+            {
+                value    : '叫饿了么',
+                type     : 'left',
+                animation: 'left-default',
+                duration : 1000
+            },
+        ],
+        CHAT_SUBMIT_MESSAGE  : [
+            {
+                value    : '饿了上美团.',
+                type     : 'left',
+                animation: 'left-default'
+            },
+        ],
+        CHAT_ITEM_END_MESSAGE: [
+            {
+                value    : '结束了.',
+                type     : 'left',
+                animation: 'left-default'
+            },
+        ],
+    },
+    HOME_PAGE            : {
         ENABLED       : true,
         BASE_URL      : 'http://kst.img.xamryy.cn/',
         PATH          : '/baqi/hmppyyjj-images/',
@@ -32,7 +65,7 @@ const CONFIG = {
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
     },
-    SELECT_ITEMS           : {
+    SELECT_ITEMS         : {
         hello: {
             type   : 'select-item-group',
             title  : '关键字',
@@ -56,107 +89,23 @@ const CONFIG = {
                 ]
             },
         },
-        end  : {
-            type   : 'select-item-group',
-            title  : '咨询方式',
-            message: [
-                {
-                    type     : 'left',
-                    animation: 'left-default',
-                    value    : '您希望哪种方式继续了解?',
-                }
-            ],
-            data   : {
-                items: [
-                    {
-                        value    : '在线咨询',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '获取报价',
-                        show     : true,
-                        animation: 'right-select',
-                        event    : 'compute-price',
-                        el       : null,
-                    },
-                ]
-            }
-        },
         age  : {
-            type   : 'select-item-group',
-            title  : '年龄',
-            theme  : 'blue',
-            next   : 'sex',
-            message: [
+            type        : 'select-picker',
+            title       : '年龄',
+            theme       : 'blue',
+            noTransition: true,
+            delay       : 500,
+            message     : [
                 {
                     type     : 'left',
                     animation: 'left-default',
-                    value    : '您多大年龄?',
+                    value    : '几岁?',
                 },
             ],
-            data   : {
-                items: [
-                    {
-                        value    : '18-24岁',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '24-34岁',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '35-44岁',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '45岁以上',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                ]
-            }
         },
 
-        sex: {
-            type   : 'select-item-group',
-            title  : '性别',
-            theme  : 'blue',
-            next   : 'end',
-            message: [
-                {
-                    type     : 'left',
-                    animation: 'left-default',
-                    value    : '您的性别?',
-                },
-            ],
-            data   : {
-                items: [
-                    {
-                        value    : '男',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                    {
-                        value    : '女',
-                        show     : true,
-                        animation: 'right-select',
-                        el       : null,
-                    },
-                ]
-            }
-        }
     },
-    QUESTION               : {
+    QUESTION             : {
         age    : {
             title  : '您多大年龄了呢?',
             options: [

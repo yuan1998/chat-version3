@@ -41,12 +41,11 @@
             }
         },
         mounted() {
-            CONFIG.WEB_TITLE && (document.title = CONFIG.WEB_TITLE);
-            CONFIG.KST_JS && $('head').append($(CONFIG.KST_JS));
+            CONFIG.BASE.WEB_TITLE && (document.title = CONFIG.BASE.WEB_TITLE);
+            CONFIG.KST.JS && $('head').append($(CONFIG.KST.JS));
 
-            let keyword         = checkReferrer();
-            CONFIG.KEYWORD      = keyword;
-            CONFIG.KST_PAGE_TAG = `${CONFIG.KST_PAGE_TAG}_${keyword ? `关键字:${keyword}` : '没有关键字'}`;
+            CONFIG.KEYWORD      = checkReferrer();
+            CONFIG.KST.PAGE_TAG = `${CONFIG.KST.PAGE_TAG}_${CONFIG.KEYWORD ? `关键字:${CONFIG.KEYWORD}` : '没有关键字'}`;
         },
         computed  : {
             ...mapGetters({

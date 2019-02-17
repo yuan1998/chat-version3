@@ -15,17 +15,20 @@
                 </MessagePop>
             </div>
         </div>
-        <transition name="slide-up-y">
+        <template v-if="currentSelectItem && currentSelectItem.noTransition">
             <div class="select-btn-container" v-if="currentSelectItem && showSelect">
                 <component :is="currentSelectItem.type"
                            :item="currentSelectItem"
                            @compute-price="handleComputePrice"
-                           @send-item="handleSendItem"></component>
-                <div class="jump-btn"
-                     v-show="showJump"
-                     @click="handleJump">
-                    跳过问卷,开始咨询
-                </div>
+                           @send-item="handleSendItem"/>
+            </div>
+        </template>
+        <transition v-else name="slide-up-y">
+            <div class="select-btn-container" v-if="currentSelectItem && showSelect">
+                <component :is="currentSelectItem.type"
+                           :item="currentSelectItem"
+                           @compute-price="handleComputePrice"
+                           @send-item="handleSendItem"/>
             </div>
         </transition>
         <div class="unread-count"
@@ -33,14 +36,6 @@
              v-if="unreadCount > 0">
             {{ unreadCount }}
         </div>
-        <AwesomePicker @close="pickerClose"
-                       @confirm="pickerConfirm"
-                       ref="picker"
-                       textTitle="请输入年龄"
-                       :maskHide="false"
-                       :hideCancel="true"
-                       :anchor="anchor"
-                       :data="testData"></AwesomePicker>
         <transition name="fade">
             <div class="mask-container" v-if="showComputePrice"></div>
         </transition>
@@ -59,22 +54,22 @@
     import SelectBtnGroup                           from '@/components/SelectBtnGroup'
     import ComputePrice                             from '@/components/Computed-Price'
     import SelectInput                              from '@/components/SelectInput'
-    import AwesomePicker                            from '@/components/Picker'
+    import SelectPicker                             from '@/components/SelectPicker'
     import { mapMutations, mapActions, mapGetters } from "vuex"
     import anime                                    from 'animejs'
 
     export default {
         components: {
             MessagePop,
-            AwesomePicker,
             ComputePrice,
             'select-item-group': SelectBtnGroup,
             'select-input'     : SelectInput,
+            'select-picker'    : SelectPicker,
         },
         data() {
             return {
-                selectStart      : CONFIG.SELECT_START || false,
-                type             : CONFIG.SELECT_TYPE || 'default',
+                selectStart      : CONFIG.CHAT.SELECT_START || false,
+                type             : CONFIG.CHAT.SELECT_TYPE || 'default',
                 showJump         : false,
                 showComputePrice : false,
                 selectModule     : false,
@@ -95,13 +90,6 @@
                 ],
                 bridge           : null,
                 questionData     : [],
-            }
-        },
-        beforeRouteLeave(to, from, next) {
-            if (this.$refs.picker.display) {
-                next(false);
-            } else {
-                next();
             }
         },
         mounted() {
@@ -146,16 +134,16 @@
                 sendText     : 'Bridge/sendText',
                 filterMessage: 'Bridge/filterMessage'
             }),
+            addConfigMessage(name) {
+                let data = CONFIG.MESSAGE;
+                data[ name ] && this.filterMessage({
+                    message: data[ name ]
+                });
+            },
             handlePriceClose() {
                 this.showComputePrice = false;
                 this.endSelect('用户在 报价界面 点击了返回', this.$refs.price.formInfo);
-                this.filterMessage({
-                    message: {
-                        value    : '正在为您转接人工服务,请稍等',
-                        type     : 'left',
-                        animation: 'left-default'
-                    }
-                });
+                this.addConfigMessage('CHAT_ITEM_END_MESSAGE');
             },
             handleComputePrice() {
                 this.showComputePrice = true;
@@ -173,37 +161,11 @@
             handleSubmit(form) {
                 this.showComputePrice = false;
                 this.endSelect('', form);
-                this.filterMessage({
-                    message: {
-                        value    : '好的,给你回电',
-                        type     : 'left',
-                        animation: 'left-default'
-                    }
-                });
-            },
-            pickerClose() {
-                this.showFooter(true)
-            },
-            pickerConfirm(val) {
-                this.removeMonitor('QUESTION');
-                this.showFooter(true);
-
-                val = val[ 0 ].value;
-                this.questionData.push(val);
-
-                this.sendText({
-                    send : false,
-                    value: val
-                });
-
-                this.sendText({
-                    display: false,
-                    value  : this.questionData.join('<br/>')
-                });
+                this.addConfigMessage('CHAT_SUBMIT_MESSAGE');
             },
             initChatMessage() {
                 if (!this.gBridge) {
-                    if (!this.selectStart || !oneOf([ 'default', 'question', 'items' ], this.type)) {
+                    if (!this.selectStart || !oneOf([ 'default', 'items' ], this.type)) {
                         this.type = 'default';
                     }
                 }
@@ -212,57 +174,12 @@
             },
             defaultModule() {
                 if (this.gMessage.length === 0) {
-                    this.filterMessage({
-                        message: {
-                            value    : '你好,您的牙齿有什么问题?您可以直接询问.',
-                            type     : 'left',
-                            animation: 'left-default'
-                        }
-                    })
+                    this.addConfigMessage('INIT_MESSAGE');
                 }
             },
             itemsModule() {
                 this.showFooter(false);
                 this.nextSelectItems('hello');
-            },
-            questionModule() {
-                this.addMonitor({
-                    key  : 'QUESTION',
-                    value: (text) => {
-                        this.questionData.push(text);
-                        setTimeout(() => {
-                            this.filterMessage({
-                                message: {
-                                    value    : '好的,多大年龄?',
-                                    type     : 'left',
-                                    animation: 'left-default'
-                                }
-                            });
-                            setTimeout(() => {
-                                this.$refs.picker.show();
-                                this.showFooter(false);
-
-                                this.$bus.$emit('input-blur');
-                            }, CONFIG.DEFAULT_AGE_PICKER_TIME)
-                        }, 200)
-                    }
-                });
-                this.filterMessage({
-                    message: [
-                        {
-                            value    : '您好,在的.',
-                            type     : 'left',
-                            animation: 'left-default'
-                        },
-                        {
-                            value    : CONFIG.DEFAULT_MESSAGE,
-                            type     : 'left',
-                            animation: 'left-default',
-                            duration : 500,
-                        }
-                    ]
-                });
-                this.changeInput(this.query);
             },
             hideSelect() {
                 this.currentSelectItem = null;
@@ -286,10 +203,13 @@
                 return value;
             },
             cloneItem(next) {
-                let result = cloneOf(this.selectItems[ next ]) ;
-                result.data.items.forEach((item) => {
-                    item.value = this.specialItemValue(item.value);
-                });
+                let result = cloneOf(this.selectItems[ next ]);
+                if (result.data && result.data.items) {
+                    result.data.items.forEach((item) => {
+                        item.value = this.specialItemValue(item.value);
+                    });
+
+                }
                 return result;
             },
             nextSelectItems(next) {
@@ -310,13 +230,7 @@
                 const item = this.currentSelectItem;
 
                 if (!item) {
-                    this.filterMessage({
-                        message: {
-                            value    : '请稍等,正在为你连接专家.',
-                            type     : 'left',
-                            animation: 'left-default'
-                        }
-                    });
+                    this.addConfigMessage('CHAT_ITEM_END_MESSAGE');
                     return;
                 }
 
@@ -355,10 +269,8 @@
                         display: false
                     });
                 }
-
-                this.hideSelect();
-
                 setTimeout(() => {
+                    this.hideSelect();
                     this.wrapperHeight = 0;
                     this.showFooter(true);
                 }, 1400)

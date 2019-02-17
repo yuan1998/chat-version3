@@ -44,8 +44,8 @@ export default {
             if (bridge === null) {
                 bridge = new Bridge({
                     make: true,
-                    kstUrl: CONFIG.KST_URL,
-                    tag   : CONFIG.KST_PAGE_TAG,
+                    kstUrl: CONFIG.KST.URL,
+                    tag   : CONFIG.KST.PAGE_TAG,
                     messageCallback(message) {
                         dispatch('filterMessage', { message });
                     }
@@ -125,7 +125,6 @@ export default {
                         duration += parseInt(item.duration) || 0;
                         setTimeout(() => {
                             dispatch('createTime');
-                            console.log('312 :', 312);
                             commit('messageAdd', item);
                         }, duration);
                     }

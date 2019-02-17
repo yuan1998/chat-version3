@@ -26,8 +26,8 @@ let routes = [
     },
 ];
 
-if (CONFIG && routes[ (CONFIG.BASE_ROOT || 0) ]) {
-    routes[ CONFIG.BASE_ROOT ].alias = '/'
+if (CONFIG && routes[ (CONFIG.BASE.ROOT || 0) ]) {
+    routes[ CONFIG.BASE.ROOT ].alias = '/'
 }
 
 export default new Router({
