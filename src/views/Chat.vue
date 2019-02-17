@@ -280,7 +280,7 @@
             specialItemValue(value) {
                 switch (value) {
                     case 'CONFIG_KEYWORD':
-                        return CONFIG.KEYWORD;
+                        return CONFIG.KEYWORD || '口腔问题';
                         break;
                 }
                 return value;
