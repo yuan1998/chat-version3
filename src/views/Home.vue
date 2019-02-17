@@ -1,38 +1,82 @@
 <template>
     <div class="y-chat-page page-item home-page">
-        <div class="home-page-container">
-            <div class="bg-item"><img src=".././assets/images/bg_01.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_02.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_03.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_04.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_05.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_06.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_07.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_08.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" @click="$router.push('/chat')"><img src=".././assets/images/bg_09.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" ><img src=".././assets/images/bg_10.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" ><img src=".././assets/images/bg_11.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_12.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_13.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_14.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" @click="$router.push('/chat')"><img src=".././assets/images/bg_15.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" ><img src=".././assets/images/bg_16.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" ><img src=".././assets/images/bg_17.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_18.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_19.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_20.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_21.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item" @click="$router.push('/chat')"><img src=".././assets/images/bg_22.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_23.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_24.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_25.jpg" alt="" class="mc-img"></div>
-            <div class="bg-item"><img src=".././assets/images/bg_26.jpg" alt="" class="mc-img"></div>
+        <template v-if="data">
+            <div v-if="data.ENABLED" class="home-page-container">
+                <div class="bg-item"
+                     :key="i"
+                     @click="handleClick(i)"
+                     v-for=" i in data.COUNT">
+                    <img :src="data.BASE_URL + data.PATH + data.NAME + i + data.EXT" alt="" class="mc-img">
+                </div>
+            </div>
+            <template v-else>
+                <div class="home-page-container"  v-html="data.TEMPLATE"></div>
+                <vStyle>
+                    {{ data.TEMPLATE_STYLE }}
+                </vStyle>
+            </template>
+        </template>
+        <div v-else>
+            NOTHING
         </div>
+
     </div>
 </template>
 
 <script>
+    import {parseStringMethod} from '../utily/util'
+    import vStyle from '../components/v-style'
+
     export default {
-        name      : 'home',
+        name   : 'home',
+        components: {
+            vStyle,
+        },
+        data() {
+            return {
+                data : CONFIG.HOME_PAGE
+            }
+        },
+        methods: {
+            eventItem(num) {
+                let event = CONFIG.HOME_PAGE.EVENTS[ num ];
+                return event ? event.click : null;
+            },
+            handleClick(num) {
+                let event = this.eventItem(num);
+
+                if (!event) {
+                    return;
+                }
+
+                this.parseEvent(event);
+            },
+
+            parseEvent(event) {
+                event = [].concat(event);
+
+                event.forEach((item) => {
+                    if (!item || typeof item !== 'string'  ) {
+                        return;
+                    }
+                    // router:/chat|a|b|c
+                    // => { method: router , params : [a,b,c] }
+                    let r = parseStringMethod(item);
+                    let methodName = `${r.method}_Method`;
+
+                    if (typeof this[methodName] === 'function') {
+                        this[methodName](...r.params);
+                    }
+                })
+            },
+
+            router_Method(path) {
+                if (!path) {
+                    return;
+                }
+                this.$router.push(path);
+            },
+
+        }
     }
 </script>

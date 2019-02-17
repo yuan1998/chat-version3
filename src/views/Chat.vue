@@ -148,7 +148,6 @@
             }),
             handlePriceClose() {
                 this.showComputePrice = false;
-
                 this.endSelect('用户在 报价界面 点击了返回', this.$refs.price.formInfo);
                 this.filterMessage({
                     message: {

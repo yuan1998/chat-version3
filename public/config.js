@@ -1,14 +1,32 @@
 const CONFIG = {
-    BASE_ROOT   : 2,
-    TITLE       : '西安画美',
-    WEB_TITLE   : '西安画美',
-    KST_URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
-    KST_PAGE_TAG: '6666_牙科',
-    KST_JS: '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
-    TEL : '029-87398888',
-    DEFAULT_MESSAGE: '请问您要咨询什么问题?',
+    BASE_ROOT              : 2,
+    TITLE                  : '西安画美',
+    WEB_TITLE              : '西安画美',
+    KST_URL                : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
+    KST_PAGE_TAG           : '6666_牙科',
+    KST_JS                 : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
+    TEL                    : '029-87398888',
+    DEFAULT_MESSAGE        : '请问您要咨询什么问题?',
     DEFAULT_AGE_PICKER_TIME: 2000,
-    SELECT_ITEMS: {
+    HOME_PAGE              : {
+        ENABLED       : true,
+        BASE_URL      : 'http://kst.img.xamryy.cn/',
+        PATH          : '/baqi/hmppyyjj-images/',
+        NAME          : 'bg_',
+        EXT           : '.jpg',
+        COUNT         : 20,
+        EVENTS        : {
+            13: {
+                click: [ 'router:/chat' ]
+            },
+            17: {
+                click: [ 'router:/chat' ]
+            },
+        },
+        TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
+        TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
+    },
+    SELECT_ITEMS           : {
         hello: {
             type   : 'select-item-group',
             title  : '项目',
@@ -144,7 +162,7 @@ const CONFIG = {
             }
         }
     },
-    QUESTION    : {
+    QUESTION               : {
         age    : {
             title  : '您多大年龄了呢?',
             options: [
