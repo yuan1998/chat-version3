@@ -1,16 +1,18 @@
-import Vue from 'vue'
+import Vue  from 'vue'
 import Vuex from 'vuex'
+import Bridge from './Bridge'
+import Controller from './Controller'
+import Form from './Form'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+    modules  : {
+        Bridge,
+        Controller,
+        Form
+    },
+    state    : {},
+    mutations: {},
+    actions  : {}
 })
