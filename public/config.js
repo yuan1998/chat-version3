@@ -1,24 +1,36 @@
 const CONFIG = {
     BASE         : {
+        // 默认页 :0-4
         ROOT     : 2,
+        // 头部标题
         TITLE    : '西安画美',
+        // 页面标题
         WEB_TITLE: '西安画美',
+        // 电话
         TEL      : '029-87398888',
     },
     THEME        : {
+        // 页面主题 : ['blue' , 'red']
         COLOR      : 'blue',
+        // 聊天框图标 : ['phone' , 'camera']
         FOOTER_ICON: 'phone',
     },
     CHAT         : {
+        // 是否开启选择模式
         SELECT_START: true,
+        // 模式类型 : ['items']
         SELECT_TYPE : 'items',
     },
     KST          : {
-        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
+        // 快商通标识
         PAGE_TAG: '6666_牙科',
+        // 快商通链接
+        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
+        // 快商通 js 代码
         JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
     },
     MESSAGE      : {
+        // 初始对话
         INIT_MESSAGE         : [
             {
                 value    : '您好,请问遇到了什么问题?',
@@ -26,6 +38,7 @@ const CONFIG = {
                 animation: 'left-default'
             },
         ],
+        // 对话中提交报价回复
         CHAT_SUBMIT_MESSAGE  : [
             {
                 value    : '好的,给你回电.',
@@ -33,20 +46,32 @@ const CONFIG = {
                 animation: 'left-default'
             },
         ],
+        // 选择结束后回复
         CHAT_ITEM_END_MESSAGE: null,
     },
+    // 年龄组件
     SELECT_PICKER: {
+        // 是否可以返回
         CAN_BACK    : true,
+        // 返回后发送内容
         BACK_MESSAGE: '保密',
+        // 默认选择年龄 (n+1)
         ANCHOR      : 40,
     },
     HOME_PAGE    : {
+        // 开启图片首页
         ENABLED       : true,
+        // 图片域名
         BASE_URL      : 'http://kst.img.xamryy.cn/',
+        // 图片目录
         PATH          : '/baqi/hmppyyjj-images/',
+        // 图片前缀
         NAME          : 'bg_',
+        // 图片后缀
         EXT           : '.jpg',
+        // 图片数量
         COUNT         : 20,
+        // 事件,目前支持  ['router:/chat']
         EVENTS        : {
             13: {
                 click: [ 'router:/chat' ]
@@ -55,6 +80,9 @@ const CONFIG = {
                 click: [ 'router:/chat' ]
             },
         },
+        // 当 ENABLED 为 false 时应用
+        // TEMPLATE 为 HTML 内容
+        // TEMPLATE_STYLE 为 css 内容
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
     },
