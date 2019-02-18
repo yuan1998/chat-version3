@@ -21,31 +21,19 @@ const CONFIG = {
     MESSAGE      : {
         INIT_MESSAGE         : [
             {
-                value    : '饿了别叫妈.',
+                value    : '您好,请问遇到了什么问题?',
                 type     : 'left',
                 animation: 'left-default'
-            },
-            {
-                value    : '叫饿了么',
-                type     : 'left',
-                animation: 'left-default',
-                duration : 1000
             },
         ],
         CHAT_SUBMIT_MESSAGE  : [
             {
-                value    : '饿了上美团.',
+                value    : '好的,给你回电.',
                 type     : 'left',
                 animation: 'left-default'
             },
         ],
-        CHAT_ITEM_END_MESSAGE: [
-            {
-                value    : '结束了.',
-                type     : 'left',
-                animation: 'left-default'
-            },
-        ],
+        CHAT_ITEM_END_MESSAGE: null,
     },
     SELECT_PICKER: {
         CAN_BACK    : true,
