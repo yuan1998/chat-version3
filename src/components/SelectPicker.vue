@@ -1,6 +1,5 @@
 <template>
-    <AwesomePicker @close="pickerClose"
-                   @confirm="pickerConfirm"
+    <AwesomePicker @confirm="pickerConfirm"
                    ref="picker"
                    textTitle="请输入年龄"
                    :maskHide="false"
@@ -20,13 +19,10 @@
             AwesomePicker
         },
         methods   : {
-            pickerClose() {
-                // this.showFooter(true)
-            },
             pickerConfirm(val) {
                 val = val[ 0 ].value;
 
-
+                this.disablePop = true;
                 history.go(-1);
                 this.handleSendItem(val)
             },
@@ -50,7 +46,7 @@
             handlePopState() {
                 let { picker } = this.$refs;
 
-                if (picker.display) {
+                if (picker.display && !this.disablePop) {
                     if (CONFIG.SELECT_PICKER.CAN_BACK) {
                         this.handleBack()
                     }
@@ -72,12 +68,13 @@
         },
         data() {
             return {
-                testData: [
+                disablePop: false,
+                testData  : [
                     Array.from({ length: 100 }, (value, index) => `${1 + index}岁`),
                 ],
-                anchor  : [
+                anchor    : [
                     {
-                        index: 19
+                        index: CONFIG.SELECT_PICKER.ANCHOR
                     }
                 ],
             }
