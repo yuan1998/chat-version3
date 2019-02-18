@@ -65,7 +65,7 @@
         data() {
             return {
                 inputFocus: false,
-                icon      : CONFIG.BASE.FOOTER_ICON || 'camera',
+                icon      : CONFIG.THEME.FOOTER_ICON || 'camera',
                 tel: CONFIG.BASE.TEL
             }
         },
