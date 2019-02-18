@@ -153,10 +153,11 @@
             browserBack() {
                 if (this.showComputePrice) {
                     this.handlePriceClose();
-                } else {
+                }
+                else {
                     window.history.go(-1);
                 }
-                window.removeEventListener('popstate', this.browerBack.bind(this));
+                window.removeEventListener('popstate', this.browserBack.bind(this));
             },
             handleSubmit(form) {
                 this.showComputePrice = false;
@@ -275,10 +276,10 @@
                     this.showFooter(true);
                 }, 1400)
             },
-            handleSendItem(item, next) {
+            handleSendItem(item, next , display = true) {
                 const current = this.currentSelectItem;
 
-                this.filterMessage({
+                display && this.filterMessage({
                     message: item,
                     pass   : true,
                 });

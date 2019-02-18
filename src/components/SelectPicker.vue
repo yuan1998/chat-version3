@@ -24,27 +24,39 @@
                 // this.showFooter(true)
             },
             pickerConfirm(val) {
-
                 val = val[ 0 ].value;
 
-                this.handleSendItem(val);
+
+                history.go(-1);
+                this.handleSendItem(val)
             },
-            handleSendItem(val) {
+            handleSendItem(val, display = true) {
                 let message = {
                     value    : val,
                     type     : 'right',
                     animation: 'right-default'
                 };
-                history.go(-1);
-                this.$emit('send-item', message, this.item.next);
+                this.$emit('send-item', message, this.item.next, display);
                 window.removeEventListener('popstate', this.handlePopState.bind(this));
+            },
+            handleBack() {
+                this.$refs.picker.hide();
+                let message = CONFIG.SELECT_PICKER.BACK_MESSAGE || '没有选择年龄';
 
+                setTimeout(() => {
+                    this.handleSendItem(message, !!CONFIG.SELECT_PICKER.BACK_MESSAGE)
+                }, 500);
             },
             handlePopState() {
                 let { picker } = this.$refs;
 
                 if (picker.display) {
-                    pushHistory();
+                    if (CONFIG.SELECT_PICKER.CAN_BACK) {
+                        this.handleBack()
+                    }
+                    else {
+                        pushHistory();
+                    }
                 }
             }
         },

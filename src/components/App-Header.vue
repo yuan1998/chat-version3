@@ -25,27 +25,27 @@
     export default {
         data() {
             return {
-                title: CONFIG.BASE.TITLE || '西安画美整形医院',
+                title     : CONFIG.BASE.TITLE || '西安画美整形医院',
                 routerList: [
                     {
                         title: '医院简介',
-                        name: 'home',
-                        path: '/home'
+                        name : 'home',
+                        path : '/home'
                     },
                     {
                         title: '项目报价',
-                        name: 'price',
-                        path: '/price'
+                        name : 'price',
+                        path : '/price'
                     },
                     {
                         title: '在线预约',
-                        name: 'chat',
-                        path: '/chat'
+                        name : 'chat',
+                        path : '/chat'
                     },
                     {
                         title: '联系我们',
-                        name: 'concat',
-                        path: '/concat'
+                        name : 'concat',
+                        path : '/concat'
                     },
                 ]
             }

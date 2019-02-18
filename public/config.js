@@ -1,24 +1,24 @@
 const CONFIG = {
-    BASE                 : {
+    BASE        : {
         ROOT     : 2,
         TITLE    : '西安画美',
         WEB_TITLE: '西安画美',
-        TEL                  : '029-87398888',
+        TEL      : '029-87398888',
     },
-    THEME                : {
+    THEME       : {
         COLOR      : 'blue',
         FOOTER_ICON: 'phone',
     },
-    CHAT                 : {
+    CHAT        : {
         SELECT_START: true,
         SELECT_TYPE : 'items',
     },
-    KST                  : {
+    KST         : {
         URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
         PAGE_TAG: '6666_牙科',
         JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
     },
-    MESSAGE: {
+    MESSAGE     : {
         INIT_MESSAGE         : [
             {
                 value    : '饿了别叫妈.',
@@ -47,7 +47,11 @@ const CONFIG = {
             },
         ],
     },
-    HOME_PAGE            : {
+    SELECT_PICKER: {
+        CAN_BACK: true,
+        BACK_MESSAGE: '保密'
+    },
+    HOME_PAGE   : {
         ENABLED       : true,
         BASE_URL      : 'http://kst.img.xamryy.cn/',
         PATH          : '/baqi/hmppyyjj-images/',
@@ -65,7 +69,7 @@ const CONFIG = {
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
     },
-    SELECT_ITEMS         : {
+    SELECT_ITEMS: {
         hello: {
             type   : 'select-item-group',
             title  : '关键字',
@@ -105,7 +109,7 @@ const CONFIG = {
         },
 
     },
-    QUESTION             : {
+    QUESTION    : {
         age    : {
             title  : '您多大年龄了呢?',
             options: [
