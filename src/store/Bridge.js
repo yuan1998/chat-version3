@@ -10,7 +10,7 @@ export default {
         bridge  : null,
         message : [],
         prevTime: null,
-        monitor: {},
+        monitor : {},
     },
     mutations : {
         bridge(state, bridge) {
@@ -25,14 +25,14 @@ export default {
         prevTime(state, item) {
             state.prevTime = item;
         },
-        addMonitor(state , {
+        addMonitor(state, {
             key,
             value
         }) {
-            state.monitor[key] = value;
+            state.monitor[ key ] = value;
         },
-        removeMonitor(state , key) {
-            delete state.monitor[key];
+        removeMonitor(state, key) {
+            delete state.monitor[ key ];
         },
         clearMonitor(state) {
             state.monitor = {}
@@ -43,9 +43,9 @@ export default {
             let bridge = getters.bridge;
             if (bridge === null) {
                 bridge = new Bridge({
-                    make: true,
-                    kstUrl: CONFIG.KST.URL,
                     tag   : CONFIG.KST.PAGE_TAG,
+                    make  : true,
+                    kstUrl: CONFIG.KST.URL,
                     messageCallback(message) {
                         dispatch('filterMessage', { message });
                     }
@@ -71,8 +71,8 @@ export default {
 
                     dispatch('createTime');
                     commit('messageAdd', {
-                        value : `<img class="mw-img-i" src="${reader.result}" />`,
-                        type  : 'right',
+                        value    : `<img class="mw-img-i" src="${reader.result}" />`,
+                        type     : 'right',
                         animation: 'right-default'
                     })
                 });
@@ -94,23 +94,23 @@ export default {
 
             if (display) {
                 dispatch('filterMessage', {
-                    message:{
+                    message: {
                         value    : value,
                         type     : 'right',
                         animation: 'right-default'
                     },
-                    pass: true
+                    pass   : true
                 })
             }
-            dispatch('runMonitor',value);
+            dispatch('runMonitor', value);
         },
-        runMonitor({getters},value) {
+        runMonitor({ getters }, value) {
             let monitor = getters.monitor;
-            let keys = Object.keys(monitor);
+            let keys    = Object.keys(monitor);
 
             if (keys.length > 0) {
                 keys.forEach((i) => {
-                    let item = monitor[i];
+                    let item = monitor[ i ];
                     if (typeof item === 'function') {
                         item(value);
                     }

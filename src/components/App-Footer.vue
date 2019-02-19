@@ -66,12 +66,11 @@
             return {
                 inputFocus: false,
                 icon      : CONFIG.THEME.FOOTER_ICON || 'camera',
-                tel: CONFIG.BASE.TEL
+                tel       : CONFIG.BASE.TEL
             }
         },
         mounted() {
             $('body').on('touchend', (e) => {
-                console.log('e.target.className :', e.target.className);
                 if (e.target.className !== 'message-input') {
                     this.$refs.input.blur();
                 }

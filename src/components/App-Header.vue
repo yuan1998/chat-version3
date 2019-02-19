@@ -28,12 +28,12 @@
                 title     : CONFIG.BASE.TITLE || '西安画美整形医院',
                 routerList: [
                     {
-                        title: '医院简介',
+                        title: CONFIG.HOME_PAGE.TITLE || '医院简介',
                         name : 'home',
                         path : '/home'
                     },
                     {
-                        title: '项目报价',
+                        title: CONFIG.PRICE_PAGE.TITLE || '项目报价',
                         name : 'price',
                         path : '/price'
                     },

@@ -31,13 +31,11 @@ const CONFIG = {
     },
     MESSAGE      : {
         // 初始对话
-        INIT_MESSAGE         : [
-            {
-                value    : '您好,请问遇到了什么问题?',
-                type     : 'left',
-                animation: 'left-default'
-            },
-        ],
+        INIT_MESSAGE         : [ {
+            value    : '您好,请问遇到了什么问题?',
+            type     : 'left',
+            animation: 'left-default'
+        } ],
         // 对话中提交报价回复
         CHAT_SUBMIT_MESSAGE  : [
             {
@@ -56,9 +54,11 @@ const CONFIG = {
         // 返回后发送内容
         BACK_MESSAGE: '保密',
         // 默认选择年龄 (n+1)
-        ANCHOR      : 40,
+        ANCHOR      : 30,
     },
     HOME_PAGE    : {
+        // 标题
+        TITLE         : '医院简介',
         // 开启图片首页
         ENABLED       : true,
         // 图片域名
@@ -85,6 +85,9 @@ const CONFIG = {
         // TEMPLATE_STYLE 为 css 内容
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
+    },
+    PRICE_PAGE : {
+        TITLE: '项目报价',
     },
     SELECT_ITEMS : {
         hello: {
