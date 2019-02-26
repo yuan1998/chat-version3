@@ -24,6 +24,12 @@ let routes = [
         name     : 'concat',
         component: () => import('./views/Concat.vue')
     },
+    {
+        path     : '/reservation',
+        name     : 'reservation',
+        component: () => import('./views/Reservation.vue')
+    },
+
 ];
 
 if (CONFIG && routes[ (CONFIG.BASE.ROOT || 0) ]) {

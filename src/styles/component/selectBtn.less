@@ -1,0 +1,97 @@
+
+.select-btn-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+
+    .jump-btn {
+        text-align: center;
+        padding-bottom: 4vw;
+        font-size: 4vw;
+        color: #5f6eed;
+    }
+    .select-btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 12/11.4vw;
+        .item-wrap {
+            flex: 1 0 48%;
+            padding: 0 12/11.4vw;
+        }
+        .item {
+            width: 100%;
+        }
+    }
+    .item-wrap {
+        margin-bottom: 4vw;
+        text-align: center;
+    }
+    .item {
+        padding: 0 2vw;
+        font-size: 50/10.4vw;
+        background-color: #ffffff;
+        height: 60/5vw;
+        line-height: 60/5vw;
+        color: #4a4b5f;
+        border-radius: 2vw;
+        display: inline-block;
+        box-shadow: 0 9/6.4vw 20/6.4vw 3/6.4vw rgba(0, 0, 0, 0.096);
+        transition: border-radius 1000ms ease-in-out, background-color 200ms ease-in-out, color 200ms ease-in-out, font-size 1000ms ease-in-out;
+
+        &.blue,
+        &.message {
+            color: #ffffff;
+        }
+        &.message {
+            border-radius: 5.64516129vw 5.64516129vw 2vw 5.64516129vw;
+            position: fixed;
+            display: inline-block;
+            z-index: 10;
+            font-size: 42/10.4vw;
+        }
+    }
+    .select-input-wrap {
+        .send-btn {
+            text-align: center;
+        }
+        .item-wrap {
+            display: inline-block;
+        }
+        .item {
+            padding: 0 2.82258065vw;
+        }
+        .input-error {
+            text-align: center;
+            padding: 1.2vw 0;
+            font-size: 3.906vw;
+            color: #f56c6c;
+        }
+
+        .select-input {
+            display: block;
+            padding: 0 2.4vw 8vw 2.4vw;
+
+            input {
+                height: 70/6.4vw;
+                background-color: #ffffff;
+                border-radius: 24/6.4vw;
+                padding: 0 3vw;
+                border: solid 0.156vw #dfe0df;
+                color: #666666;
+                width: 100%;
+                font-size: 3.906vw;
+                &::placeholder {
+                    color: #666666;
+                }
+            }
+
+            &.error input {
+                border-color: #f56c6c;
+            }
+
+        }
+    }
+}

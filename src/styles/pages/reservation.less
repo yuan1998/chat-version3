@@ -1,0 +1,184 @@
+.reservation-page {
+    display: flex;
+    flex:auto;
+    background-color: #f4f4f4;
+
+    .panel-header {
+        flex: none;
+        padding: 0 5vw 2vw 5vw;
+        text-align: center;
+        border-bottom-right-radius: 5vw;
+        border-bottom-left-radius: 5vw;
+        background-color: #fff;
+        overflow: hidden;
+
+        .panel-title {
+            padding-top: 4vw;
+            p {
+                font-size: 3.906vw;
+                height: 7vw;
+                line-height: 7vw;
+                border-radius: 3.5vw;
+                color: #ffffff;
+            }
+        }
+
+        .day-nav {
+            padding-top: 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .day-item {
+                color: #666666;
+                transition: all 200ms ease-in-out;
+                &::before {
+                    content:'';
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    max-width: 0;
+                    margin: 0 auto;
+                    transition: max-width 200ms ease-in-out;
+                    height: 0.256vw;
+                }
+            }
+
+            .date {
+                font-size: 4vw;
+            }
+            .day {
+                font-size: 3vw;
+                line-height: 1;
+                padding-top: 3vw;
+                padding-bottom: 1vw;
+            }
+        }
+    }
+
+    .panel-body  {
+        flex: auto;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+
+        .panel-content {
+            padding: 3vw 4.6vw 0 4.6vw;
+        }
+
+        .item-wrap {
+            background-color: #fff;
+            border-radius: 3vw;
+            box-shadow: 3px 8px 10px 1px rgba(0,0,0,.03);
+            margin-bottom: 4.5vw;
+
+            .avatar {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 2.5vw;
+                height: 19.531vw;
+                width: 19.531vw;
+                border-radius: 100%;
+                overflow: hidden;
+                background-color: #3c93f1;
+                border: 1vw solid #fff;
+                box-shadow: 4px 3px 20px 1px rgba(0,0,0,.08);
+
+            }
+        }
+        .content {
+            //height: 23.6vw;
+            padding: 2.25vw  0 3vw 25.531vw;
+
+            .title {
+                line-height: 5.156vw;
+
+                .name {
+                    font-size: 4.452vw;
+                    color: #333333;
+                }
+                .position {
+                    margin-left: 1.25vw;
+                    color: #666666;
+                    font-size: 3.125vw;
+                    vertical-align: baseline;
+                }
+                .head {
+                    font-size: 3.125vw;
+                    color: #ffffff;
+                    width: 16.8vw;
+                    border-radius: 1vw;
+                    background-color: #c3d4f2;
+                    height: 5.156vw;
+                    text-align: center;
+                    display: inline-block;
+                    margin-left: 4vw;
+
+                    &::before {
+                        content:'';
+                        display: inline-block;
+                        position: absolute;
+                        left: -2vw;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 1.15vw 2vw 1.15vw 0;
+                        border-color: transparent #c3d4f2 transparent transparent;
+                    }
+                }
+
+
+            }
+            .description {
+                padding-top: 1.9vw;
+                padding-right: 2vw;
+                line-height: 1.1;
+                color: #666666;
+                font-size: 3.125vw;
+
+                .black {
+                    color: #333333;
+                }
+            }
+        }
+
+        .reservation {
+            padding: 0 2.5vw 2.5vw 3.5vw;
+
+            .box {
+                border-top: .256vw solid #ededed;
+            }
+
+            .item {
+                padding-top: 2vw;
+                display: flex;
+                align-items: center;
+            }
+
+            .button {
+                justify-self: flex-end;
+                flex: none;
+                height: 7.25vw;
+                line-height: 7.25vw;
+                text-align: center;
+                color: #ffffff;
+                border-radius: 1.5vw;
+                font-size: 3.841vw;
+                width: 18vw;
+            }
+            .text {
+                font-size: 3.142vw;
+                color: #333333;
+                flex: auto;
+
+                .red {
+                    color: #ff0000;
+                }
+            }
+        }
+    }
+}

@@ -5,14 +5,6 @@
 */
 @col-count: 24;
 
-.is-mobile () {
-
-    .oh-container {
-        .m_container;
-        .oh;
-    }
-}
-
 * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -175,5 +167,24 @@ img {
     background-size: contain;
 }
 
+.model-fixed-class {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 18;
+}
 
 
+.mask-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 10;
+}
+.disabled {
+    opacity: .5;
+}

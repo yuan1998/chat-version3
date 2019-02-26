@@ -8,6 +8,28 @@ const CONFIG = {
         WEB_TITLE: '西安画美',
         // 电话
         TEL      : '029-87398888',
+        ROUTER   : [
+            {
+                title: '医院简介',
+                name : 'home',
+                path : '/home'
+            },
+            {
+                title: '项目报价',
+                name : 'price',
+                path : '/price'
+            },
+            {
+                title: '在线预约',
+                name : 'chat',
+                path : '/chat'
+            },
+            {
+                title: '联系我们',
+                name : 'concat',
+                path : '/concat'
+            },
+        ]
     },
     THEME        : {
         // 页面主题 : ['blue' , 'red']
@@ -57,8 +79,6 @@ const CONFIG = {
         ANCHOR      : 30,
     },
     HOME_PAGE    : {
-        // 标题
-        TITLE         : '医院简介',
         // 开启图片首页
         ENABLED       : true,
         // 图片域名
@@ -85,9 +105,6 @@ const CONFIG = {
         // TEMPLATE_STYLE 为 css 内容
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
-    },
-    PRICE_PAGE : {
-        TITLE: '项目报价',
     },
     SELECT_ITEMS : {
         hello: {

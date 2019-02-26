@@ -1,0 +1,45 @@
+@import './variable';
+
+.theme-red {
+    #y-chat-header {
+        @r-headerLight();
+    }
+    .select-btn-container .item {
+        &.blue,
+        &.message {
+            background-color: @r-selectBtnColor;
+        }
+    }
+    .unread-count {
+        background-color: @r-selectBtnColor;
+    }
+    .main-content-wrapper .message-item-wrapper.message-right p {
+        background-color: @r-selectBtnColor;
+    }
+    .loop-price-wrapper {
+        .btn-group .get-price-btn {
+            background: @r-submitButtonColor;
+        }
+    }
+    .model-container {
+        .model-footer .confirm-btn {
+            background: @r-submitButtonColor;
+        }
+    }
+    .concat-page .concat-form-btn-group .submit-btn {
+        background: @r-submitButtonColor;
+    }
+    .radio-group {
+        .radio-item {
+            input:checked + span {
+                background-color: @r-selectBtnColor;
+                border-color: @r-selectBtnColor;
+            }
+        }
+    }
+    .ask-wrapper {
+        .ask-button button {
+            background: @r-submitButtonColor;
+        }
+    }
+}

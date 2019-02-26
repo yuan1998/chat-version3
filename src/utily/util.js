@@ -52,10 +52,10 @@ export const pushHistory = () => {
 export const parseStringMethod = (string) => {
     let arr = string.split(':');
 
-    let method = arr[0];
+    let method = arr[ 0 ];
     let params = [];
-    if (arr[1]) {
-        params = arr[1].split("|");
+    if (arr[ 1 ]) {
+        params = arr[ 1 ].split("|");
     }
 
     return {
@@ -65,6 +65,10 @@ export const parseStringMethod = (string) => {
 };
 
 
-export const oneOf = (arr ,val) => {
+export const oneOf = (arr, val) => {
     return arr.includes(val);
-}
+};
+
+export const randomNum = (max, min = 0) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};

@@ -1,0 +1,72 @@
+@import "./variable-blue";
+
+.theme-blue {
+    #y-chat-header {
+        @headerLight();
+    }
+    .select-btn-container .item {
+        &.blue,
+        &.message {
+
+            background-color: @selectBtnColor;
+        }
+    }
+    .unread-count {
+        background-color: @selectBtnColor;
+    }
+    .main-content-wrapper .message-item-wrapper.message-right p {
+        background-color: @selectBtnColor;
+    }
+    .loop-price-wrapper {
+        .btn-group .get-price-btn {
+            background: @submitButtonColor;
+        }
+    }
+
+    .model-container {
+        .model-footer .confirm-btn {
+            background: @submitButtonColor;
+        }
+    }
+    .concat-page .concat-form-btn-group .submit-btn {
+        background: @submitButtonColor;;
+    }
+    .radio-group {
+        .radio-item {
+            input:checked + span {
+                background-color: @selectBtnColor;
+                border-color: @selectBtnColor;
+            }
+        }
+    }
+    .ask-wrapper {
+        .ask-button button {
+            background: @submitButtonColor;
+        }
+    }
+
+    .reservation-page {
+        .panel-title p {
+            background: @headerBackground;
+        }
+
+        .day-item {
+            &::before {
+                background-color: @navLineColor;
+            }
+            &.active {
+                color: @navTextColor;
+
+                &::before {
+                    max-width: 100%;
+                }
+            }
+        }
+        .panel-body {
+            .reservation .button {
+                background: @headerBackground;
+            }
+        }
+
+    }
+}

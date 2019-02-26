@@ -26,28 +26,7 @@
         data() {
             return {
                 title     : CONFIG.BASE.TITLE || '西安画美整形医院',
-                routerList: [
-                    {
-                        title: CONFIG.HOME_PAGE.TITLE || '医院简介',
-                        name : 'home',
-                        path : '/home'
-                    },
-                    {
-                        title: CONFIG.PRICE_PAGE.TITLE || '项目报价',
-                        name : 'price',
-                        path : '/price'
-                    },
-                    {
-                        title: '在线预约',
-                        name : 'chat',
-                        path : '/chat'
-                    },
-                    {
-                        title: '联系我们',
-                        name : 'concat',
-                        path : '/concat'
-                    },
-                ]
+                routerList: CONFIG.BASE.ROUTER
             }
         },
     }

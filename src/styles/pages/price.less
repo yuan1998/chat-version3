@@ -1,0 +1,152 @@
+
+.loop-price-wrapper {
+    .loop-price {
+        background-color: #fff;
+        padding: 5vw;
+        border-radius: 3vw;
+    }
+    .loop-wrapper {
+        padding-bottom: 30/6.4vw;
+    }
+
+    .loop-box {
+        background-color: #d9deda;
+        border-radius: 1.719vw;
+        border: solid 0.625vw #666666;
+        font-size: 0;
+        text-align: right;
+        width: 83vw;
+        padding: .5vw;
+        box-shadow: 0 0 0 1vw #d9deda;
+
+        .price-item {
+            display: inline-block;
+            width: 35/6.4vw;
+        }
+    }
+
+    .form-tips {
+        color: #666666;
+        font-size: 3.013vw;
+        line-height: 1.5;
+        //padding-top: 30/6.4vw;
+        .q {
+            color: #f56c6c;
+            margin-right: 1vw;
+        }
+    }
+
+    .btn-group {
+        margin-top: 18/6.4vw;
+        text-align: center;
+        .get-price-btn {
+            background: @submitButtonColor;
+            color: #ffffff;
+            display: inline-block;
+            height: 53/5vw;
+            line-height: 53/5vw;
+            border-radius: 2vw;
+            font-size: 3.5vw;
+            padding: 0 4vw;
+        }
+    }
+}
+
+.price-page {
+    padding: 0 2.8vw 8vw;
+    overflow: auto;
+}
+
+.radio-group {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+
+    .radio-item {
+        flex: 1;
+        height: 50/6.4vw;
+        line-height: 50/6.4vw;
+        text-align: center;
+
+        span {
+            overflow: hidden;
+            color: #555;
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            font-size: 3.906vw;
+            border: 1/6.4vw solid #dbdfe6;
+            transition: all 230ms ease-in-out;
+        }
+
+        & + .radio-item span {
+            border-left: none;
+        }
+
+        &:last-child span {
+            border-top-right-radius: 2vw;
+            border-bottom-right-radius: 2vw;
+        }
+
+        &:first-child span {
+            border-top-left-radius: 2vw;
+            border-bottom-left-radius: 2vw;
+        }
+
+        input {
+            display: none;
+
+            &:checked + span {
+                //background-color: @selectBtnColor;
+                color: #ffffff;
+                //border-color: @selectBtnColor;
+            }
+        }
+    }
+}
+
+.ask-wrapper {
+    .title {
+        text-align: center;
+        color: #333333;
+        font-size: 4.375vw;
+        padding: 5.5vw 0;
+    }
+
+    .ask-button {
+        padding-top: 10vw;
+        z-index: 3;
+        text-align: center;
+
+        button {
+            color: #fff;
+            /*background: linear-gradient(40deg, #83d6ff 0%, #348cef 100%);*/
+            //background: @submitButtonColor;
+            display: inline-block;
+            white-space: nowrap;
+            cursor: pointer;
+            -webkit-appearance: none;
+            text-align: center;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            height: 12.65625vw;
+            line-height: 12.65625vw;
+            vertical-align: middle;
+            padding: 0 20/4.4vw;
+            font-size: 4.506vw;
+            border-radius: 12.65625vw;
+        }
+
+        &.disabled button {
+            opacity: .6;
+        }
+
+    }
+}
+
