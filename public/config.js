@@ -45,11 +45,15 @@ const CONFIG = {
     },
     KST          : {
         // 快商通标识
-        PAGE_TAG: '6666_牙科',
+        PAGE_TAG: '###信息流-西安眼鼻中心',
         // 快商通链接
-        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
+        // kq  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952
+        // zx  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951
+        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951',
         // 快商通 js 代码
-        JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
+        // kq  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>
+        // zx  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>
+        JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>',
     },
     MESSAGE      : {
         // 初始对话
