@@ -106,6 +106,12 @@ const CONFIG = {
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
     },
+    PRICE_PAGE: {
+        ASK_COVER: 'http://kst.img.xamryy.cn/theme/2-1-red.jpg',
+    },
+    CHAT_PAGE: {
+        AVATAR: 'http://kst.img.xamryy.cn/theme/avatar-red.png',
+    },
     SELECT_ITEMS : {
         hello: {
             type   : 'select-item-group',

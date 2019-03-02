@@ -24,48 +24,65 @@
         <div class="panel-body"
              v-if="Object.keys(expert).length > 0">
             <div class="panel-content">
-                <div v-if="currentExpert.length > 0"
-                     class="item-wrap expert-item"
-                     v-for="(item , index) in currentExpert"
-                     :key="index">
-                    <div class="content">
-                        <div class="avatar"></div>
-                        <p class="title">
-                            <span class="name">{{ item.name }}</span>
-                            <span class="position" v-if="item.position">({{ item.position }})</span>
-                            <span class="head">{{ item.head }}</span>
-                        </p>
-                        <p class="description">
-                            <span class="big black">擅长：</span>{{ item.point }}
-                        </p>
-                    </div>
-                    <div class="reservation">
-                        <div class="box">
-                            <div class="item" :class="item.last <= 0 && 'disabled'">
-                                <p class="text" >
-                                    <span class="red">当天限号{{ item.limit }}位.</span> 余号 : <span class="red">{{ item.last }}</span>
-                                </p>
-                                <div class="button"
-                                     :class="(item.isReservation && item.last > 0) && 'disabled'"
-                                     @click="handleReservationClick(item)">
-                                    {{ item.isReservation ? '已' : '' }}预约
+                <transition-group :css="false"
+                                  v-if="currentExpert"
+                                  name="staggered-fade"
+                                  class="row-wrapper"
+                                  tag="div"
+                                  @before-enter="BeforeEnter"
+                                  @enter="Enter"
+                                  @after-enter="afterEnter"
+                                  @leave="Leave">
+                    <div class="item-wrap expert-item"
+                         v-for="(item , index) in cacheExpert"
+                         :data-offset="index"
+                         :key="item.key + current">
+                        <div class="content">
+                            <div class="avatar"></div>
+                            <p class="title">
+                                <span class="name">{{ item.name }}</span>
+                                <span class="position" v-if="item.position">({{ item.position }})</span>
+                                <span class="head">{{ item.head }}</span>
+                            </p>
+                            <p class="description">
+                                <span class="big black">擅长：</span>{{ item.point }}
+                            </p>
+                        </div>
+                        <div class="reservation">
+                            <div class="box">
+                                <div class="item" :class="item.last <= 0 && 'disabled'">
+                                    <p class="text">
+                                        <span class="red">当天限号{{ item.limit }}位.</span> 余号 : <span class="red">{{ item.last }}</span>
+                                    </p>
+                                    <div class="button"
+                                         :class="(hasReservation(item.key) && item.last > 0) && 'disabled'"
+                                         @click="handleReservationClick(item,$event)">
+                                        {{ hasReservation(item.key) ? '已' : '' }}预约
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div v-else>
+                </transition-group>
+
+                <div v-if="currentExpert.length === 0">
                     <p>当天没有出诊的医生</p>
                 </div>
             </div>
         </div>
+        <reservationForm :display.sync="showForm"
+                         :offset="buttonOffset"
+                         :form.sync="formData"></reservationForm>
     </div>
 </template>
 
 <script>
-    import moment                 from 'moment';
-    import Storage                from "../utily/Storage";
-    import { cloneOf, randomNum } from "../utily/util";
+    import moment                                from 'moment';
+    import anime                                 from 'animejs';
+    import Storage                               from "../utily/Storage";
+    import { cloneOf, elementOffset, randomNum } from "../utily/util";
+
+    import reservationForm from '../components/reservation-form'
 
     const expertData = {
         'lyf': {
@@ -107,7 +124,7 @@
                 }
             }
         },
-        'sr': {
+        'sr' : {
             name    : '尚荣',
             position: '',
             head    : '资深医师',
@@ -120,7 +137,7 @@
                 }
             }
         },
-        'qq': {
+        'qq' : {
             name    : '乔迁',
             position: '',
             head    : '儿牙医师',
@@ -138,21 +155,32 @@
     const EXPERTNAME = 'STORAGE_EXPERT';
 
     export default {
+        components: {
+            reservationForm
+        },
         data() {
             return {
                 days         : [],
                 expert       : {},
                 storageExpert: {},
-                current      : ''
+                current      : '',
+                offsetDelay  : 200,
+                enterWait    : 0,
+                currentExpert: null,
+                showForm: false,
+                formData : {},
+                buttonOffset: null
             }
         },
         computed: {
-            currentExpert() {
-                return this.expert[ this.current ] || [];
+            cacheExpert() {
+                return (this.currentExpert || []).map( (item) => {
+                    item.isReservation = this.hasReservation(item.key);
+                    return item;
+                })
             }
         },
         mounted() {
-            Storage.clear();
             this.storageExpert = Storage.getItem(EXPERTNAME) || this.storageExpert;
             this.initDays();
         },
@@ -200,17 +228,19 @@
                 }
                 return arr;
             },
-            handleReservationClick(item) {
-                console.log('item :', this.currentExpert);
-                if (this.hasReservation(item.key)) {
+            handleReservationClick(item , evt) {
+
+                if (this.hasReservation(item.key) || item.last <= 0) {
                     return;
                 }
-                item.last -= 1;
-                item.isReservation = true;
-                this.reservated(item.key);
-                this.setStorageExpert();
+
+                this.showForm = true;
+                this.buttonOffset = {
+                    x: evt.clientX,
+                    y: evt.clientY,
+                }
             },
-            reservated( key ,date = this.current) {
+            reservated(key, date = this.current) {
                 Storage.setItem(date + key, true);
             },
             hasReservation(key, date = this.current) {
@@ -218,6 +248,50 @@
             },
             handleClickDay(item) {
                 this.current = item.date;
+            },
+            Enter(el, done) {
+                let index = el.dataset.offset;
+                setTimeout(() => {
+                    anime({
+                        targets   : el,
+                        opacity   : 1,
+                        translateX: 0,
+                        duration  : 800,
+                        easing    : 'easeInOutQuad',
+                        complete() {
+                            done();
+                        }
+                    });
+                }, index * this.offsetDelay + this.enterWait)
+            },
+            BeforeEnter(el) {
+                $(el).css({
+                    opacity  : 0,
+                    transform: 'translateX(15vw)'
+                })
+            },
+            afterEnter() {
+                console.log('123 :', 123);
+            },
+            Leave(el, done) {
+                anime({
+                    targets   : el,
+                    opacity   : 0,
+                    translateX: '-=10vw',
+                    duration  : 500,
+                    easing    : 'easeInOutQuad',
+                    complete() {
+                        done();
+                    }
+                });
+                if (this.enterWait === 0) {
+                    this.enterWait = 300;
+                }
+            }
+        },
+        watch: {
+            current(val) {
+                this.currentExpert = this.expert[val];
             }
         }
     }

@@ -10,7 +10,7 @@
         <template v-else>
             <div v-if="showAvatar" class="message-avatar" ref="avatar">
                 <div class="avatar" v-if="!hiddenAvatar">
-                    <img src="@/assets/avatar.png" alt="" class="mc-img">
+                    <img :src="config.AVATAR" alt="" class="mc-img">
                 </div>
             </div>
             <div class="message-text">
@@ -21,7 +21,8 @@
 </template>
 
 <script>
-    import anime from 'animejs'
+    import anime             from 'animejs'
+    import { elementOffset } from "../utily/util";
 
     export default {
         props   : {
@@ -43,7 +44,9 @@
         },
         data() {
             return {
-                show: true
+                show: true,
+                config: CONFIG.CHAT_PAGE,
+
             }
         },
         computed: {
@@ -89,18 +92,9 @@
             rightSelect() {
                 const item       = this.item;
                 const itemEl     = $(item.el);
-                const itemOffset = {
-                    ...itemEl.offset(),
-                    height: itemEl.outerHeight(),
-                    width : itemEl.outerWidth()
-                };
+                const itemOffset = elementOffset(item.el);
 
-                const el         = $(this.$refs.text);
-                const elOffset   = {
-                    ...el.offset(),
-                    height: el.outerHeight(),
-                    width : el.outerWidth()
-                };
+                const elOffset   = elementOffset(this.$refs.text);
 
                 itemEl.addClass('message');
 

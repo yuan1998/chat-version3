@@ -2,7 +2,7 @@
     <div class="y-chat-page page-item price-page">
         <div class="ask-wrapper">
             <div class="ask-cover" style="padding-top: 4.1vw;">
-                <img src="@/assets/2-1.jpg" alt="" class="mc-img">
+                <img :src="config.ASK_COVER" alt="" class="mc-img">
             </div>
             <div class="ask-item"
                  v-for="(item , index) in getOptions"
@@ -43,8 +43,8 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
-    import ComputePrice   from '../components/Computed-Price'
+    import { mapActions } from 'vuex';
+    import ComputePrice   from '../components/Computed-Price';
     import { cloneOf }    from "../utily/util";
 
 
@@ -65,7 +65,8 @@
             return {
                 showCommentForm: false,
                 renderQuestion : [],
-                question       : cloneOf(CONFIG.QUESTION)
+                question       : cloneOf(CONFIG.QUESTION),
+                config : CONFIG.PRICE_PAGE,
             }
         },
         methods   : {

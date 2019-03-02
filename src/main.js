@@ -2,11 +2,21 @@ import Vue    from 'vue'
 import App    from './App.vue'
 import router from './router'
 import store  from './store/store'
+import FastClick from 'fastclick'
 import Bus from './utily/bus'
 import $ from 'jquery'
 import './styles/app.less'
 
 window.$ = $;
+
+$(function() {
+    FastClick.attach(document.body);
+});
+
+(/iphone|ipod|ipad/i.test(navigator.appVersion)) && document.addEventListener('blur', (e) => {
+    // 这里加了个类型判断，因为a等元素也会触发blur事件
+    ['input', 'textarea'].includes(e.target.localName) && document.body.scrollIntoView(false)
+}, true);
 
 Bus(Vue);
 Vue.config.productionTip = false;

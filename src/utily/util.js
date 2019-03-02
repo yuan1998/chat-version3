@@ -72,3 +72,12 @@ export const oneOf = (arr, val) => {
 export const randomNum = (max, min = 0) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+export const elementOffset = (el) => {
+    let itemEl = $(el);
+    return {
+        ...itemEl.offset(),
+        height: itemEl.outerHeight(),
+        width : itemEl.outerWidth()
+    };
+}
