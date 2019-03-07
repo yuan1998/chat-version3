@@ -110,10 +110,10 @@ const CONFIG = {
         TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
         TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
     },
-    PRICE_PAGE: {
+    PRICE_PAGE   : {
         ASK_COVER: 'http://kst.img.xamryy.cn/theme/2-1-red.jpg',
     },
-    CHAT_PAGE: {
+    CHAT_PAGE    : {
         AVATAR: 'http://kst.img.xamryy.cn/theme/avatar-red.png',
     },
     SELECT_ITEMS : {
@@ -123,6 +123,10 @@ const CONFIG = {
             theme  : 'blue',
             next   : 'age',
             message: [
+                {
+                    type : 'advertising',
+                    value: 'http://ww1.sinaimg.cn/large/0076fRdzly1g0u6puidmjj30hs09jq3z.jpg',
+                },
                 {
                     type     : 'left',
                     animation: 'left-default',
@@ -148,9 +152,8 @@ const CONFIG = {
             delay       : 500,
             message     : [
                 {
-                    type     : 'left',
-                    animation: 'left-default',
-                    value    : '几岁?',
+                    type : 'advertising',
+                    value: 'http://ww1.sinaimg.cn/large/0076fRdzly1g0u6puidmjj30hs09jq3z.jpg',
                 },
             ],
         },

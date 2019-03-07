@@ -7,6 +7,11 @@
                 {{ value.format('HH:mm:ss') }}
             </div>
         </template>
+        <template v-else-if="type === 'advertising'">
+            <div class="advertising">
+                <img :src="value" alt="" class="mc-img">
+            </div>
+        </template>
         <template v-else>
             <div v-if="showAvatar" class="message-avatar" ref="avatar">
                 <div class="avatar" v-if="!hiddenAvatar">
@@ -46,7 +51,6 @@
             return {
                 show: true,
                 config: CONFIG.CHAT_PAGE,
-
             }
         },
         computed: {

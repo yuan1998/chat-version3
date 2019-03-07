@@ -209,7 +209,6 @@
                     result.data.items.forEach((item) => {
                         item.value = this.specialItemValue(item.value);
                     });
-
                 }
                 return result;
             },
@@ -220,6 +219,7 @@
                 if (next) {
                     this.scrollToLastRight();
                     result = this.cloneItem(next);
+                    console.log('result :', result);
                 }
 
                 setTimeout(() => {
@@ -276,7 +276,7 @@
                     this.showFooter(true);
                 }, 1400)
             },
-            handleSendItem(item, next , display = true) {
+            handleSendItem(item, next, display = true) {
                 const current = this.currentSelectItem;
 
                 display && this.filterMessage({

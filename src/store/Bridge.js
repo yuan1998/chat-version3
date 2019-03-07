@@ -1,6 +1,7 @@
-import Bridge          from '@/utily/bridge'
-import moment          from 'moment'
-import { readerImage } from '@/utily/util'
+import Bridge              from '@/utily/bridge'
+import moment              from 'moment'
+import { readerImage }     from '@/utily/util'
+import { addImageProcess } from "../utily/util";
 
 const oneMin = 1000 * 60;
 
@@ -119,12 +120,14 @@ export default {
         },
         filterMessage({ commit, dispatch }, { message, pass = false, duration = 0 }) {
             message = [].concat(message);
-            message.forEach((item) => {
+            message.forEach( (item) => {
                 if (item) {
-                    if ((item.type === 'left' && item.value !== 'NOT_FOUNT_MSG') || pass) {
+                    let leftCondition = (item.type === 'left' && item.value !== 'NOT_FOUNT_MSG');
+                    let adCondition   = item.type === 'advertising';
+                    if (leftCondition || pass || adCondition) {
                         duration += parseInt(item.duration) || 0;
                         setTimeout(() => {
-                            dispatch('createTime');
+                            !adCondition && dispatch('createTime');
                             commit('messageAdd', item);
                         }, duration);
                     }
