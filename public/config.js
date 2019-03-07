@@ -139,6 +139,7 @@ const CONFIG = {
                         value    : 'CONFIG_KEYWORD',
                         show     : true,
                         animation: 'right-select',
+                        className: 'heartBeat infinite animated',
                         el       : null,
                     },
                 ]

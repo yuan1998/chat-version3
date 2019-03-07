@@ -8,7 +8,7 @@
             </div>
         </template>
         <template v-else-if="type === 'advertising'">
-            <div class="advertising">
+            <div class="advertising" >
                 <img :src="value" alt="" class="mc-img">
             </div>
         </template>

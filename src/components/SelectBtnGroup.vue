@@ -5,7 +5,7 @@
              :style="!each.show &&'opacity:0;'"
              :key="index">
             <div class="item"
-                 :class="item.theme"
+                 :class="!selected && className(each)"
                  :ref="'item' + index"
                  @click="handleSelectItem('item' + index ,each)">
                 <p>{{ each.value }}</p>
@@ -31,7 +31,7 @@
                 }
                 this.selected = !this.selected;
                 item.type     = 'right';
-                item.el       = this.$refs[ref];
+                item.el       = this.$refs[ ref ];
                 if (item.event) {
                     this.$emit(item.event, item);
                     return
@@ -39,13 +39,19 @@
 
                 const next = item.next || this.item.next;
 
-                this.$emit('send-item', item , next);
+                this.$emit('send-item', item, next);
+            },
+            className(item) {
+                let { className, theme } = item;
+                console.log('className :', className);
+                return (className || '') + ' ' + this.item.theme
             }
         },
         computed: {
             selectItems() {
                 return this.item.data.items;
-            }
+            },
+
         }
     }
 </script>
