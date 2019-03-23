@@ -32,7 +32,6 @@
                            ref="input"
                            :placeholder="placeholder"
                            @focus="handleFocus"
-                           @blur="inputFocus = false"
                            id="form-input">
                     <button type="submit"
                             class="send-text">
@@ -42,9 +41,16 @@
             </form>
             <div style="height: 5vw;display: block;" v-if="inputFocus"></div>
         </div>
-        <form class="footer-big-input" @submit.prevent="handleSubmit">
+        <form class="footer-big-input" :style="{
+            paddingBottom: (inputFocus ? '10vw' : '2vw')
+        }" @submit.prevent="handleSubmit">
             <div class="footer-input">
-                <textarea type="text" :placeholder="textPlaceholder" v-model="superInput" ref="input"></textarea>
+                <textarea type="text"
+                          :placeholder="textPlaceholder"
+                          @blur="inputFocus = false"
+                          @focus="handleTextFocus"
+                          v-model="superInput"
+                          ref="input"></textarea>
             </div>
             <div class="footer-button">
                 <button type="submit"
@@ -116,6 +122,14 @@
                 sendText     : 'Bridge/sendText',
                 filterMessage: 'Bridge/filterMessage'
             }),
+            handleTextFocus() {
+                if (!this.isChat) {
+                    this.handleInputClick();
+                }
+                this.$nextTick(() => {
+                    this.handleFocus();
+                })
+            },
             textTransition() {
                 anime({
                     targets : this,
@@ -139,17 +153,9 @@
                 this.$refs.input.focus();
                 if (!this.sayed) {
                     this.sayed = true;
-                    setTimeout(() => {
-                        this.filterMessage({
-                            message: [
-                                {
-                                    type     : 'left',
-                                    animation: 'left-default',
-                                    value    : '你好,你想咨询什么呢?',
-                                },
-                            ]
-                        })
-                    }, 888)
+                    this.filterMessage({
+                        message: CONFIG.MESSAGE.NO_SAY_MESSAGE
+                    })
                 }
             },
             clickInputFile() {

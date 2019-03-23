@@ -96,6 +96,14 @@ const CONFIG = {
                 value    : '您好,请问有什么问题?',
             },
         ],
+        NO_SAY_MESSAGE       : [
+            {
+                type     : 'left',
+                animation: 'left-default',
+                value    : '本月活动多项种项目都有优惠哟~欢迎咨询',
+                duration : 1000,
+            },
+        ],
         // 对话中提交报价回复
         CHAT_SUBMIT_MESSAGE  : [
             {
