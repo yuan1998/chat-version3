@@ -17,7 +17,7 @@
         <template v-else-if="type === 'advertising'">
             <div class="advertising" :class="{
                 'not-border' : item.notBorder,
-            }">
+            }" @click="handleMessageClick">
                 <img :src="value" alt="" class="mc-img">
             </div>
         </template>
@@ -36,6 +36,7 @@
 
 <script>
     import anime             from 'animejs'
+    import { mapActions }    from 'vuex'
     import Broadcast         from '../components/broadcast';
     import { elementOffset } from "../utily/util";
 
@@ -79,13 +80,24 @@
             }
         },
         methods   : {
+            ...mapActions({
+                sendText: 'Bridge/sendText',
+            }),
+            handleMessageClick() {
+                if (this.item.sendMessage && !this.item.$sended) {
+                    this.$set(this.item , '$sended' , true);
+                    this.sendText({
+                        value: this.item.sendMessage,
+                    });
+                }
+            },
             scrollToMe() {
                 let delay = this.item.scrollDelay || 5000;
 
                 setTimeout(() => {
                     let item = this.$refs.message;
-                    this.$emit('scroll-to-me' ,item.offsetTop);
-                },delay)
+                    this.$emit('scroll-to-me', item.offsetTop);
+                }, delay)
             },
             checkAnime() {
                 switch (this.animationName) {

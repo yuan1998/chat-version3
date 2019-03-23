@@ -89,6 +89,7 @@ const CONFIG = {
                 notPadding: true,
                 notBorder : true,
                 value     : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
+                sendMessage: '领取优惠劵'
             },
             {
                 type     : 'left',
