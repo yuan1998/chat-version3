@@ -11,6 +11,7 @@
                             :type="item.type"
                             :prev-type="messageType(index - 1)"
                             :animation-name="item.animation"
+                            @scroll-to-me="handleScrollToMe"
                             v-for="(item , index) in messageList">
                 </MessagePop>
             </div>
@@ -101,8 +102,8 @@
                 }
             });
 
-            this.$bus.$on('scroll-bottom', () => {
-                this.scrollBottom();
+            this.$bus.$on('scroll-bottom', (val) => {
+                this.scrollBottom(val);
             });
 
             window.addEventListener('resize', () => {
@@ -134,6 +135,11 @@
                 sendText     : 'Bridge/sendText',
                 filterMessage: 'Bridge/filterMessage'
             }),
+            handleScrollToMe(val) {
+                console.log('val :', val);
+                this.wrapperHeight = val + this.$refs.chat.clientHeight;
+                this.scrollBottom();
+            },
             addConfigMessage(name) {
                 let data = CONFIG.MESSAGE;
                 data[ name ] && this.filterMessage({
@@ -169,6 +175,9 @@
                     if (!this.selectStart || !oneOf([ 'default', 'items' ], this.type)) {
                         this.type = 'default';
                     }
+                }
+                else {
+                    this.type = 'default';
                 }
 
                 this[ this.type + 'Module' ]();

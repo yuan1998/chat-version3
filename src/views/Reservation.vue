@@ -1,11 +1,6 @@
 <template>
     <div class="y-chat-page page-item reservation-page">
         <div class="panel-header">
-            <div class=" panel-title">
-                <p>
-                    选择预约时间
-                </p>
-            </div>
             <div class="day-nav">
                 <div class="day-item"
                      @click="handleClickDay(item)"
@@ -38,7 +33,9 @@
                          :data-offset="index"
                          :key="item.key + current">
                         <div class="content">
-                            <div class="avatar"></div>
+                            <div class="expert-avatar">
+                                <img :src="item.avatar" alt="" class="mc-img">
+                            </div>
                             <p class="title">
                                 <span class="name">{{ item.name }}</span>
                                 <span class="position" v-if="item.position">({{ item.position }})</span>
@@ -70,87 +67,24 @@
                 </div>
             </div>
         </div>
-        <reservationForm :display.sync="showForm"
+        <reservationForm v-if="showForm"
                          :offset="buttonOffset"
-                         :form.sync="formData"></reservationForm>
+                         :item="formItem"
+                         :date="current"
+                         @reservated="reservated"
+                         @close-me="handleCloseForm"/>
     </div>
 </template>
 
 <script>
-    import moment                                from 'moment';
-    import anime                                 from 'animejs';
-    import Storage                               from "../utily/Storage";
-    import { cloneOf, elementOffset, randomNum } from "../utily/util";
+    import moment                                            from 'moment';
+    import anime                                             from 'animejs';
+    import Storage                                           from "../utily/Storage";
+    import { cloneOf, randomNum, shuffleArray, pushHistory } from "../utily/util";
 
     import reservationForm from '../components/reservation-form'
 
-    const expertData = {
-        'lyf': {
-            name    : '李永峰',
-            position: '院长',
-            head    : '首席专家',
-            avatar  : '',
-            point   : '对口腔颌面外科、种植牙手术及术后的美容牙修复、口腔内科、口腔美容修复及正畸、牙周及黏膜病等疑难病症的治疗具备较高水平。',
-            options : {
-                limit: {
-                    min: 5,
-                    max: 10,
-                }
-            }
-        },
-        'gjf': {
-            name    : '郭军锋',
-            position: '',
-            head    : '资深医师',
-            avatar  : '',
-            point   : '对口腔粘膜病、牙体牙髓疾病、无痛微创中低位阻生智齿拔除、口腔颌面部炎症外伤及牙周疾病的鉴别诊断与治疗具有较高水平。',
-            options : {
-                limit: {
-                    min: 5,
-                    max: 10,
-                }
-            }
-        },
-        'wcy': {
-            name    : '王朝彦',
-            position: '',
-            head    : '主治医师',
-            avatar  : '',
-            point   : '对儿童、成年人牙列拥挤，牙列稀疏，牙槽骨前突，反颌等口腔畸形的矫治，精通MBT直丝弓牙矫治技术，儿童牙齿畸形的早期干预，自锁托槽及隐形矫治。',
-            options : {
-                limit: {
-                    min: 5,
-                    max: 10,
-                }
-            }
-        },
-        'sr' : {
-            name    : '尚荣',
-            position: '',
-            head    : '资深医师',
-            avatar  : '',
-            point   : '牙体牙髓病、牙周病的治疗，现代根管治疗，牙列缺损的综合性修复，高端牙齿美容及外科拔牙术。',
-            options : {
-                limit: {
-                    min: 5,
-                    max: 10,
-                }
-            }
-        },
-        'qq' : {
-            name    : '乔迁',
-            position: '',
-            head    : '儿牙医师',
-            avatar  : '',
-            point   : '儿童口腔疾病的治疗与预防，各种牙体牙髓疾病的治疗和后期修复。',
-            options : {
-                limit: {
-                    min: 5,
-                    max: 10,
-                }
-            }
-        },
-    };
+    const expertData = CONFIG.RESERVATION_PAGE.EXPERT_DATA;
 
     const EXPERTNAME = 'STORAGE_EXPERT';
 
@@ -167,14 +101,15 @@
                 offsetDelay  : 200,
                 enterWait    : 0,
                 currentExpert: null,
-                showForm: false,
-                formData : {},
-                buttonOffset: null
+                showForm     : false,
+                formItem     : null,
+                formData     : {},
+                buttonOffset : null
             }
         },
-        computed: {
+        computed  : {
             cacheExpert() {
-                return (this.currentExpert || []).map( (item) => {
+                return (this.currentExpert || []).map((item) => {
                     item.isReservation = this.hasReservation(item.key);
                     return item;
                 })
@@ -184,7 +119,10 @@
             this.storageExpert = Storage.getItem(EXPERTNAME) || this.storageExpert;
             this.initDays();
         },
-        methods : {
+        methods   : {
+            handleCloseForm() {
+                this.showForm = false;
+            },
             initDays() {
                 moment.updateLocale('en', {
                     weekdays: [ '周日', '周一', '周二', '周三', '周四', '周五', '周六' ]
@@ -226,19 +164,22 @@
                     item.isReservation = this.hasReservation(key, date);
                     arr.push(item);
                 }
-                return arr;
+
+                return shuffleArray(arr);
             },
-            handleReservationClick(item , evt) {
+            handleReservationClick(item, evt) {
 
                 if (this.hasReservation(item.key) || item.last <= 0) {
                     return;
                 }
 
-                this.showForm = true;
+                this.formItem     = item;
+                this.showForm     = true;
                 this.buttonOffset = {
-                    x: evt.clientX,
-                    y: evt.clientY,
+                    left: (evt.clientX || 0) + 'px',
+                    top : (evt.clientY || 0) + 'px',
                 }
+                pushHistory();
             },
             reservated(key, date = this.current) {
                 Storage.setItem(date + key, true);
@@ -289,9 +230,9 @@
                 }
             }
         },
-        watch: {
+        watch     : {
             current(val) {
-                this.currentExpert = this.expert[val];
+                this.currentExpert = this.expert[ val ];
             }
         }
     }

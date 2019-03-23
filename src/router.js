@@ -29,6 +29,12 @@ let routes = [
         name     : 'reservation',
         component: () => import('./views/Reservation.vue')
     },
+    {
+        path     : '/lottery',
+        name     : 'lottery',
+        component: () => import('./views/lottery.vue')
+    },
+
 
 ];
 

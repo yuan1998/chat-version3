@@ -9,7 +9,7 @@
     flex-direction: column;
     flex: auto;
     min-width: 0;
-    z-index: 2;
+
 }
 
 .auto-height-flex {
@@ -29,11 +29,16 @@
     display: flex;
     flex-direction: column;
     flex: auto;
-    overflow: hidden;
+    //overflow: hidden;
     background-color: #fff;
+    //border-top-right-radius: 2vw;
+    //border-top-left-radius: 2vw;
+    -webkit-overflow-scrolling: touch;
 
     .home-page-container {
         overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+
     }
 }
 
@@ -41,113 +46,9 @@
     flex: auto;
     overflow: auto;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
-    padding-bottom: 10vw;
-}
-
-#y-chat-header {
-    flex-shrink: 0;
-    min-height: 8.281vw;
-    line-height: 8.281vw;
-    //background: linear-gradient(40deg, #83d6ff 0%, #348cef 100%);
-    //@headerLight();
-}
-
-.test-light {
-    //background-image: linear-gradient(40deg, #83d6ff 0%, #d12c34 100%);
-    background-image: @r-headerBackground;
-    background-size: 4000% 100%;
-    bakcground-position: 0 0;
-    animation-name: headerColorMove;
-    animation-fill-mode: both;
-    animation-duration: 40s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-#y-chat-footer {
-    min-height: 0;
-    line-height: 16.094vw;
-    background-color: #fff;
-    flex-shrink: 0;
-}
-
-.header-bar {
-    height: 9.656vw;
-    color: #ffffff;
-    font-size: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .back-icon {
-        flex: none;
-        width: 35/6.5vw;
-
-        margin-left: 4.5vw;
-        margin-right: 2.0313vw;
-    }
-
-    .right-icon {
-        flex-basis: 40/6.5vw;
-        margin-left: auto;
-        margin-right: 4.1vw;
-    }
-
-    .header-bar-title {
-        flex: 1;
-        text-align: center;
-        justify-self: center;
-
-        font-size: 4.147vw;
-    }
-}
-
-.nav-bar {
-    display: flex;
-    justify-content: center;
-    border-top-right-radius: 4vw;
-    border-top-left-radius: 4vw;
-    overflow: hidden;
-    background-color: #fff;
-
-    .nav-item {
-        flex: auto;
-        height: 9vw;
-        line-height: 9vw;
-        font-size: 3.8147vw;
-        color: #333333;
-        text-align: center;
-        cursor: pointer;
-        background-color: #fff;
-        transition: all 230ms ease-in-out;
-        border-bottom: .156vw solid #ebebeb;
-
-        &::before {
-            content: '';
-            display: inline-block;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: .313vw;
-            border-radius: .313vw;
-            overflow: hidden;
-            max-width: 0;
-            background-color: #3c85ff;
-            z-index: 1;
-            margin: 0 auto;
-            transition: all 130ms ease-in-out;
-        }
-
-        &.active {
-            background-color: #fbfbfb;
-            color: #406db4;
-            &::before {
-                max-width: 100%;
-            }
-        }
-    }
+    //padding-bottom: 28vw;
+    //padding-bottom: 9vw;
 }

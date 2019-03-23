@@ -1,19 +1,17 @@
 <template>
-    <div id="app" :class="'theme-' + theme">
-        <div class="m-container">
-            <div id="message-container">
-                <AppHeader></AppHeader>
-                <div id="y-chat-page-container">
-                    <transition name="fade">
-                        <keep-alive>
-                            <router-view/>
-                        </keep-alive>
-                    </transition>
-                </div>
-                <transition name="slide-up-y">
-                    <AppFooter v-show="showFooter"></AppFooter>
+    <div id="app" :class="'theme-' + theme" class="m-container">
+        <div id="message-container">
+            <AppHeader></AppHeader>
+            <div id="y-chat-page-container">
+                <transition name="fade">
+                    <keep-alive>
+                        <router-view/>
+                    </keep-alive>
                 </transition>
             </div>
+            <transition name="slide-up-y">
+                <AppFooter v-show="showFooter"></AppFooter>
+            </transition>
         </div>
         <Y-Mask></Y-Mask>
         <Model></Model>

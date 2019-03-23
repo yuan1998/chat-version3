@@ -1,20 +1,39 @@
 @import './variable';
 
 .theme-red {
+    .reservation-page {
+
+        .panel-title p {
+            @r-headerLight();
+        }
+
+        .panel-body {
+            .button {
+                @r-headerLight();
+            }
+        }
+
+    }
     #y-chat-header {
         @r-headerLight();
     }
+    //.nav-item.active {
+    //    color: #d73c83;
+    //    &::before {
+    //        background-color: #d73c83;
+    //    }
+    //}
     .select-btn-container .item {
         &.blue,
         &.message {
-            background-color: @r-selectBtnColor;
+            background-image: @r-selectBtnColor;
         }
     }
     .unread-count {
-        background-color: @r-selectBtnColor;
+        background-image: @r-selectBtnColor;
     }
     .main-content-wrapper .message-item-wrapper.message-right p {
-        background-color: @r-selectBtnColor;
+        background-image: @r-selectBtnColor;
     }
     .loop-price-wrapper {
         .btn-group .get-price-btn {

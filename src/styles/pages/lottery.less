@@ -1,0 +1,214 @@
+
+.lottery-page {
+    //overflow: scroll;
+    padding: 2.5vw 0 22vw 0;
+
+    .lottery-result-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lottery-result {
+        z-index: 17;
+
+        .bg {
+            width: 100vw;
+            margin: 0 auto;
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0 5.6vw;
+            .title {
+                display: flex;
+                height: 33.3333vw;
+                align-items: center;
+                justify-content: center;
+                font-size: 5.628vw;
+                color: #e73f36;
+                flex-direction: column;
+                line-height: 1.4;
+
+                .t2 {
+                    font-size: 5.033vw;
+                    letter-spacing: -0.267vw;
+                }
+            }
+
+            .form-content {
+                padding-top: 9vw;
+                .tip {
+                    letter-spacing: -0.347vw;
+                    color: #ffffff;
+                    font-size: 3.523vw;
+                    text-align: center;
+                }
+                .form {
+                    padding: 2vw 0;
+                }
+
+                .form-field {
+                    padding: 1vw 9vw;
+
+                    .form-input {
+
+                        input {
+                            width: 100%;
+                            border-radius: 2vw;
+                            height: 8.933vw;
+                            background-color: #ffffff;
+                            border: none;
+                            color: #777;
+                            font-size: 3.333vw;
+                            padding-left: 10vw;
+                        }
+                        .field-label {
+                            z-index: 2;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: absolute;
+                            font-size: 4.4vw;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            color: #acacac;
+                            width: 10vw;
+                        }
+                    }
+                }
+
+                .form-button-group {
+                    padding-top: 7.2vw;
+
+                    .form-button {
+                        width: 70vw;
+                        margin: 0 auto;
+                        display: block;
+                        text-align: center;
+                        border-radius: 4.402vw;
+                        height: 9.6vw;
+                        line-height: 9.6vw;
+                        font-size: 4.7vw;
+                        letter-spacing: .8vw;
+                        @r-headerLight();
+                        color: #ffffff;
+                        box-shadow: 0 6px 10px rgba(80, 80, 81, 0.28);
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+}
+
+.lottery-container {
+    padding: 0 5.5vw;
+
+    .background-wrapper {
+        box-shadow: 5px 12px 20px rgba(36,37,38,0.13);
+
+
+        border-radius: 5.73vw;
+        overflow: hidden;
+    }
+
+    .background-2 {
+        border-radius: 4vw;
+        width: 74.66vw;
+        overflow: hidden;
+        position: absolute;
+        top: 47.86vw;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        .start-button {
+            position: absolute;
+            width: 21.067vw;
+            /*height: 21.1vw;*/
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: -1.067/2vw;
+
+            .start-text {
+                width: 13.733vw;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            padding: 4.533-0.5335vw;
+            display: flex;
+            flex-flow: row wrap;
+            .item-wrap {
+                flex-basis: 33.3333333%;
+                padding: 0 0.5335vw;
+
+                .item {
+                    width: 100%;
+                    height: 21.067vw;
+                    background-color: #ffffff;
+                    border-radius: 1.867vw;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-flow: column;
+
+                    &.active {
+                        background-color: #f8df0f;
+                    }
+
+                    .price {
+                        font-size: 5.0521vw;
+                        line-height: 1;
+                        padding-bottom: 1.4vw;
+                        color: #ea4038;
+                        vertical-align: baseline;
+                        .unit {
+                            font-size: 3vw;
+                            vertical-align: baseline;
+                            //letter-spacing: .1vw;
+                        }
+
+                    }
+
+                    .name {
+                        font-size: 3.368vw;
+                        background-color: #e73f36;
+                        border-radius: 1.933vw;
+                        color: #ffffff;
+                        padding: .4vw 2.933vw;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+

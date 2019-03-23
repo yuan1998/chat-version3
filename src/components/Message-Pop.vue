@@ -1,14 +1,23 @@
 <template>
     <div class="message-item-wrapper "
          v-show="show"
-         :class="'message-' + type" ref="message">
+         :class="{
+            [`message-${type}`] : true,
+            'max-width' : item.maxWidth,
+            'not-padding' : item.notPadding,
+         }" ref="message">
         <template v-if="type === 'time'">
             <div>
                 {{ value.format('HH:mm:ss') }}
             </div>
         </template>
+        <template v-else-if="type === 'broadcast'">
+            <Broadcast :item="item"></Broadcast>
+        </template>
         <template v-else-if="type === 'advertising'">
-            <div class="advertising" >
+            <div class="advertising" :class="{
+                'not-border' : item.notBorder,
+            }">
                 <img :src="value" alt="" class="mc-img">
             </div>
         </template>
@@ -27,10 +36,14 @@
 
 <script>
     import anime             from 'animejs'
+    import Broadcast         from '../components/broadcast';
     import { elementOffset } from "../utily/util";
 
     export default {
-        props   : {
+        components: {
+            Broadcast
+        },
+        props     : {
             item         : Object,
             type         : String,
             value        : [ String, Object ],
@@ -46,14 +59,18 @@
         },
         mounted() {
             this.checkAnime();
+
+            if (this.item.scrollToMe) {
+                this.scrollToMe();
+            }
         },
         data() {
             return {
-                show: true,
+                show  : true,
                 config: CONFIG.CHAT_PAGE,
             }
         },
-        computed: {
+        computed  : {
             showAvatar() {
                 return this.avatar || (!this.avatar && this.type === 'left');
             },
@@ -61,7 +78,15 @@
                 return this.type === 'left' && this.prevType === 'left';
             }
         },
-        methods : {
+        methods   : {
+            scrollToMe() {
+                let delay = this.item.scrollDelay || 5000;
+
+                setTimeout(() => {
+                    let item = this.$refs.message;
+                    this.$emit('scroll-to-me' ,item.offsetTop);
+                },delay)
+            },
             checkAnime() {
                 switch (this.animationName) {
                     case 'left-default':
@@ -98,7 +123,7 @@
                 const itemEl     = $(item.el);
                 const itemOffset = elementOffset(item.el);
 
-                const elOffset   = elementOffset(this.$refs.text);
+                const elOffset = elementOffset(this.$refs.text);
 
                 itemEl.addClass('message');
 

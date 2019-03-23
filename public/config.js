@@ -1,5 +1,5 @@
 const CONFIG = {
-    BASE         : {
+    BASE            : {
         // 默认页 :0-4
         ROOT     : 2,
         // 头部标题
@@ -7,7 +7,7 @@ const CONFIG = {
         // 页面标题
         WEB_TITLE: '西安画美',
         // 电话
-        TEL      : '029-87398888',
+        TEL      : '029-88828888',
         ROUTER   : [
             {
                 title: '医院简介',
@@ -15,9 +15,9 @@ const CONFIG = {
                 path : '/home'
             },
             {
-                title: '项目报价',
-                name : 'price',
-                path : '/price'
+                title: '螺旋跳跃',
+                name : 'lottery',
+                path : '/lottery'
             },
             {
                 title: '在线预约',
@@ -29,21 +29,27 @@ const CONFIG = {
                 name : 'concat',
                 path : '/concat'
             },
+            // {
+            //     title: '预约专家',
+            //     name : 'reservation',
+            //     path : '/reservation'
+            // },
         ]
     },
-    THEME        : {
+    THEME           : {
         // 页面主题 : ['blue' , 'red']
-        COLOR      : 'blue',
+        COLOR      : 'red',
         // 聊天框图标 : ['phone' , 'camera']
-        FOOTER_ICON: 'phone',
+        FOOTER_ICON: 'camera',
     },
-    CHAT         : {
+    CHAT            : {
         // 是否开启选择模式
-        SELECT_START: true,
+        SELECT_START: false,
         // 模式类型 : ['items']
         SELECT_TYPE : 'items',
+        FIRST_TEXT  : '我想咨询双眼皮优惠',
     },
-    KST          : {
+    KST             : {
         // 快商通标识
         PAGE_TAG: '###信息流-西安眼鼻中心',
         // 快商通链接
@@ -55,13 +61,41 @@ const CONFIG = {
         // zx  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>
         JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>',
     },
-    MESSAGE      : {
+    MESSAGE         : {
         // 初始对话
-        INIT_MESSAGE         : [ {
-            value    : '您好,请问遇到了什么问题?',
-            type     : 'left',
-            animation: 'left-default'
-        } ],
+        INIT_MESSAGE         : [
+            {
+                type      : 'advertising',
+                maxWidth  : true,
+                notPadding: true,
+                notBorder : true,
+                value     : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/b_syp_mbp.jpg',
+            },
+
+            {
+                type       : 'broadcast',
+                title      : '近期优惠',
+                scrollToMe : true,
+                scrollDelay: 4000,
+                data       : [
+                    '精彩源于美丽，蝶变始于画美',
+                    '画美整形，真实案例展示，蜕变人生',
+                    '画美整形，真实案例展示，蜕变人生',
+                ]
+            },
+            {
+                type      : 'advertising',
+                maxWidth  : true,
+                notPadding: true,
+                notBorder : true,
+                value     : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
+            },
+            {
+                type     : 'left',
+                animation: 'left-default',
+                value    : '您好,请问有什么问题?',
+            },
+        ],
         // 对话中提交报价回复
         CHAT_SUBMIT_MESSAGE  : [
             {
@@ -74,7 +108,7 @@ const CONFIG = {
         CHAT_ITEM_END_MESSAGE: null,
     },
     // 年龄组件
-    SELECT_PICKER: {
+    SELECT_PICKER   : {
         // 是否可以返回
         CAN_BACK    : true,
         // 返回后发送内容
@@ -82,41 +116,183 @@ const CONFIG = {
         // 默认选择年龄 (n+1)
         ANCHOR      : 30,
     },
-    HOME_PAGE    : {
+    HOME_PAGE       : {
         // 开启图片首页
-        ENABLED       : true,
+        ENABLED       : false,
         // 图片域名
         BASE_URL      : 'http://kst.img.xamryy.cn/',
         // 图片目录
-        PATH          : '/baqi/hmppyyjj-images/',
+        PATH          : '/baqi/zx-ty-image/',
         // 图片前缀
         NAME          : 'bg_',
         // 图片后缀
         EXT           : '.jpg',
         // 图片数量
-        COUNT         : 20,
+        COUNT         : 27,
         // 事件,目前支持  ['router:/chat']
-        EVENTS        : {
-            13: {
-                click: [ 'router:/chat' ]
-            },
-            17: {
-                click: [ 'router:/chat' ]
-            },
-        },
+        EVENTS        : {},
         // 当 ENABLED 为 false 时应用
         // TEMPLATE 为 HTML 内容
         // TEMPLATE_STYLE 为 css 内容
-        TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
-        TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
+        TEMPLATE      : '<div class="row-wrap">\n' +
+        '                            <div class="i-row">\n' +
+        '                                <div class="home-yyjj">\n' +
+        '                                    <div><img src="http://xl.xahmyy.com/zt/hm-images/hospotal_01.jpg" alt="" class="mc-img"></div>\n' +
+        '                                    <div><img src="http://xl.xahmyy.com/zt/hm-images/hospotal_02.jpg" alt="" class="mc-img"></div>\n' +
+        '                                </div>\n' +
+        '                            </div>\n' +
+        '                            <div class="i-row" style="margin-top: 3vw;">\n' +
+        '                                <div class="home-tit"><span>温馨豪华欧式诊疗环境</span></div>\n' +
+        '                                <div><img src="http://xl.xahmyy.com/zt/hm-images/yyjj_03.jpg" alt="" class="mc-img"></div>\n' +
+        '                            </div>\n' +
+        '                        </div>' +
+        '<div class="default-info-text center">\n' +
+        '                            <p>地址：西安市新城区太华南路433号</p>\n' +
+        '                            <p>地铁四号线【含元殿】D出口出，向北200米即到</p>\n' +
+        '<p>市医广【2018】第200号&nbsp;&nbsp;陕ICP备18003416号</p>                        </div>',
+        TEMPLATE_STYLE: '.home-page .home-tit {font-size: 5vw;color: #000;margin: 2vw 0;text-align: center;font-weight: bold;}  .default-info-text   {background-color: #f2f2f2;color: #666666;line-height: 2;font-size: 2.3vw;padding: 2vw 0;text-align: center;}',
     },
-    PRICE_PAGE   : {
+    PRICE_PAGE      : {
         ASK_COVER: 'http://kst.img.xamryy.cn/theme/2-1-red.jpg',
     },
-    CHAT_PAGE    : {
-        AVATAR: 'http://kst.img.xamryy.cn/theme/avatar-red.png',
+    CHAT_PAGE       : {
+        AVATAR          : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/avatar_mbp.png',
+        PLACEHOLDER_TEXT: '请输入问题，10秒内获取答案！',
+        TEXT_DURATION   : 45,
+        TEXT_DELAY      : 2200,
     },
-    SELECT_ITEMS : {
+    RESERVATION_PAGE: {
+        PROJECTS   : [
+            [
+                '我是一',
+                '我是2',
+                '我是3',
+                '我是一4',
+                '我是5',
+                '我是6',
+                '我是7',
+            ]
+        ],
+        EXPERT_DATA: {
+            'lyf': {
+                name    : '李永峰',
+                position: '院长',
+                head    : '首席专家',
+                avatar  : 'http://ww1.sinaimg.cn/large/0076fRdzly1g184qlbog9j304f03hwed.jpg',
+                cover   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g182jmgxrlj30a00hsmxd.jpg',
+                point   : '对口腔颌面外科、种植牙手术及术后的美容牙修复、口腔内科、口腔美容修复及正畸、牙周及黏膜病等疑难病症的治疗具备较高水平。',
+                options : {
+                    limit: {
+                        min: 5,
+                        max: 10,
+                    }
+                }
+            },
+            'gjf': {
+                name    : '郭军锋',
+                position: '',
+                head    : '资深医师',
+                avatar  : 'http://ww1.sinaimg.cn/large/0076fRdzly1g184r6j1vkj304f03hmx1.jpg',
+                cover   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g182jmgxrlj30a00hsmxd.jpg',
+                point   : '对口腔粘膜病、牙体牙髓疾病、无痛微创中低位阻生智齿拔除、口腔颌面部炎症外伤及牙周疾病的鉴别诊断与治疗具有较高水平。',
+                options : {
+                    limit: {
+                        min: 5,
+                        max: 10,
+                    }
+                }
+            },
+            'wcy': {
+                name    : '王朝彦',
+                position: '',
+                head    : '主治医师',
+                avatar  : 'http://ww1.sinaimg.cn/large/0076fRdzly1g184rdwcflj304f03hmx1.jpg',
+                cover   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g182jmgxrlj30a00hsmxd.jpg',
+                point   : '对儿童、成年人牙列拥挤，牙列稀疏，牙槽骨前突，反颌等口腔畸形的矫治，精通MBT直丝弓牙矫治技术，儿童牙齿畸形的早期干预，自锁托槽及隐形矫治。',
+                options : {
+                    limit: {
+                        min: 5,
+                        max: 10,
+                    }
+                }
+            },
+            'sr' : {
+                name    : '尚荣',
+                position: '',
+                head    : '资深医师',
+                avatar  : 'http://ww1.sinaimg.cn/large/0076fRdzly1g184rrhgu0j304f03hjr9.jpg',
+                cover   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g182jmgxrlj30a00hsmxd.jpg',
+                point   : '牙体牙髓病、牙周病的治疗，现代根管治疗，牙列缺损的综合性修复，高端牙齿美容及外科拔牙术。',
+                options : {
+                    limit: {
+                        min: 5,
+                        max: 10,
+                    }
+                }
+            },
+            'qq' : {
+                name    : '乔迁',
+                position: '',
+                head    : '儿牙医师',
+                avatar  : 'http://ww1.sinaimg.cn/large/0076fRdzly1g184sbm47yj304f03h0sm.jpg',
+                cover   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g182jmgxrlj30a00hsmxd.jpg',
+                point   : '儿童口腔疾病的治疗与预防，各种牙体牙髓疾病的治疗和后期修复。',
+                options : {
+                    limit: {
+                        min: 5,
+                        max: 10,
+                    }
+                }
+            },
+        },
+    },
+    LOTTERY_PAGE    : {
+        // 只能放8个 .
+        // probability 是中奖几率 , 所有相加要 等于 1
+        ITEM_DATA: [
+            {
+                price      : 680,
+                name       : '双眼皮',
+                probability: 0.125,
+            },
+            {
+                price      : 4800,
+                name       : '隆鼻',
+                probability: 0.125,
+            },
+            {
+                price      : 198,
+                name       : '除皱针',
+                probability: 0.125,
+            },
+            {
+                price      : 458,
+                name       : '瘦脸针',
+                probability: 0.125,
+            },
+            {
+                price      : 38,
+                name       : '脱毛',
+                probability: 0.125,
+            },
+            {
+                price      : 680,
+                name       : '祛斑',
+                probability: 0.125,
+            },
+            {
+                price      : 99,
+                name       : '祛痘',
+                probability: 0.125,
+            },
+            {
+                price      : 780,
+                name       : '玻尿酸',
+                probability: 0.125,
+            },
+        ],
+    },
+    SELECT_ITEMS    : {
         hello: {
             type   : 'select-item-group',
             title  : '关键字',
@@ -124,8 +300,15 @@ const CONFIG = {
             next   : 'age',
             message: [
                 {
-                    type : 'advertising',
-                    value: 'http://ww1.sinaimg.cn/large/0076fRdzly1g0u6puidmjj30hs09jq3z.jpg',
+                    type    : 'advertising',
+                    maxWidth: true,
+                    style   : 'padding:0;',
+                    value   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g1726zxmyyj30h80b2t9n.jpg',
+                },
+                {
+                    type    : 'advertising',
+                    maxWidth: true,
+                    value   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
                 },
                 {
                     type     : 'left',
@@ -139,9 +322,15 @@ const CONFIG = {
                         value    : 'CONFIG_KEYWORD',
                         show     : true,
                         animation: 'right-select',
-                        className: 'heartBeat infinite animated',
                         el       : null,
                     },
+                    {
+                        value    : '领取优惠',
+                        show     : true,
+                        animation: 'right-select',
+                        el       : null,
+                    },
+
                 ]
             },
         },
@@ -160,7 +349,7 @@ const CONFIG = {
         },
 
     },
-    QUESTION     : {
+    QUESTION        : {
         age    : {
             title  : '您多大年龄了呢?',
             options: [

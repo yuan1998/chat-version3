@@ -1,0 +1,36 @@
+.message-broadcast {
+    padding: 0 !important;
+}
+
+.broadcast-wrapper {
+    background-image: @r-selectBtnColor;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row nowrap;
+    font-size: 3.5vw;
+    width: 100%;
+    height: 11vw;
+    padding: 0 3vw;
+    overflow: hidden;
+
+    .icon,
+    .title {
+        flex: none;
+    }
+
+    .icon {
+        padding-left: 6vw;
+        .icon-el {
+            width: 5.5vw;
+        }
+    }
+
+    .content {
+        padding-left: 3vw;
+        height: 3.5vw;
+        flex: auto;
+        white-space: nowrap;
+    }
+}

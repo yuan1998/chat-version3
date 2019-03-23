@@ -9,7 +9,7 @@
 
 .slide-up-leave-active,
 .slide-up-enter-active {
-    transition: all 840ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 640ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .slide-up-leave-to,
@@ -17,10 +17,7 @@
     transform: translate(-50%, 50vh);
 }
 
-.slide-up-enter-to,
-.slide-up-leave {
-    //transform: translate(50%, 50%);
-}
+
 
 .slide-up-y-leave-active,
 .slide-up-y-enter-active {
@@ -37,4 +34,24 @@
 .slide-up-y-leave {
     opacity: 1;
     transform: none;
+}
+
+
+
+.scale-in-leave-to,
+.scale-in-enter {
+    transform: scale(.2);
+    opacity: 0;
+}
+
+
+
+
+.scale-in-enter-active {
+    transition: transform 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 500ms ease-in-out;
+}
+
+.scale-in-leave-active {
+    transition: transform 500ms ease-in-out, opacity 300ms ease-in-out;
+
 }
