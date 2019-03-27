@@ -38,6 +38,7 @@
     import { randomInProbability }      from "../utily/randomInProbability";
     import Modal                        from '../components/lottery/modal';
     import isShowFooter                 from '../mixins/isShowFooter';
+    import { pushHistory }              from "../utily/util";
 
     export default {
         mixins    : [ isShowFooter ],
@@ -58,15 +59,7 @@
         },
         beforeRouteLeave(to, from, next) {
             if (this.showModal) {
-                this.$modal({
-                    text       : '退出将视为放弃机会.是否要退出?',
-                    showCancel : true,
-                    cancel     : () => {
-                        this.closeModal();
-                    },
-                    cancelText : '确认放弃',
-                    confirmText: '继续领取',
-                });
+
                 next(false);
             }
             else {
@@ -104,6 +97,21 @@
             ...mapActions({
                 $modal: "Controller/$modal",
             }),
+            handlePopStatus() {
+                console.log('123 :', 123);
+                if (this.showModal) {
+                    this.$modal({
+                        text       : '退出将视为放弃机会.是否要退出?',
+                        showCancel : true,
+                        cancel     : () => {
+                            this.closeModal();
+                        },
+                        cancelText : '确认放弃',
+                        confirmText: '继续领取',
+                    });
+                    pushHistory();
+                }
+            },
             handleLoopStart() {
                 if (this.loopEnd) {
                     this.$modal({
@@ -129,6 +137,8 @@
                     complete: () => {
                         let item = this.obj[ index ];
                         this.openModal(item);
+                        pushHistory();
+                        window.addEventListener('popstate', this.handlePopStatus.bind(this));
                     }
                 })
             },
@@ -144,6 +154,8 @@
             },
             closeModal() {
                 this.animeModal = false;
+                window.removeEventListener('popstate', this.handlePopStatus.bind(this));
+
                 setTimeout(() => {
                     this.showModal = false;
                 }, 500);

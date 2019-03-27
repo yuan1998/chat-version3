@@ -180,7 +180,7 @@
                 this.buttonOffset = {
                     left: (evt.clientX || 0) + 'px',
                     top : (evt.clientY || 0) + 'px',
-                }
+                };
                 pushHistory();
             },
             reservated(key, date = this.current) {
