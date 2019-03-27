@@ -71,7 +71,6 @@ const CONFIG = {
                 notBorder : true,
                 value     : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/b_syp_mbp.jpg',
             },
-
             {
                 type       : 'broadcast',
                 title      : '近期优惠',
@@ -127,7 +126,7 @@ const CONFIG = {
     },
     HOME_PAGE       : {
         // 开启图片首页
-        ENABLED       : false,
+        ENABLED       : true,
         // 图片域名
         BASE_URL      : 'http://kst.img.xamryy.cn/',
         // 图片目录
@@ -139,27 +138,28 @@ const CONFIG = {
         // 图片数量
         COUNT         : 27,
         // 事件,目前支持  ['router:/chat']
-        EVENTS        : {},
+        EVENTS        : {
+            10: {
+                click: [ 'router:/chat' ]
+            },
+            11: {
+                click: [ 'router:/chat' ]
+            },
+            16: {
+                click: [ 'router:/chat' ]
+            },
+            17: {
+                click: [ 'router:/chat' ]
+            },
+            22: {
+                click: [ 'router:/chat' ]
+            },
+        },
         // 当 ENABLED 为 false 时应用
         // TEMPLATE 为 HTML 内容
         // TEMPLATE_STYLE 为 css 内容
-        TEMPLATE      : '<div class="row-wrap">\n' +
-        '                            <div class="i-row">\n' +
-        '                                <div class="home-yyjj">\n' +
-        '                                    <div><img src="http://xl.xahmyy.com/zt/hm-images/hospotal_01.jpg" alt="" class="mc-img"></div>\n' +
-        '                                    <div><img src="http://xl.xahmyy.com/zt/hm-images/hospotal_02.jpg" alt="" class="mc-img"></div>\n' +
-        '                                </div>\n' +
-        '                            </div>\n' +
-        '                            <div class="i-row" style="margin-top: 3vw;">\n' +
-        '                                <div class="home-tit"><span>温馨豪华欧式诊疗环境</span></div>\n' +
-        '                                <div><img src="http://xl.xahmyy.com/zt/hm-images/yyjj_03.jpg" alt="" class="mc-img"></div>\n' +
-        '                            </div>\n' +
-        '                        </div>' +
-        '<div class="default-info-text center">\n' +
-        '                            <p>地址：西安市新城区太华南路433号</p>\n' +
-        '                            <p>地铁四号线【含元殿】D出口出，向北200米即到</p>\n' +
-        '<p>市医广【2018】第200号&nbsp;&nbsp;陕ICP备18003416号</p>                        </div>',
-        TEMPLATE_STYLE: '.home-page .home-tit {font-size: 5vw;color: #000;margin: 2vw 0;text-align: center;font-weight: bold;}  .default-info-text   {background-color: #f2f2f2;color: #666666;line-height: 2;font-size: 2.3vw;padding: 2vw 0;text-align: center;}',
+        TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
+        TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
     },
     PRICE_PAGE      : {
         ASK_COVER: 'http://kst.img.xamryy.cn/theme/2-1-red.jpg',
@@ -262,42 +262,42 @@ const CONFIG = {
             {
                 price      : 680,
                 name       : '双眼皮',
-                probability: 0.125,
+                probability: 1,
             },
             {
                 price      : 4800,
                 name       : '隆鼻',
-                probability: 0.125,
+                probability: 0,
             },
             {
                 price      : 198,
                 name       : '除皱针',
-                probability: 0.125,
+                probability: 0,
             },
             {
                 price      : 458,
                 name       : '瘦脸针',
-                probability: 0.125,
+                probability: 0,
             },
             {
                 price      : 38,
                 name       : '脱毛',
-                probability: 0.125,
+                probability: 0,
             },
             {
                 price      : 680,
                 name       : '祛斑',
-                probability: 0.125,
+                probability: 0,
             },
             {
                 price      : 99,
                 name       : '祛痘',
-                probability: 0.125,
+                probability: 0,
             },
             {
                 price      : 780,
                 name       : '玻尿酸',
-                probability: 0.125,
+                probability: 0,
             },
         ],
     },
