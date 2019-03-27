@@ -1,7 +1,7 @@
 const CONFIG = {
     BASE            : {
         // 默认页 :0-4
-        ROOT     : 2,
+        ROOT     : 1,
         // 头部标题
         TITLE    : '西安画美',
         // 页面标题

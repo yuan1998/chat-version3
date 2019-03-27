@@ -34,12 +34,17 @@ let routes = [
         name     : 'lottery',
         component: () => import('./views/lottery.vue')
     },
-
-
 ];
 
-if (CONFIG && routes[ (CONFIG.BASE.ROOT || 0) ]) {
-    routes[ CONFIG.BASE.ROOT ].alias = '/'
+const configRouter = CONFIG.BASE.ROUTER || [];
+const item         = configRouter[ CONFIG.BASE.ROOT || 0 ];
+
+if (item && item.name) {
+    let index = routes.findIndex(e => e.name === item.name);
+    if (~index) routes[ index ].alias = '/';
+}
+else {
+    routes[ 0 ].alias = '/'
 }
 
 export default new Router({
