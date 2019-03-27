@@ -104,7 +104,7 @@
         },
         methods: {
             ...mapActions({
-                $model  : "Controller/$model",
+                $modal  : "Controller/$modal",
                 sendText: 'Bridge/sendText'
             }),
             startAnimate() {
@@ -155,7 +155,7 @@
                 let validator = this.getValidator();
                 if (!validator.checkForm(this.form)) {
                     const error = validator.errorList[ 0 ];
-                    this.$model({
+                    this.$modal({
                         content: error.msg
                     });
                     return;
@@ -174,7 +174,7 @@
                     display: false
                 });
 
-                this.$model({
+                this.$modal({
                     content: '提交成功,我们会在3小时内联系您.请留意'
                 })
 

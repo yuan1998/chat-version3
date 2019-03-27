@@ -19,8 +19,8 @@
     .model-footer {
         margin-top: 30/6.4vw;
         text-align: center;
-        .confirm-btn {
-            //background: @submitButtonColor;
+
+        button {
             color: #ffffff;
             display: inline-block;
             height: 53/5vw;
@@ -28,6 +28,21 @@
             border-radius: 2vw;
             font-size: 3.5vw;
             padding: 0 4vw;
+
+            & + button {
+                margin-left: 4vw;
+            }
+        }
+        .confirm-btn {
+            //background: @submitButtonColor;
+            background-color: #2978ff;
+            border: 1px solid #2978ff;
+        }
+
+        .cancel-btn {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #eee;
         }
     }
 }

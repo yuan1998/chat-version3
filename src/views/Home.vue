@@ -26,8 +26,10 @@
 <script>
     import {parseStringMethod} from '../utily/util'
     import vStyle from '../components/v-style'
+    import isShowFooter from '../mixins/isShowFooter'
 
     export default {
+        mixins    : [ isShowFooter ],
         name   : 'home',
         components: {
             vStyle,

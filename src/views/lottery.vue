@@ -8,7 +8,6 @@
             </div>
             <div class="background-2">
                 <img src="@/assets/bacground-2.jpg" alt="" class="mc-img">
-
                 <div class="content">
                     <div class="item-wrap" v-for="(item , n) in lotteryItems" :key="n">
                         <div class="item " :class="lotteryResult === item.i && 'active'" v-if="!item.empty">
@@ -34,12 +33,14 @@
 </template>
 
 <script>
-    import { mapActions }          from 'vuex';
-    import anime                   from 'animejs';
-    import { randomInProbability } from "../utily/randomInProbability";
-    import Modal                   from '../components/lottery/modal';
+    import { mapActions, mapMutations } from 'vuex';
+    import anime                        from 'animejs';
+    import { randomInProbability }      from "../utily/randomInProbability";
+    import Modal                        from '../components/lottery/modal';
+    import isShowFooter                 from '../mixins/isShowFooter';
 
     export default {
+        mixins    : [ isShowFooter ],
         components: {
             Modal
         },
@@ -57,7 +58,15 @@
         },
         beforeRouteLeave(to, from, next) {
             if (this.showModal) {
-                this.closeModal();
+                this.$modal({
+                    text       : '退出将视为放弃机会.是否要退出?',
+                    showCancel : true,
+                    cancel     : () => {
+                        this.closeModal();
+                    },
+                    cancelText : '确认放弃',
+                    confirmText: '继续领取',
+                });
                 next(false);
             }
             else {
@@ -90,15 +99,14 @@
                 }
                 return Math.floor(this.number % 8);
             },
-
         },
         methods   : {
             ...mapActions({
-                $model: "Controller/$model",
+                $modal: "Controller/$modal",
             }),
             handleLoopStart() {
                 if (this.loopEnd) {
-                    this.$model({
+                    this.$modal({
                         content: '你已经抽过了.'
                     })
                 }

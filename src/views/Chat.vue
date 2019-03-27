@@ -58,8 +58,10 @@
     import SelectPicker                             from '@/components/SelectPicker'
     import { mapMutations, mapActions, mapGetters } from "vuex"
     import anime                                    from 'animejs'
+    import isShowFooter                             from '../mixins/isShowFooter'
 
     export default {
+        mixins    : [ isShowFooter ],
         components: {
             MessagePop,
             ComputePrice,
@@ -93,6 +95,7 @@
                 questionData     : [],
             }
         },
+
         mounted() {
             const el = this.$refs.chat;
             el.addEventListener('scroll', () => {
@@ -112,7 +115,7 @@
 
             this.initChatMessage();
         },
-        computed  : {
+        computed: {
             ...mapGetters({
                 gBridge : 'Bridge/bridge',
                 gMessage: 'Bridge/message',
@@ -123,7 +126,7 @@
                 return this.messages.concat(this.gMessage);
             }
         },
-        methods   : {
+        methods : {
             ...mapMutations({
                 showFooter   : 'Controller/showFooter',
                 changeInput  : "Form/input",
@@ -332,7 +335,7 @@
                 this.endSelect('该用户选择了跳过.');
             }
         },
-        watch     : {
+        watch   : {
             currentSelectItem(val) {
                 if (!val) {
                     return;

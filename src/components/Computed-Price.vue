@@ -100,7 +100,7 @@
         },
         methods: {
             ...mapActions({
-                $model  : "Controller/$model",
+                $modal  : "Controller/$modal",
                 sendText: 'Bridge/sendText'
             }),
             randomNumber(min, max) {

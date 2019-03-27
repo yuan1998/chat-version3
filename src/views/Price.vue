@@ -26,7 +26,7 @@
             </div>
             <div class="ask-button"
                  :class="!showAskButton && 'disabled'">
-                <button @click="openComputedPriceModel">
+                <button @click="openComputedPriceModal">
                     计算项目费用
                 </button>
             </div>
@@ -71,7 +71,7 @@
         },
         methods   : {
             ...mapActions({
-                $model  : 'Controller/$model',
+                $modal  : 'Controller/$modal',
                 sendText: 'Bridge/sendText'
             }),
             handleSubmit(form) {
@@ -88,16 +88,16 @@
                 });
 
                 this.showCommentForm = false;
-                this.$model({
+                this.$modal({
                     content: '提交成功,我们会在3小时内联系您.请留意'
                 })
             },
-            openComputedPriceModel() {
+            openComputedPriceModal() {
                 if (this.showAskButton) {
                     this.showCommentForm = true;
                 }
                 else {
-                    this.$model({
+                    this.$modal({
                         content: '请选择',
                     });
                 }

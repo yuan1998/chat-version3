@@ -1,57 +1,74 @@
+import { cloneOf, oneOf } from "../utily/util";
+
+const showList = [
+    'chat',
+];
+
+const defaultModalConfig = {
+    show       : false,
+    text       : '',
+    showConfirm: true,
+    confirmText: '确认',
+    confirm    : null,
+    showCancel : false,
+    cancelText : '',
+    cancel     : null,
+};
 
 export default {
     namespaced: true,
-    state: {
-        showFooter: true,
-        showMask: false,
-        showModel: false,
+    state     : {
+        showFooter  : true,
+        showMask    : false,
+        showModal   : false,
         modelContent: '',
+        modal       : cloneOf(defaultModalConfig),
     },
-    mutations: {
-        showFooter(state , value) {
+    mutations : {
+        routeIsShow(state, route) {
+            state.showFooter = oneOf(route, showList);
+        },
+        showFooter(state, value) {
             state.showFooter = value;
         },
-        showMask(state , value) {
+        showMask(state, value) {
             state.showMask = value;
         },
-        showModel(state , value) {
-            state.showModel = value;
+        showModal(state, obj = {}) {
+            state.modal = Object.assign({}, defaultModalConfig, obj);
         },
-        modelContent(state , value) {
+        modelContent(state, value) {
             state.modelContent = value;
         },
     },
-    actions: {
-        $model({commit} , {
-            content,
-            show = true
-        }) {
-            commit('showMask' , show);
-            commit('modelContent' , content);
-            commit('showModel' , show);
+    actions   : {
+        $modal({ commit }, obj) {
+            obj = Object.assign({}, obj, { show: true });
+
+            if (obj.content) {
+                obj.text = obj.content;
+            }
+
+            commit('showMask', true);
+            commit('showModal', obj);
         },
-        $hideAll({dispatch}){
-            dispatch('$model', {
-                content: '',
-                show: false
-            });
+        $hideAll({ commit }) {
+            commit('showMask', false);
+            commit('showModal');
         },
     },
-    getters: {
+    getters   : {
         showFooter(state) {
             return state.showFooter
         },
-        showModel(state) {
-            return state.showModel
+        showModal(state) {
+            return state.showModal
         },
         showMask(state) {
             return state.showMask
         },
         model(state) {
-            return {
-                text: state.modelContent,
-                show: state.showModel
-            }
+            return state.modal;
         }
     }
 }

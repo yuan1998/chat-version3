@@ -14,7 +14,7 @@
             </transition>
         </div>
         <Y-Mask></Y-Mask>
-        <Model></Model>
+        <Modal></Modal>
     </div>
 </template>
 
@@ -22,15 +22,15 @@
     import AppHeader         from "./components/App-Header"
     import AppFooter         from "./components/App-Footer"
     import Mask              from "./components/Mask"
-    import Model             from "./components/Model"
+    import Modal             from "./components/Modal"
     import { checkReferrer } from './utily/referrer'
-    import { mapGetters }    from 'vuex'
+    import { mapGetters,mapMutations }    from 'vuex'
 
     export default {
         components: {
             AppHeader,
             AppFooter,
-            Model,
+            Modal,
             'Y-Mask': Mask,
         },
         data() {
@@ -49,7 +49,7 @@
             ...mapGetters({
                 showFooter: 'Controller/showFooter',
             })
-        }
+        },
     }
 </script>
 

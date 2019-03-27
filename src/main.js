@@ -22,7 +22,7 @@ Bus(Vue);
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-    const model = store.getters['Controller/showModel'];
+    const model = store.getters['Controller/showModal'];
     if (model) {
         store.dispatch('Controller/$hideAll');
         next(false);

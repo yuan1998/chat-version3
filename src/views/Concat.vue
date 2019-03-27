@@ -51,8 +51,10 @@
 
 <script>
     import { mapActions } from 'vuex'
+    import isShowFooter   from '../mixins/isShowFooter'
 
     export default {
+        mixins  : [ isShowFooter ],
         data() {
             return {
                 form : {
@@ -70,7 +72,7 @@
         methods : {
             ...mapActions({
                 sendText: 'Bridge/sendText',
-                $model  : 'Controller/$model'
+                $modal  : 'Controller/$modal'
             }),
             validatorPhone() {
                 const val = this.form.phone;
@@ -106,7 +108,7 @@
                     display: false
                 });
 
-                this.$model({
+                this.$modal({
                     content: '提交成功,我们会在3小时内联系您.请留意'
                 })
             },

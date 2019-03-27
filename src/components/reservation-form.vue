@@ -175,7 +175,7 @@
         },
         methods   : {
             ...mapActions({
-                $model  : "Controller/$model",
+                $modal  : "Controller/$modal",
                 sendText: 'Bridge/sendText'
             }),
             getValidator() {
@@ -355,7 +355,7 @@
                 let validator = this.getValidator();
                 if (!validator.checkForm(this.form)) {
                     const error = validator.errorList[ 0 ];
-                    this.$model({
+                    this.$modal({
                         content: error.msg
                     });
                     return;
@@ -376,7 +376,7 @@
                     display: false
                 });
 
-                this.$model({
+                this.$modal({
                     content: '预约成功,我们会在3小时内联系您.以确认具体时间.'
                 });
                 history.go(-1);
