@@ -8,6 +8,7 @@ const CONFIG = {
         WEB_TITLE: '西安画美',
         // 电话
         TEL      : '029-88828888',
+        SHOW_TEL : false,
         ROUTER   : [
             {
                 title: '医院简介',

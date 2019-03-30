@@ -12,7 +12,7 @@
                         <img src="@/assets/logo.png" alt="" class="mc-img">
                     </div>
                 </div>
-                <div class="header-tel header-icon" >
+                <div class="header-tel header-icon" v-if="showTel">
                     <a class="icon-img" style="width: 6vw;display: inline-block;" :href="'tel:' + tel">
                         <img src="@/assets/tel.png" alt="" class="mc-img">
                     </a>
@@ -50,7 +50,8 @@
             return {
                 title       : CONFIG.BASE.TITLE || '西安画美整形医院',
                 routerList  : CONFIG.BASE.ROUTER,
-                tel: CONFIG.BASE.TEL,
+                tel         : CONFIG.BASE.TEL,
+                showTel     : CONFIG.BASE.SHOW_TEL,
                 firstAnimate: true,
             }
         },
@@ -91,11 +92,11 @@
                         duration: 0,
                         easing  : 'linear'
                     },
-                    translateY : ['100%' , 0],
+                    translateY: [ '100%', 0 ],
                     scale     : {
-                        value: [ 0, 1 ],
+                        value   : [ 0, 1 ],
                         duration: 400,
-                        easing: 'easeOutBack'
+                        easing  : 'easeOutBack'
                     },
                     duration  : 600,
                     easing    : 'easeInOutQuint'
