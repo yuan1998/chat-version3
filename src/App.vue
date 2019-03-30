@@ -2,7 +2,7 @@
     <div id="app" :class="'theme-' + theme" class="m-container">
         <div id="message-container">
             <AppHeader></AppHeader>
-            <div id="y-chat-page-container">
+            <div id="y-chat-page-container"  >
                 <transition name="fade">
                     <keep-alive>
                         <router-view/>
@@ -24,7 +24,7 @@
     import Mask              from "./components/Mask"
     import Modal             from "./components/Modal"
     import { checkReferrer } from './utily/referrer'
-    import { mapGetters,mapMutations }    from 'vuex'
+    import { mapGetters }    from 'vuex'
 
     export default {
         components: {

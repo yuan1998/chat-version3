@@ -1,68 +1,56 @@
 @import "./variable-blue";
 
 .theme-blue {
+
+    #y-chat-footer .footer-big-input button,
     #y-chat-header {
-        @headerLight();
+        background-color: @primaryColor;
+        background-image: url(../../../assets/cardBg.png);
+        background-position: 50%  99%;
+        background-size: cover;
+        background-repeat: no-repeat;
+
     }
+
     .select-btn-container .item {
         &.blue,
         &.message {
-
-            background-color: @selectBtnColor;
+            background-color: @primaryGradientColor;
         }
     }
 
+    .nav-bar .nav-item.active {
+        color: @primaryColor;
+    }
+    .test-item {
+        border-bottom-color:  @primaryColor;
+    }
+
+
+    .ask-wrapper .ask-button button,
+    .radio-group .radio-item input:checked + span,
+    .concat-page .concat-form-btn-group .submit-btn,
+    .model-container .model-footer .confirm-btn,
+    .loop-price-wrapper .btn-group .get-price-btn,
+    .main-content-wrapper .message-item-wrapper.message-right p,
+    .unread-count,
     .broadcast-wrapper {
-        background: @headerBackground;
-    }
-    #y-chat-footer .footer-big-input button {
-        background: @headerBackground;
-    }
-    .reservation-page .reservation-form .center-form-container .expert-cover {
-        background: @headerBackground;
-    }
-    .reservation-page .reservation-form .center-form-container .form-container .button {
-        background: @headerBackground;
-    }
-    .unread-count {
-        background-color: @selectBtnColor;
-    }
-    .main-content-wrapper .message-item-wrapper.message-right p {
-        background-color: @selectBtnColor;
-    }
-    .loop-price-wrapper {
-        .btn-group .get-price-btn {
-            background: @submitButtonColor;
-        }
-    }
-
-    .model-container {
-        .model-footer .confirm-btn {
-            background: @submitButtonColor;
-        }
-    }
-    .concat-page .concat-form-btn-group .submit-btn {
-        background: @submitButtonColor;;
-    }
-    .radio-group {
-        .radio-item {
-            input:checked + span {
-                background-color: @selectBtnColor;
-                border-color: @selectBtnColor;
-            }
-        }
-    }
-    .ask-wrapper {
-        .ask-button button {
-            background: @submitButtonColor;
-        }
+        background: @primaryGradientColor;
     }
 
     .reservation-page {
+        .button,
+        .expert-cover,
         .panel-title p {
-            background: @headerBackground;
+            background: @primaryGradientColor;
         }
+    }
 
+    .radio-group .radio-item input:checked + span {
+        border-color: @primaryGradientColor;
+    }
+
+    .reservation-page {
         .day-item {
             &::before {
                 background-color: @navLineColor;
@@ -75,16 +63,5 @@
                 }
             }
         }
-        .panel-body {
-            .reservation .button {
-                background: @headerBackground;
-            }
-        }
-        .reservation-form {
-            .button {
-                background: @headerBackground;
-            }
-        }
-
     }
 }

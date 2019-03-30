@@ -12,14 +12,14 @@
                         <img src="@/assets/logo.png" alt="" class="mc-img">
                     </div>
                 </div>
-                <div class="header-tel header-icon" style="display: none;">
-                    <a class="icon-img" style="width: 6vw;display: inline-block;">
+                <div class="header-tel header-icon" >
+                    <a class="icon-img" style="width: 6vw;display: inline-block;" :href="'tel:' + tel">
                         <img src="@/assets/tel.png" alt="" class="mc-img">
                     </a>
                 </div>
             </div>
         </div>
-        <div class="nav-bar">
+        <div class="nav-bar ">
             <div class="test-item" :style="{width: `${itemWidth}vw`}" ref="animate">
                 <svg t="1552893791945" class="icon" style="" version="1.1"
                      xmlns="http://www.w3.org/2000/svg" p-id="2524" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -50,6 +50,7 @@
             return {
                 title       : CONFIG.BASE.TITLE || '西安画美整形医院',
                 routerList  : CONFIG.BASE.ROUTER,
+                tel: CONFIG.BASE.TEL,
                 firstAnimate: true,
             }
         },
@@ -121,6 +122,7 @@
 <style scoped lang="less">
     .test-item {
         position: absolute;
+        /*bottom: 2vw;*/
         bottom: 0;
         width: 25vw;
         left: 0;
@@ -129,6 +131,7 @@
         align-items: center;
         justify-content: center;
         transform: scale(0);
+        border-bottom: 1px solid #f13354;
 
         .i-c {
             height: 6vw;
@@ -136,9 +139,10 @@
             background-image: linear-gradient(135deg, #ec008c, #f43f3b);;
             border-radius: 3vw;
             box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.28);
-            display: none;
+            /*display: none; */
         }
         svg {
+            display: none;
         }
     }
 

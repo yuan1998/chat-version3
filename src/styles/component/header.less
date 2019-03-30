@@ -9,6 +9,21 @@
     -moz-backface-visibility: hidden;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
+
+    .color-header {
+        transform: translateY(-2vw);
+        background-color: transparent;
+
+        .nav-item {
+            color: #ffffff;
+
+            &.active {
+                color: #f23451;
+                transform: translateY(-.2vw);
+            }
+        }
+    }
+
 }
 
 .test-light {
@@ -72,20 +87,21 @@
     }
 }
 
+
 .nav-bar {
     height: 9.520179372vw;
     display: flex;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     align-items: center;
     background-color: #fff;
-
+    z-index: 1;
     .nav-item {
         flex: auto;
         font-size: 3.9147vw;
         text-align: center;
         cursor: pointer;
-        transition: all 230ms 180ms ease-in-out;
+        transition: all 180ms 100ms ease-in-out;
         color: #777;
         transform: scale(0.9);
 
@@ -95,3 +111,4 @@
         }
     }
 }
+

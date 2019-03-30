@@ -18,6 +18,14 @@
 
 #y-chat-page-container {
     flex: auto;
+
+    &.color-header {
+        .y-chat-page {
+            top: -3vw;
+            border-top-right-radius: 2vw;
+            border-top-left-radius: 2vw;
+        }
+    }
 }
 
 .y-chat-page {
@@ -31,8 +39,6 @@
     flex: auto;
     //overflow: hidden;
     background-color: #fff;
-    //border-top-right-radius: 2vw;
-    //border-top-left-radius: 2vw;
     -webkit-overflow-scrolling: touch;
 
     .home-page-container {

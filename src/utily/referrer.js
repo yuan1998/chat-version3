@@ -29,22 +29,19 @@ const items = [
 
 ];
 
-export const checkReferrer = (defaultResult = undefined) => {
+export const checkReferrer = (defaultResult = '') => {
     const referrer = process.env.NODE_ENV === "development" ? process.env.VUE_APP_REFERRER : document.referrer;
-    let result      = '';
+    let result     = '';
 
     if (!referrer) {
         return defaultResult;
     }
 
-    let breakEach = false;
-    items.forEach(function (item) {
-        if (item[ 'url' ].test(referrer) && !breakEach) {
-            let obj   = getUrlParamter(referrer);
-            result    = decodeURIComponent((obj[ item[ 'query' ] ] || '').replace(/\+/g, ' '));
-            breakEach = !breakEach;
-        }
-    });
+    let searchEngine = items.find(e => e[ 'url' ].test(referrer));
+    if (searchEngine) {
+        let obj = getUrlParamter(referrer);
+        result  = decodeURIComponent((obj[ searchEngine[ 'query' ] ] || '').replace(/\+/g, ' '));
+    }
 
     return result || defaultResult;
 }

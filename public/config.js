@@ -38,16 +38,16 @@ const CONFIG = {
     },
     THEME           : {
         // 页面主题 : ['blue' , 'red']
-        COLOR      : 'red',
+        COLOR      : 'blue',
         // 聊天框图标 : ['phone' , 'camera']
         FOOTER_ICON: 'camera',
     },
     CHAT            : {
         // 是否开启选择模式
         SELECT_START: false,
-        // 模式类型 : ['items']
+        // 模式类型 : [ 'items', '' ]
         SELECT_TYPE : 'items',
-        FIRST_TEXT  : '我想咨询双眼皮优惠',
+        FIRST_TEXT  : '',
     },
     KST             : {
         // 快商通标识
@@ -83,11 +83,11 @@ const CONFIG = {
                 ]
             },
             {
-                type      : 'advertising',
-                maxWidth  : true,
-                notPadding: true,
-                notBorder : true,
-                value     : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
+                type       : 'advertising',
+                maxWidth   : true,
+                notPadding : true,
+                notBorder  : true,
+                value      : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
                 sendMessage: '领取优惠劵'
             },
             {
