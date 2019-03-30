@@ -2,14 +2,13 @@ const CONFIG = {
     BASE            : {
         // 默认页 :0-4
         ROOT            : 1,
-        // 头部标题
-        TITLE           : '西安画美',
         // 页面标题
         WEB_TITLE       : '西安画美',
+        // 头部LOGO
+        HEADER_LOGO     : '',
         // 电话
         TEL             : '029-88828888',
         SHOW_TEL        : false,
-        HEADER_LOGO     : '西安画美',
         SHOW_FOOTER_LIST: [ 'chat' ],
         ROUTER          : [
             {
@@ -38,7 +37,7 @@ const CONFIG = {
             //     path : '/reservation'
             // },
         ]
-    },
+    ,
     THEME           : {
         // 页面主题 : ['blue' , 'red']
         COLOR      : 'blue',

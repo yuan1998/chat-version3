@@ -50,7 +50,6 @@
     export default {
         data() {
             return {
-                title       : CONFIG.BASE.TITLE || '西安画美整形医院',
                 routerList  : CONFIG.BASE.ROUTER,
                 tel         : CONFIG.BASE.TEL,
                 showTel     : CONFIG.BASE.SHOW_TEL,
