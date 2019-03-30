@@ -1,8 +1,6 @@
 import { cloneOf, oneOf } from "../utily/util";
 
-const showList = [
-    'chat',
-];
+const showList = CONFIG.BASE.SHOW_FOOTER_LIST;
 
 const defaultModalConfig = {
     show       : false,

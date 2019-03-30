@@ -7,9 +7,10 @@
                         <img src="@/assets/back-icon.png" alt="" class="mc-img">
                     </div>
                 </div>
-                <div class="header-center">
+                <div class="header-center" v-if="logoText" v-html="logoText"></div>
+                <div class="header-center" v-else>
                     <div class="logo-img">
-                        <img src="@/assets/logo.png" alt="" class="mc-img">
+                        <img :src="logoImg" alt="" class="mc-img">
                     </div>
                 </div>
                 <div class="header-tel header-icon" v-if="showTel">
@@ -43,7 +44,8 @@
 </template>
 
 <script>
-    import anime from 'animejs'
+    import anime from 'animejs';
+    import logo  from '@/assets/logo.png';
 
     export default {
         data() {
@@ -53,6 +55,8 @@
                 tel         : CONFIG.BASE.TEL,
                 showTel     : CONFIG.BASE.SHOW_TEL,
                 firstAnimate: true,
+                logoText    : CONFIG.BASE.HEADER_LOGO,
+                logoImg     : logo,
             }
         },
         computed: {

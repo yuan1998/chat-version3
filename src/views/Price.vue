@@ -8,21 +8,9 @@
                  v-for="(item , index) in getOptions"
                  :key="index">
                 <div class="title">
-                    {{ index + 1 }}、{{ item.title }}
+                   {{ index + 1 }}. {{ item.title }}
                 </div>
-                <div class="radio-group">
-                    <label class="radio-item"
-                           v-for="(each , i) in item.options"
-                           :key="i">
-                        <input type="radio"
-                               :name="index"
-                               v-model="item.value"
-                               :value="each">
-                        <span class="radio-text">
-                                        {{ each }}
-                                    </span>
-                    </label>
-                </div>
+                <Radio :items="item.options" v-model="item.value"></Radio>
             </div>
             <div class="ask-button"
                  :class="!showAskButton && 'disabled'">
@@ -46,34 +34,53 @@
     import { mapActions } from 'vuex';
     import ComputePrice   from '../components/Computed-Price';
     import { cloneOf }    from "../utily/util";
+    import Radio          from '../components/radio'
 
 
     export default {
         components: {
             ComputePrice,
-        },
-        beforeRouteLeave(to, from, next) {
-            if (this.showCommentForm) {
-                this.showCommentForm = false;
-                next(false);
-            }
-            else {
-                next();
-            }
+            Radio
         },
         data() {
             return {
                 showCommentForm: false,
                 renderQuestion : [],
-                question       : cloneOf(CONFIG.QUESTION),
-                config : CONFIG.PRICE_PAGE,
+                question       : cloneOf(CONFIG.PRICE_PAGE.QUESTION),
+                config         : CONFIG.PRICE_PAGE,
+                data           : {},
             }
+        },
+        mounted() {
+            this.question = this.parseQuestion(this.question);
+            console.log(this.question);
         },
         methods   : {
             ...mapActions({
                 $modal  : 'Controller/$modal',
                 sendText: 'Bridge/sendText'
             }),
+            parseQuestion(data) {
+                return data.map((item) => {
+                    item.options = item.options.map((option) => {
+                        if (typeof option === 'string') {
+                            option = {
+                                value: option,
+                            }
+                        }
+
+                        if (option.children && option.children.length) {
+                            option.children = this.parseQuestion(option.children);
+                        }
+
+                        return option;
+                    });
+                    return item;
+                })
+            },
+            handleRadioChange(item) {
+                console.log(item)
+            },
             handleSubmit(form) {
                 let arr = [];
                 this.getOptions.forEach(function (item) {
@@ -93,7 +100,7 @@
                 })
             },
             openComputedPriceModal() {
-                if (this.showAskButton) {
+                if (this.showAskButton && !this.showCommentForm) {
                     this.showCommentForm = true;
                 }
                 else {
@@ -116,21 +123,24 @@
                 }
 
                 return arr;
+            },
+            parseSelectQuestion(data, arr = []) {
+                data.forEach((item) => {
+                    arr.push(item);
+                    if (item.value && item.options) {
+                        let cache = item.options.find(e => e.value === item.value);
+                        (cache && cache.children) && this.parseSelectQuestion(cache.children, arr);
+                    }
+                });
+                return arr;
             }
         },
         computed  : {
             showAskButton() {
-                return this.selectOption && !this.showCommentForm;
+                return this.selectOption;
             },
-            getOptions: {
-                cache: false,
-                get  : function () {
-                    let arr = [this.question.age];
-                    this.question.sex && arr.push(this.question.sex);
-                    this.question.current && arr.push(this.question.current);
-
-                    return arr.concat(this.getQuestionTree(this.question.current.value))
-                }
+            getOptions() {
+                return this.parseSelectQuestion(this.question);
             },
             selectOption() {
                 return this.getOptions.findIndex(function (item) {

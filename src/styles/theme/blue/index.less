@@ -2,20 +2,25 @@
 
 .theme-blue {
 
+    .radio-group .radio-item .active,
     #y-chat-footer .footer-big-input button,
     #y-chat-header {
         background-color: @primaryColor;
         background-image: url(../../../assets/cardBg.png);
-        background-position: 50%  99%;
+        background-position: 50% 99%;
         background-size: cover;
         background-repeat: no-repeat;
 
     }
 
+    .main-content-wrapper .message-right p {
+        background: @defaultGradient;
+    }
+
     .select-btn-container .item {
         &.blue,
         &.message {
-            background-color: @primaryGradientColor;
+            background: @defaultGradient;
         }
     }
 
@@ -23,16 +28,13 @@
         color: @primaryColor;
     }
     .test-item {
-        border-bottom-color:  @primaryColor;
+        border-bottom-color: @primaryColor;
     }
 
-
+    .loop-price-wrapper .btn-group .get-price-btn,
     .ask-wrapper .ask-button button,
-    .radio-group .radio-item input:checked + span,
     .concat-page .concat-form-btn-group .submit-btn,
     .model-container .model-footer .confirm-btn,
-    .loop-price-wrapper .btn-group .get-price-btn,
-    .main-content-wrapper .message-item-wrapper.message-right p,
     .unread-count,
     .broadcast-wrapper {
         background: @primaryGradientColor;
@@ -46,8 +48,8 @@
         }
     }
 
-    .radio-group .radio-item input:checked + span {
-        border-color: @primaryGradientColor;
+    .radio-group .radio-item .active {
+        border-color: @primaryColor;
     }
 
     .reservation-page {

@@ -53,9 +53,11 @@
                           ref="input"></textarea>
             </div>
             <div class="footer-button">
-                <button type="submit"
+                <button type="submit" class="send-text" v-if="buttonText" v-html="buttonText"></button>
+                <button v-else
+                        type="submit"
                         class="send-text">
-                    发送
+                    <i class="my-icon-fasong"></i>
                 </button>
             </div>
         </form>
@@ -74,6 +76,7 @@
                 icon           : CONFIG.THEME.FOOTER_ICON || 'camera',
                 tel            : CONFIG.BASE.TEL,
                 firstText      : CONFIG.CHAT.FIRST_TEXT,
+                buttonText     : CONFIG.CHAT.SEND_BUTTON_TEXT,
                 firstEnter     : true,
                 sayed          : false,
                 textPlaceholder: '',
@@ -81,17 +84,14 @@
             }
         },
         mounted() {
-            $('body').on('touchend', (e) => {
-                if (e.target.className !== 'message-input') {
-                    this.$refs.input.blur();
-                }
-            });
-
             this.$bus.$on('input-blur', () => {
                 this.$refs.input.blur();
             });
             this.textTransition();
 
+            if (CONFIG.CHAT_PAGE.KEYWORD_TO_INPUT && !CONFIG.CHAT.SELECT_START) {
+                this.changeInput(CONFIG.KEYWORD);
+            }
         },
         computed: {
             ...mapGetters({

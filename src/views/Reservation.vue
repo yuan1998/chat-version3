@@ -81,16 +81,12 @@
     import anime                                             from 'animejs';
     import Storage                                           from "../utily/Storage";
     import { cloneOf, randomNum, shuffleArray, pushHistory } from "../utily/util";
-    import isShowFooter                                      from '../mixins/isShowFooter'
-
-    import reservationForm from '../components/reservation-form'
+    import reservationForm                                   from '../components/reservation-form'
 
     const expertData = CONFIG.RESERVATION_PAGE.EXPERT_DATA;
-
     const EXPERTNAME = 'STORAGE_EXPERT';
 
     export default {
-        mixins    : [ isShowFooter ],
         components: {
             reservationForm
         },

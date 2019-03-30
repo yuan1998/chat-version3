@@ -58,10 +58,8 @@
     import SelectPicker                             from '@/components/SelectPicker'
     import { mapMutations, mapActions, mapGetters } from "vuex"
     import anime                                    from 'animejs'
-    import isShowFooter                             from '../mixins/isShowFooter'
 
     export default {
-        mixins    : [ isShowFooter ],
         components: {
             MessagePop,
             ComputePrice,

@@ -51,10 +51,8 @@
 
 <script>
     import { mapActions } from 'vuex'
-    import isShowFooter   from '../mixins/isShowFooter'
 
     export default {
-        mixins  : [ isShowFooter ],
         data() {
             return {
                 form : {

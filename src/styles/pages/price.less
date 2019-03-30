@@ -68,7 +68,7 @@
         line-height: 50/6.4vw;
         text-align: center;
 
-        span {
+        .radio-text {
             overflow: hidden;
             color: #555;
             display: inline-block;
@@ -80,28 +80,22 @@
             transition: all 230ms ease-in-out;
         }
 
-        & + .radio-item span {
+        & + .radio-item .radio-text {
             border-left: none;
         }
 
-        &:last-child span {
+        &:last-child .radio-text {
             border-top-right-radius: 2vw;
             border-bottom-right-radius: 2vw;
         }
 
-        &:first-child span {
+        &:first-child .radio-text {
             border-top-left-radius: 2vw;
             border-bottom-left-radius: 2vw;
         }
 
-        input {
-            display: none;
-
-            &:checked + span {
-                //background-color: @selectBtnColor;
-                color: #ffffff;
-                //border-color: @selectBtnColor;
-            }
+        .radio-text.active {
+            color: #ffffff;
         }
     }
 }

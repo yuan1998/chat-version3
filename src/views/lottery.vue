@@ -37,11 +37,9 @@
     import anime                        from 'animejs';
     import { randomInProbability }      from "../utily/randomInProbability";
     import Modal                        from '../components/lottery/modal';
-    import isShowFooter                 from '../mixins/isShowFooter';
     import { pushHistory }              from "../utily/util";
 
     export default {
-        mixins    : [ isShowFooter ],
         components: {
             Modal
         },

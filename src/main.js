@@ -23,6 +23,9 @@ Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
     const model = store.getters['Controller/showModal'];
+
+
+    store.commit('Controller/routeIsShow', to.name);
     if (model) {
         store.dispatch('Controller/$hideAll');
         next(false);

@@ -1,15 +1,17 @@
 const CONFIG = {
     BASE            : {
         // 默认页 :0-4
-        ROOT     : 1,
+        ROOT            : 1,
         // 头部标题
-        TITLE    : '西安画美',
+        TITLE           : '西安画美',
         // 页面标题
-        WEB_TITLE: '西安画美',
+        WEB_TITLE       : '西安画美',
         // 电话
-        TEL      : '029-88828888',
-        SHOW_TEL : false,
-        ROUTER   : [
+        TEL             : '029-88828888',
+        SHOW_TEL        : false,
+        HEADER_LOGO     : '西安画美',
+        SHOW_FOOTER_LIST: [ 'chat' ],
+        ROUTER          : [
             {
                 title: '医院简介',
                 name : 'home',
@@ -17,8 +19,8 @@ const CONFIG = {
             },
             {
                 title: '螺旋跳跃',
-                name : 'lottery',
-                path : '/lottery'
+                name : 'price',
+                path : '/price'
             },
             {
                 title: '在线预约',
@@ -49,6 +51,7 @@ const CONFIG = {
         // 模式类型 : [ 'items', '' ]
         SELECT_TYPE : 'items',
         FIRST_TEXT  : '',
+        SEND_BUTTON_TEXT: '发送',
     },
     KST             : {
         // 快商通标识
@@ -69,27 +72,8 @@ const CONFIG = {
                 type      : 'advertising',
                 maxWidth  : true,
                 notPadding: true,
-                notBorder : true,
+                // notBorder : true,
                 value     : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/b_syp_mbp.jpg',
-            },
-            {
-                type       : 'broadcast',
-                title      : '近期优惠',
-                scrollToMe : true,
-                scrollDelay: 4000,
-                data       : [
-                    '精彩源于美丽，蝶变始于画美',
-                    '画美整形，真实案例展示，蜕变人生',
-                    '画美整形，真实案例展示，蜕变人生',
-                ]
-            },
-            {
-                type       : 'advertising',
-                maxWidth   : true,
-                notPadding : true,
-                notBorder  : true,
-                value      : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
-                sendMessage: '领取优惠劵'
             },
             {
                 type     : 'left',
@@ -164,9 +148,90 @@ const CONFIG = {
     },
     PRICE_PAGE      : {
         ASK_COVER: 'http://kst.img.xamryy.cn/theme/2-1-red.jpg',
+        QUESTION : [
+            {
+                title  : '您多大年龄了呢?',
+                options: [
+                    '18以下',
+                    '18-35岁',
+                    '35-45岁',
+                    '45岁以上',
+                ],
+                value  : '',
+            },
+            {
+                value  : '',
+                title  : "您的牙齿目前情况?",
+                options: [
+                    {
+                        value   : '缺牙',
+                        children: [
+                            {
+                                value  : '',
+                                title  : '您的缺牙情况?',
+                                options: [
+                                    '全口缺失', '半口缺失', '多颗缺失', '单颗缺失'
+                                ]
+                            },
+                            {
+                                value  : '',
+                                title  : '您想通过哪种方式来补牙?',
+                                options: [
+                                    '种植牙', '全瓷牙', '烤瓷牙', '假牙'
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        value   : '牙齿矫正',
+                        children: [
+                            {
+                                value  : '',
+                                title  : '您属于下列哪种?',
+                                options: [
+                                    '地包天', '龅牙', '牙齿不齐', '其他'
+                                ]
+                            },
+                            {
+                                value  : '',
+                                title  : '选择您想矫正的方式?',
+                                options: [
+                                    '金属矫正', '隐形矫正', '陶瓷矫正', '其他'
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        value   : '牙齿修复',
+                        children: [
+                            {
+                                value  : '',
+                                title  : '目前您的牙齿情况是？',
+                                options: [
+                                    '断牙', '牙裂', '烂牙', '其他'
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        value   : '牙常规',
+                        children: [
+                            {
+                                value  : '',
+                                title  : '请选择您想了解的牙齿问题?',
+                                options: [
+                                    '拔牙', '洁牙', '美白', '其他'
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
     },
     CHAT_PAGE       : {
         AVATAR          : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/avatar_mbp.png',
+        KEYWORD_TO_INPUT: true,
         PLACEHOLDER_TEXT: '请输入问题，10秒内获取答案！',
         TEXT_DURATION   : 45,
         TEXT_DELAY      : 2200,
@@ -310,15 +375,11 @@ const CONFIG = {
             next   : 'age',
             message: [
                 {
-                    type    : 'advertising',
-                    maxWidth: true,
-                    style   : 'padding:0;',
-                    value   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g1726zxmyyj30h80b2t9n.jpg',
-                },
-                {
-                    type    : 'advertising',
-                    maxWidth: true,
-                    value   : 'http://ww1.sinaimg.cn/large/0076fRdzly1g16skiyc72j30k00460tf.jpg',
+                    type      : 'advertising',
+                    maxWidth  : true,
+                    notPadding: true,
+                    // notBorder : true,
+                    value     : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/b_syp_mbp.jpg',
                 },
                 {
                     type     : 'left',
@@ -345,84 +406,35 @@ const CONFIG = {
             },
         },
         age  : {
-            type        : 'select-picker',
-            title       : '年龄',
-            theme       : 'blue',
-            noTransition: true,
-            delay       : 500,
-            message     : [
+            type   : 'select-item-group',
+            title  : '年龄',
+            theme  : 'blue',
+            message: [
                 {
-                    type : 'advertising',
-                    value: 'http://ww1.sinaimg.cn/large/0076fRdzly1g0u6puidmjj30hs09jq3z.jpg',
+                    type     : 'left',
+                    animation: 'left-default',
+                    value    : '您好,请问有什么问题?',
                 },
             ],
+            data   : {
+                items: [
+                    {
+                        value    : 'CONFIG_KEYWORD',
+                        show     : true,
+                        animation: 'right-select',
+                        el       : null,
+                    },
+                    {
+                        value    : '领取优惠',
+                        show     : true,
+                        animation: 'right-select',
+                        el       : null,
+                    },
+
+                ]
+            },
         },
 
     },
-    QUESTION        : {
-        age    : {
-            title  : '您多大年龄了呢?',
-            options: [
-                '18以下', '18-35岁', '35-45岁', '45岁以上'
-            ],
-            value  : '',
-        },
-        current: {
-            value  : '',
-            title  : "您的牙齿目前情况?",
-            options: [
-                '缺牙', '牙齿矫正', '牙齿修复', '牙常规'
-            ]
-        },
-        '缺牙'   : [
-            {
-                value  : '',
-                title  : '您的缺牙情况?',
-                options: [
-                    '全口缺失', '半口缺失', '多颗缺失', '单颗缺失'
-                ]
-            },
-            {
-                value  : '',
-                title  : '您想通过哪种方式来补牙?',
-                options: [
-                    '种植牙', '全瓷牙', '烤瓷牙', '假牙'
-                ]
-            }
-        ],
-        '牙齿矫正' : [
-            {
-                value  : '',
-                title  : '您属于下列哪种?',
-                options: [
-                    '地包天', '龅牙', '牙齿不齐', '其他'
-                ]
-            },
-            {
-                value  : '',
-                title  : '选择您想矫正的方式?',
-                options: [
-                    '金属矫正', '隐形矫正', '陶瓷矫正', '其他'
-                ]
-            }
-        ],
-        '牙齿修复' : [
-            {
-                value  : '',
-                title  : '目前您的牙齿情况是？',
-                options: [
-                    '断牙', '牙裂', '烂牙', '其他'
-                ]
-            }
-        ],
-        '牙常规'  : [
-            {
-                value  : '',
-                title  : '请选择您想了解的牙齿问题?',
-                options: [
-                    '拔牙', '洁牙', '美白', '其他'
-                ]
-            }
-        ]
-    },
+
 };

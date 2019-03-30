@@ -38,12 +38,14 @@
                 theme: CONFIG.THEME.COLOR || 'blue'
             }
         },
+        created() {
+            CONFIG.KEYWORD      = checkReferrer();
+            CONFIG.KST.PAGE_TAG = `${CONFIG.KST.PAGE_TAG}_${CONFIG.KEYWORD ? `关键字:${CONFIG.KEYWORD}` : '没有关键字'}`;
+        },
         mounted() {
             CONFIG.BASE.WEB_TITLE && (document.title = CONFIG.BASE.WEB_TITLE);
             CONFIG.KST.JS && $('head').append($(CONFIG.KST.JS));
 
-            CONFIG.KEYWORD      = checkReferrer();
-            CONFIG.KST.PAGE_TAG = `${CONFIG.KST.PAGE_TAG}_${CONFIG.KEYWORD ? `关键字:${CONFIG.KEYWORD}` : '没有关键字'}`;
         },
         computed  : {
             ...mapGetters({
