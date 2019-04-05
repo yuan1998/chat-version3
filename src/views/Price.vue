@@ -82,7 +82,7 @@
                 console.log(item)
             },
             handleSubmit(form) {
-                let arr = [];
+                let arr = ['### 消息还源于报价页面'];
                 this.getOptions.forEach(function (item) {
                     arr.push(`${item.title} : ${item.value} <br />`);
                 });

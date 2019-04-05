@@ -4,6 +4,10 @@ module.exports = {
     publicPath  : isProd
         ? '/zt/new-chat-version-3/'
         : '/',
+    devServer: {
+        port: 80,
+        disableHostCheck: true
+    },
     chainWebpack: config => {
         if (isProd) {
             config.externals({

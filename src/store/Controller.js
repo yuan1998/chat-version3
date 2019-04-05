@@ -19,15 +19,20 @@ export default {
         showFooter  : true,
         showMask    : false,
         showModal   : false,
+        itemHide    : false,
         modelContent: '',
         modal       : cloneOf(defaultModalConfig),
     },
     mutations : {
         routeIsShow(state, route) {
+            if (route === 'chat' && state.itemHide) {
+                return;
+            }
             state.showFooter = oneOf(route, showList);
         },
         showFooter(state, value) {
             state.showFooter = value;
+            state.itemHide   = !value;
         },
         showMask(state, value) {
             state.showMask = value;

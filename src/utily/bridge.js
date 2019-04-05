@@ -1,4 +1,8 @@
-import {queryOf , getUrlParamter} from '@/utily/util'
+import Cookie                      from 'js-cookie';
+import { queryOf, getUrlParamter } from '@/utily/util'
+import { getReferrer }             from "./referrer";
+import getSwtUrl                   from "./swtUrl";
+
 
 class Bridge {
 
@@ -34,15 +38,9 @@ class Bridge {
         this.messageCallback = options.messageCallback;
 
         /**
-         * 快商通初始链接
-         * @type {string}
-         */
-        this.kstUrl = options.kstUrl;
-
-        /**
          * 快商通聊天 标签
          */
-        this.tagText = options.tag;
+        this.tagText = options.tag || CONFIG.BASE.PAGE_TAG;
 
         /**
          * 是否保存 iframe 元素. 如果为一次性 则传入该参数.
@@ -52,10 +50,53 @@ class Bridge {
         this.startChat = options.start;
 
         if (options.make) {
-            this.makeKstUrl(options.text , true)
+            return this.makeUrl(true)
         }
     }
 
+    makeUrl(make = false) {
+        let item = CONFIG.CHAT_OPTION;
+        if (!item || !item.type) {
+            console.warn('[Error] Create Bridge Option Not Exist !');
+            return;
+        }
+
+        if (typeof this[ `${item.type}UrlGenerate` ] === 'function') {
+            return this[ `${item.type}UrlGenerate` ](item, make);
+        }
+        else {
+            throw new Error("[Bridge Error] Generate Url Method Not Exist!");
+        }
+
+    }
+
+    kstUrlGenerate(item, make) {
+        let params = getUrlParamter(item.url);
+        let cas    = params[ 'cas' ];
+        cas        = cas && Cookie.get(`${cas}_KS_${cas}`);
+
+        let query = {
+            dp   : encodeURIComponent(window.location.href),
+            sText: encodeURIComponent(this.tagText || ''),
+            vi   : (cas && decodeURI(cas[ 2 ])) || '',
+            ref  : getReferrer(),
+            ism  : 1
+        };
+
+        query   = queryOf(query);
+        let url = `${item.url}&${query}`;
+
+        return make ? this.createIFrame(url) : url;
+    }
+
+    swtUrlGenerate(item, make) {
+        if (typeof openZoosUrl !== 'function') {
+            throw new Error('[Error Bridge] Generate swt Url not Found Method `openZoosUrl`');
+        }
+
+        let url = getSwtUrl(this.tagText|| '');
+        return make ? this.createIFrame(url) : url;
+    }
 
     /**
      * 生成 快商通 窗口链接. 手动调用
@@ -63,7 +104,7 @@ class Bridge {
      * @param create 是否创建iframe 窗口
      * @returns {void|String|Bridge} 如果create === true , 则直接创建iframe , 否则返回 url.
      */
-    makeKstUrl (text, create) {
+    makeKstUrl(text, create) {
         var ksChatLink = this.kstUrl;
 
         var _ksChatLink = ksChatLink,
@@ -100,7 +141,9 @@ class Bridge {
      * @param url 快商通 窗口链接.
      * @returns {Bridge} 返回this;
      */
-    createIFrame (url) {
+    createIFrame(url) {
+
+        // 使用 attr 兼容 jquery 和 zepto
         const el = $('<iframe>')
             .attr('src', url)
             .attr('id', 'y-iframe')
@@ -109,7 +152,7 @@ class Bridge {
             .attr('scrolling', 'no');
 
         el.appendTo($('body'));
-        el.on('load',  (evt) => {
+        el.on('load', (evt) => {
             if (typeof this.loadedCallback === 'function') {
                 this.loadedCallback(evt);
             }
@@ -122,12 +165,12 @@ class Bridge {
      * 保存 iframe 元素. 在 iframe load 后调用
      * @param iframe
      */
-    saveIframe (iframe) {
+    saveIframe(iframe) {
         this.iFrame = iframe;
         this.addMessageEvent();
         this.postMessageToChild({ start: true });
 
-        (this.messageBox || []).forEach( (item) => {
+        (this.messageBox || []).forEach((item) => {
             this.postMessageToChild(item);
         })
     };
@@ -155,8 +198,8 @@ class Bridge {
     /**
      * 添加 Message 事件,监听子页面回传的数据
      */
-    addMessageEvent () {
-        window.addEventListener("message",  (evt) => {
+    addMessageEvent() {
+        window.addEventListener("message", (evt) => {
             this.receiveMessageFromIframePage(evt);
         }, false);
     };
@@ -165,7 +208,7 @@ class Bridge {
      * 解析子页面回传的数据,一般在message事件触发后调用
      * @param event
      */
-    receiveMessageFromIframePage (event) {
+    receiveMessageFromIframePage(event) {
         const data = event.data;
         if (!(data && data.isThisData)) {
             return;

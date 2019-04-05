@@ -114,6 +114,7 @@
         computed: {
             getConcatText() {
                 return [
+                    '### 消息来源于 `联系我们` 页面表单',
                     '姓名 : ',
                     this.form.name,
                     "<br/>",

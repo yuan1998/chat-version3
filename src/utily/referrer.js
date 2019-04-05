@@ -29,8 +29,12 @@ const items = [
 
 ];
 
+export const getReferrer = () => {
+    return (process.env.NODE_ENV === "development" ? process.env.VUE_APP_REFERRER : document.referrer) || '';
+};
+
 export const checkReferrer = (defaultResult = '') => {
-    const referrer = process.env.NODE_ENV === "development" ? process.env.VUE_APP_REFERRER : document.referrer;
+    const referrer = getReferrer();
     let result     = '';
 
     if (!referrer) {

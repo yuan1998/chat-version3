@@ -1,5 +1,8 @@
 const CONFIG = {
     BASE            : {
+        TYPE            : 'testSwt',
+        // 快商通标识
+        PAGE_TAG        : '###信息流-西安眼鼻中心',
         // 默认页 :0-4
         ROOT            : 1,
         // 页面标题
@@ -37,7 +40,7 @@ const CONFIG = {
             //     path : '/reservation'
             // },
         ]
-    ,
+    },
     THEME           : {
         // 页面主题 : ['blue' , 'red']
         COLOR      : 'blue',
@@ -46,23 +49,44 @@ const CONFIG = {
     },
     CHAT            : {
         // 是否开启选择模式
-        SELECT_START: false,
+        SELECT_START    : true,
         // 模式类型 : [ 'items', '' ]
-        SELECT_TYPE : 'items',
-        FIRST_TEXT  : '',
+        SELECT_TYPE     : 'items',
+        FIRST_TEXT      : '',
         SEND_BUTTON_TEXT: '发送',
     },
+    SWT             : {
+        ID: ''
+    },
+    CHAT_OPTIONS  : {
+        kq: {
+            type  : 'kst',
+            domain: 'https://vipk16-hztk11.kuaishang.cn/',
+            id    : 982318,
+            fi    : 118952,
+            cas   : 116432,
+        },
+        testSwt: {
+            type: 'swt',
+            js: 'http://mqy.zoosnet.net/JS/LsJS.aspx?siteid=MQY16279901&lng=cn'
+        }
+    },
     KST             : {
-        // 快商通标识
-        PAGE_TAG: '###信息流-西安眼鼻中心',
+        // kq : 982318.
+        // zx : 553487.
+        ID: '982318',
+
+        // kq : 118952
+        // zx : 118951
+        FI : '118952',
         // 快商通链接
         // kq  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952
         // zx  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951
-        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951',
+        URL: 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951',
         // 快商通 js 代码
         // kq  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>
         // zx  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>
-        JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>',
+        JS : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>',
     },
     MESSAGE         : {
         // 初始对话

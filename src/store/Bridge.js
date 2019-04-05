@@ -5,6 +5,8 @@ import { addImageProcess, oneOf } from "../utily/util";
 
 const oneMin = 1000 * 60;
 
+let firstMessage = true;
+
 export default {
     namespaced: true,
     state     : {
@@ -44,11 +46,9 @@ export default {
             let bridge = getters.bridge;
             if (bridge === null) {
                 bridge = new Bridge({
-                    tag   : CONFIG.KST.PAGE_TAG,
-                    make  : true,
-                    kstUrl: CONFIG.KST.URL,
+                    make: true,
                     messageCallback(message) {
-                        dispatch('filterMessage', { message });
+                        dispatch('filterMessage', { message, type: 'back' });
                     }
                 });
                 commit('bridge', bridge);
@@ -118,23 +118,34 @@ export default {
                 })
             }
         },
-        filterMessage({ commit, dispatch }, { message, pass = false, duration = 0 }) {
-            message = [].concat(message);
-            message.forEach((item) => {
-                if (item) {
-                    let arr           = [ 'advertising', 'broadcast' ];
-                    let leftCondition = (item.type === 'left' && item.value !== 'NOT_FOUNT_MSG');
-                    let of            = oneOf(arr , item.type);
+        filterMessage({ commit, dispatch, state }, { message, pass = false, duration = 0, type = 'default' }) {
+            message = [].concat(message)
+                        .filter(e => {
+                            return e && e.value !== 'NOT_FOUNT_MSG';
+                        });
 
-                    if (leftCondition || pass || of) {
-                        duration += parseInt(item.duration) || 0;
-                        setTimeout(() => {
-                            !of && dispatch('createTime');
-                            commit('messageAdd', item);
-                        }, duration);
-                    }
-
+            if (type === 'back') {
+                if (firstMessage && message.length > 1) {
+                    firstMessage = false;
+                    return;
                 }
+
+                message = message.filter(e => !oneOf( [ 'right', 'center' ] , e.type));
+            }
+
+            console.log('message :', message);
+            console.log('firstMessage :', firstMessage);
+
+            message.forEach((item) => {
+                let arr = [ 'advertising', 'broadcast' ];
+                let of  = oneOf(arr, item.type);
+
+                duration += parseInt(item.duration) || 0;
+                setTimeout(() => {
+                    !of && dispatch('createTime');
+                    commit('messageAdd', item);
+                }, duration);
+
             })
         },
         createTime({ getters, commit }) {
