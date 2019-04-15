@@ -67,6 +67,16 @@
             'select-input'     : SelectInput,
             'select-picker'    : SelectPicker,
         },
+        beforeRouteEnter(to, from, next) {
+            next(vm => {
+                if (vm.gBridge) {
+                    if (vm.selectStart) {
+                        vm.selectStart = false;
+                    }
+                }
+                // 通过 `vm` 访问组件实例
+            })
+        },
         data() {
             return {
                 selectStart      : CONFIG.CHAT.SELECT_START || false,

@@ -37,7 +37,7 @@ const CONFIG = {
             //     path : '/reservation'
             // },
         ]
-    ,
+    },
     THEME           : {
         // 页面主题 : ['blue' , 'red']
         COLOR      : 'blue',
@@ -46,10 +46,10 @@ const CONFIG = {
     },
     CHAT            : {
         // 是否开启选择模式
-        SELECT_START: false,
+        SELECT_START    : false,
         // 模式类型 : [ 'items', '' ]
-        SELECT_TYPE : 'items',
-        FIRST_TEXT  : '',
+        SELECT_TYPE     : 'items',
+        FIRST_TEXT      : '',
         SEND_BUTTON_TEXT: '发送',
     },
     KST             : {
