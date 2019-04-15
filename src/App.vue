@@ -72,7 +72,8 @@
                 CONFIG.CHAT_OPTION.url = url;
             },
             swtGenerate(option) {
-                document.write(`<script language="javascript" src="${option.js}"><\/script>`);
+                document.writeln(`<script onload="LR_showminiDiv=LR_showminiDiv2=function(){};LR_sidexists=2;LR_showminiDiv_no=true;LR_Floaters[2].pms['html']='123'" language="javascript" src="${option.js}&float=0"><\/script>`);
+                // document.writeln('');
             }
         },
         computed  : {

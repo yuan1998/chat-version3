@@ -130,11 +130,9 @@ export default {
                     return;
                 }
 
-                message = message.filter(e => !oneOf( [ 'right', 'center' ] , e.type));
+                message = message.filter(e => !oneOf([ 'right', 'center' ], e.type));
             }
 
-            console.log('message :', message);
-            console.log('firstMessage :', firstMessage);
 
             message.forEach((item) => {
                 let arr = [ 'advertising', 'broadcast' ];
@@ -177,4 +175,15 @@ export default {
             return state.monitor;
         }
     }
+}
+
+
+function LR_showminiDiv2() {
+    if (typeof (LR_showminiDiv_no) != 'undefined' || !LR_pm001 || !LiveReceptionCode_isonline || !LR_pm002 || LR_sidexists == 2) return;
+    if (LR_cid == null || LR_sidexists == -1) {
+        setTimeout('LR_showminiDiv2();', 300);
+        return;
+    }
+    setTimeout('if(LR_Floaters[2].pms["html"]==""){LR_HideInvite();LR_istate=1;LR_showminiDiv();}', typeof (LR_showminiDivtimeout) != 'undefined' ? LR_showminiDivtimeout * 1000 : 2000);
+    return;
 }
