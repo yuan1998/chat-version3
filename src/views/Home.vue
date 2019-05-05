@@ -6,7 +6,7 @@
                      :key="i"
                      @click="handleClick(i)"
                      v-for=" i in data.COUNT">
-                    <img :src="data.BASE_URL + data.PATH + data.NAME + i + data.EXT" alt="" class="mc-img">
+                    <img referrerpolicy="no-referrer" :src="data.BASE_URL + data.PATH + data.NAME + i + data.EXT" alt="" class="mc-img">
                 </div>
             </div>
             <template v-else>

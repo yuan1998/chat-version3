@@ -34,7 +34,7 @@
                          :key="item.key + current">
                         <div class="content">
                             <div class="expert-avatar">
-                                <img :src="item.avatar" alt="" class="mc-img">
+                                <img referrerpolicy="no-referrer" :src="item.avatar" alt="" class="mc-img">
                             </div>
                             <p class="title">
                                 <span class="name">{{ item.name }}</span>
@@ -210,7 +210,7 @@
                 })
             },
             afterEnter() {
-                console.log('123 :', 123);
+
             },
             Leave(el, done) {
                 anime({

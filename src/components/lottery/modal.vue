@@ -7,7 +7,7 @@
             <div class="lottery-result " v-if="show">
                 <div class="container">
                     <div class="bg">
-                        <img src="@/assets/lottery-result.png" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" src="@/assets/lottery-result.png" alt="" class="mc-img">
                     </div>
                     <div class="content">
                         <div class="title">
@@ -176,7 +176,7 @@
 
                 this.$modal({
                     content: '提交成功,我们会在3小时内联系您.请留意'
-                })
+                });
 
                 this.$emit('close-me');
             }

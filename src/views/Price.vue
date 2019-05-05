@@ -2,13 +2,13 @@
     <div class="y-chat-page page-item price-page">
         <div class="ask-wrapper">
             <div class="ask-cover" style="padding-top: 4.1vw;">
-                <img :src="config.ASK_COVER" alt="" class="mc-img">
+                <img referrerpolicy="no-referrer" :src="config.ASK_COVER" alt="" class="mc-img">
             </div>
             <div class="ask-item"
                  v-for="(item , index) in getOptions"
                  :key="index">
                 <div class="title">
-                    {{ index + 1 }}. {{ item.title }}
+                   {{ index + 1 }}. {{ item.title }}
                 </div>
                 <Radio :items="item.options" v-model="item.value"></Radio>
             </div>
@@ -53,7 +53,6 @@
         },
         mounted() {
             this.question = this.parseQuestion(this.question);
-            console.log(this.question);
         },
         methods   : {
             ...mapActions({
@@ -79,7 +78,6 @@
                 })
             },
             handleRadioChange(item) {
-                console.log(item)
             },
             handleSubmit(form) {
                 let arr = [];
@@ -94,8 +92,6 @@
                     display: false
                 });
 
-
-                $_aglPush();
                 this.showCommentForm = false;
                 this.$modal({
                     content: '提交成功,我们会在3小时内联系您.请留意'

@@ -2,12 +2,12 @@
     <div class="loop-price-wrapper model-fixed-class">
         <div class="loop-price">
             <div class="loop-header-cover" style="padding-bottom:5vw;">
-                <img src="@/assets/header-2.png" alt="" class="mc-img">
+                <img referrerpolicy="no-referrer" src="@/assets/header-2.png" alt="" class="mc-img">
             </div>
             <div class="loop-wrapper">
                 <p class="loop-box">
                     <span class="price-item" v-for="(item,index) in randomPrice">
-                        <img :key="index" :src="images[item]" alt="" class="mw-img-i">
+                        <img referrerpolicy="no-referrer" :key="index" :src="images[item]" alt="" class="mw-img-i">
                     </span>
                 </p>
             </div>

@@ -4,10 +4,10 @@
     }">
         <div class="lottery-container">
             <div class="background-wrapper">
-                <img src="@/assets/bacground-1.jpg" alt="" class="mc-img">
+                <img referrerpolicy="no-referrer" src="@/assets/bacground-1.jpg" alt="" class="mc-img">
             </div>
             <div class="background-2">
-                <img src="@/assets/bacground-2.jpg" alt="" class="mc-img">
+                <img referrerpolicy="no-referrer" src="@/assets/bacground-2.jpg" alt="" class="mc-img">
                 <div class="content">
                     <div class="item-wrap" v-for="(item , n) in lotteryItems" :key="n">
                         <div class="item " :class="lotteryResult === item.i && 'active'" v-if="!item.empty">
@@ -21,9 +21,9 @@
                     </div>
                 </div>
                 <div class="start-button" @click="handleLoopStart">
-                    <img src="@/assets/start-bg.png" alt="" class="mc-img">
+                    <img referrerpolicy="no-referrer" src="@/assets/start-bg.png" alt="" class="mc-img">
                     <div class="start-text">
-                        <img src="@/assets/start.png" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" src="@/assets/start.png" alt="" class="mc-img">
                     </div>
                 </div>
             </div>
@@ -96,7 +96,6 @@
                 $modal: "Controller/$modal",
             }),
             handlePopStatus() {
-                console.log('123 :', 123);
                 if (this.showModal) {
                     this.$modal({
                         text       : '退出将视为放弃机会.是否要退出?',

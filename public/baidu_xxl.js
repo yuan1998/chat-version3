@@ -3,24 +3,23 @@ window._agl = window._agl || [];
 (function () {
     var host = window.location.host;
 
-    var item = null;
+    var production = null;
     switch (host) {
         case 'xl2.xaylmr.com':
         case 'xl1.hmkqyy.vip':
         case 'xl.hmmryy.vip':
-            item = '_f7L2XwGXjyszb4d1e2oxPybgD';
+            production = '_f7L2XwGXjyszb4d1e2oxPybgD';
             break;
     }
-    console.log(item);
-    if (item) {
+    if (production) {
         _agl.push(
-            [ 'production', item ]
+            [ 'production', production ]
         );
         (function () {
             var agl   = document.createElement('script');
             agl.type  = 'text/javascript';
             agl.async = true;
-            agl.src   = 'https://fxgate.baidu.com/angelia/fcagl.js?production=' + item;
+            agl.src   = 'https://fxgate.baidu.com/angelia/fcagl.js?production=' + production;
             var s     = document.getElementsByTagName('script')[ 0 ];
             s.parentNode.insertBefore(agl, s);
         })();
@@ -29,6 +28,6 @@ window._agl = window._agl || [];
 
 function $_aglPush() {
     if (window._agl && typeof window._agl.push === 'function') {
-        window._agl.push(['track', ['success', {t: 3}]])
+        window._agl.push([ 'track', [ 'success', { t: 3 } ] ])
     }
 }

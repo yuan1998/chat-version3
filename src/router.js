@@ -34,6 +34,12 @@ let routes = [
         name     : 'lottery',
         component: () => import('./views/lottery.vue')
     },
+    {
+        path     : '/case',
+        name     : 'case',
+        component: () => import('./views/Case.vue')
+    },
+
 ];
 
 const configRouter = CONFIG.BASE.ROUTER || [];

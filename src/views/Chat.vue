@@ -12,8 +12,8 @@
                             :prev-type="messageType(index - 1)"
                             :animation-name="item.animation"
                             @scroll-to-me="handleScrollToMe"
-                            v-for="(item , index) in messageList">
-                </MessagePop>
+                            v-for="(item , index) in messageList"/>
+                <div class="box-ca" style="height:9vw;"></div>
             </div>
         </div>
         <template v-if="currentSelectItem && currentSelectItem.noTransition">
@@ -74,6 +74,7 @@
                         vm.selectStart = false;
                     }
                 }
+                vm.scrollBottom();
                 // 通过 `vm` 访问组件实例
             })
         },
@@ -86,7 +87,6 @@
                 selectModule     : false,
                 selectValues     : [],
                 currentSelectItem: null,
-                showSelect       : false,
                 wrapperHeight    : 0,
                 unreadCount      : 0,
                 selectItems      : cloneOf(CONFIG.SELECT_ITEMS),
@@ -103,7 +103,6 @@
                 questionData     : [],
             }
         },
-
         mounted() {
             const el = this.$refs.chat;
             el.addEventListener('scroll', () => {
@@ -123,18 +122,27 @@
 
             this.initChatMessage();
         },
-        computed: {
+        computed  : {
             ...mapGetters({
-                gBridge : 'Bridge/bridge',
-                gMessage: 'Bridge/message',
-                input   : 'Form/input',
-                query   : 'Form/query'
+                gBridge    : 'Bridge/bridge',
+                gMessage   : 'Bridge/message',
+                input      : 'Form/input',
+                CshowSelect: 'Controller/showSelect',
+                query      : 'Form/query'
             }),
+            showSelect: {
+                get() {
+                    return this.CshowSelect;
+                },
+                set(val) {
+                    this.$store.commit('Controller/showSelect', val);
+                }
+            },
             messageList() {
                 return this.messages.concat(this.gMessage);
             }
         },
-        methods : {
+        methods   : {
             ...mapMutations({
                 showFooter   : 'Controller/showFooter',
                 changeInput  : "Form/input",
@@ -147,7 +155,7 @@
                 filterMessage: 'Bridge/filterMessage'
             }),
             handleScrollToMe(val) {
-                console.log('val :', val);
+
                 this.wrapperHeight = val + this.$refs.chat.clientHeight;
                 this.scrollBottom();
             },
@@ -196,11 +204,20 @@
             defaultModule() {
                 if (this.gMessage.length === 0) {
                     this.addConfigMessage('INIT_MESSAGE');
+                    if (CONFIG.CHAT.AUTO_SAY) {
+                        setTimeout(() => {
+                            this.handleSayAutoMessage();
+                        }, CONFIG.CHAT.AUTO_SAY_DELAY || 10000);
+                    }
                 }
             },
             itemsModule() {
                 this.showFooter(false);
                 this.nextSelectItems('hello');
+            },
+            handleSayAutoMessage() {
+                if (this.gBridge) return;
+                this.addConfigMessage('AUTO_SAY_MESSAGE');
             },
             hideSelect() {
                 this.currentSelectItem = null;
@@ -239,7 +256,6 @@
                 if (next) {
                     this.scrollToLastRight();
                     result = this.cloneItem(next);
-                    console.log('result :', result);
                 }
 
                 setTimeout(() => {
@@ -336,14 +352,14 @@
                 });
             },
             messageType(index) {
-                return this.messages[ index ] && this.messages[ index ].type;
+                return this.messageList[ index ] && this.messageList[ index ].type;
             },
             handleJump() {
                 this.hideSelect();
                 this.endSelect('该用户选择了跳过.');
             }
         },
-        watch   : {
+        watch     : {
             currentSelectItem(val) {
                 if (!val) {
                     return;

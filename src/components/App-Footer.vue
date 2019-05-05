@@ -17,12 +17,12 @@
                     <div class="phone-icon-inner"
                          v-if="icon === 'camera'"
                          @click="clickInputFile">
-                        <img src="@/assets/camera-red.png" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" src="@/assets/camera-red.png" alt="" class="mc-img">
                     </div>
                     <a class="phone-icon-inner"
                        :href="'tel:'+ tel"
                        v-else-if="icon === 'phone'">
-                        <img src="@/assets/phone.jpg" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" src="@/assets/phone.jpg" alt="" class="mc-img">
                     </a>
                     <input v-model="superInput"
                            autocomplete="off"
@@ -151,12 +151,6 @@
             handleInputClick() {
                 this.$router.push('/chat');
                 this.$refs.input.focus();
-                if (!this.sayed) {
-                    this.sayed = true;
-                    this.filterMessage({
-                        message: CONFIG.MESSAGE.NO_SAY_MESSAGE
-                    })
-                }
             },
             clickInputFile() {
                 this.$refs.fileInput.click()
@@ -177,7 +171,9 @@
                     value = this.placeholder;
                 }
 
+
                 if (value !== '') {
+                    $_aglPush();
                     this.firstEnter && (this.firstEnter = false);
                     this.sendText({
                         value,

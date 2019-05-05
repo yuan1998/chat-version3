@@ -15,7 +15,7 @@
                 </div>
                 <div class="expert-cover">
                     <div class="expert-i hidden" ref="cover">
-                        <img :src="item.cover" alt="" class="mc-img ">
+                        <img referrerpolicy="no-referrer" :src="item.cover" alt="" class="mc-img ">
                     </div>
                 </div>
                 <div class="form-container ">

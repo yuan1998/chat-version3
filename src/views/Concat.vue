@@ -2,7 +2,7 @@
     <div class="y-chat-page page-item concat-page">
         <div class="concat-content">
             <div class="concat-cover">
-                <img src="@/assets/4-1.jpg" alt="" class="mc-img">
+                <img referrerpolicy="no-referrer" src="@/assets/4-1.jpg" alt="" class="mc-img">
             </div>
             <div class="concat-tip">
                 <p>

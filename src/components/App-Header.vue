@@ -4,18 +4,18 @@
             <div class="header-bar-title">
                 <div class="header-back header-icon">
                     <div class="icon-img" style="width: 5vw;" onclick="history.go(-1)">
-                        <img src="@/assets/back-icon.png" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" src="@/assets/back-icon.png" alt="" class="mc-img">
                     </div>
                 </div>
                 <div class="header-center" v-if="logoText" v-html="logoText"></div>
                 <div class="header-center" v-else>
                     <div class="logo-img">
-                        <img :src="logoImg" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" :src="logoImg" alt="" class="mc-img">
                     </div>
                 </div>
                 <div class="header-tel header-icon" v-if="showTel">
                     <a class="icon-img" style="width: 6vw;display: inline-block;" :href="'tel:' + tel">
-                        <img src="@/assets/tel.png" alt="" class="mc-img">
+                        <img referrerpolicy="no-referrer" src="@/assets/tel.png" alt="" class="mc-img">
                     </a>
                 </div>
             </div>

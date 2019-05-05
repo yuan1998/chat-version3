@@ -1,4 +1,4 @@
-import {queryOf , getUrlParamter} from '@/utily/util'
+import { queryOf, getUrlParamter } from '@/utily/util'
 
 class Bridge {
 
@@ -52,7 +52,7 @@ class Bridge {
         this.startChat = options.start;
 
         if (options.make) {
-            this.makeKstUrl(options.text , true)
+            this.makeKstUrl(options.text, true)
         }
     }
 
@@ -63,7 +63,7 @@ class Bridge {
      * @param create 是否创建iframe 窗口
      * @returns {void|String|Bridge} 如果create === true , 则直接创建iframe , 否则返回 url.
      */
-    makeKstUrl (text, create) {
+    makeKstUrl(text, create) {
         var ksChatLink = this.kstUrl;
 
         var _ksChatLink = ksChatLink,
@@ -100,7 +100,7 @@ class Bridge {
      * @param url 快商通 窗口链接.
      * @returns {Bridge} 返回this;
      */
-    createIFrame (url) {
+    createIFrame(url) {
         const el = $('<iframe>')
             .attr('src', url)
             .attr('id', 'y-iframe')
@@ -109,7 +109,7 @@ class Bridge {
             .attr('scrolling', 'no');
 
         el.appendTo($('body'));
-        el.on('load',  (evt) => {
+        el.on('load', (evt) => {
             if (typeof this.loadedCallback === 'function') {
                 this.loadedCallback(evt);
             }
@@ -122,12 +122,12 @@ class Bridge {
      * 保存 iframe 元素. 在 iframe load 后调用
      * @param iframe
      */
-    saveIframe (iframe) {
+    saveIframe(iframe) {
         this.iFrame = iframe;
         this.addMessageEvent();
         this.postMessageToChild({ start: true });
 
-        (this.messageBox || []).forEach( (item) => {
+        (this.messageBox || []).forEach((item) => {
             this.postMessageToChild(item);
         })
     };
@@ -155,8 +155,8 @@ class Bridge {
     /**
      * 添加 Message 事件,监听子页面回传的数据
      */
-    addMessageEvent () {
-        window.addEventListener("message",  (evt) => {
+    addMessageEvent() {
+        window.addEventListener("message", (evt) => {
             this.receiveMessageFromIframePage(evt);
         }, false);
     };
@@ -165,7 +165,7 @@ class Bridge {
      * 解析子页面回传的数据,一般在message事件触发后调用
      * @param event
      */
-    receiveMessageFromIframePage (event) {
+    receiveMessageFromIframePage(event) {
         const data = event.data;
         if (!(data && data.isThisData)) {
             return;
@@ -173,12 +173,11 @@ class Bridge {
 
         if (data.message) {
             if (!data.message || data.message.length === 0) {
-                console.log("Not Change");
+                console.info(" Not Change");
             }
             else {
                 if (typeof this.messageCallback === 'function')
                     this.messageCallback(data.message, event);
-
                 console.log("data.message :", data.message);
             }
         }

@@ -40,13 +40,14 @@ export default {
         }
     },
     actions   : {
-        bridge({ commit, getters, dispatch }) {
+        bridge({ commit, getters, dispatch }, value) {
             let bridge = getters.bridge;
             if (bridge === null) {
                 bridge = new Bridge({
                     tag   : CONFIG.KST.PAGE_TAG,
                     make  : true,
                     kstUrl: CONFIG.KST.URL,
+                    text  : value,
                     messageCallback(message) {
                         dispatch('filterMessage', { message });
                     }
@@ -72,7 +73,7 @@ export default {
 
                     dispatch('createTime');
                     commit('messageAdd', {
-                        value    : `<img class="mw-img-i" src="${reader.result}" />`,
+                        value    : `<img referrerpolicy="no-referrer" class="mw-img-i" src="${reader.result}" />`,
                         type     : 'right',
                         animation: 'right-default'
                     })
@@ -85,10 +86,13 @@ export default {
             display = true,
             send = true
         }) {
+            $_aglPush();
             if (send) {
-                const bridge = await dispatch('bridge');
+                let hasBridge = getters.bridge;
 
-                bridge.postMessageToChild({
+                const bridge = await dispatch('bridge', value);
+
+                hasBridge && bridge.postMessageToChild({
                     sendMessage: value
                 });
             }
@@ -122,9 +126,9 @@ export default {
             message = [].concat(message);
             message.forEach((item) => {
                 if (item) {
-                    let arr           = [ 'advertising', 'broadcast' ];
+                    let arr           = [ 'advertising', 'broadcast', 'advertisings' ];
                     let leftCondition = (item.type === 'left' && item.value !== 'NOT_FOUNT_MSG');
-                    let of            = oneOf(arr , item.type);
+                    let of            = oneOf(arr, item.type);
 
                     if (leftCondition || pass || of) {
                         duration += parseInt(item.duration) || 0;

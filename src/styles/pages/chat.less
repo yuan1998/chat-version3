@@ -11,8 +11,8 @@
 }
 
 .main-content-wrapper {
-    height: auto;
-    padding-bottom: 9vw;
+    flex: auto;
+    //padding-bottom: 9vw;
     //margin-top: auto;
     .message-item-wrapper {
         display: flex;
@@ -57,12 +57,7 @@
 
         &.message-advertising {
             padding: 3vw 3vw 0 3vw;
-            &.max-width {
-                padding: 3vw 0 0 0;
-            }
-            &.not-padding {
-                padding: 0;
-            }
+
             .advertising {
                 width: 100%;
                 box-shadow: 0 1.40625vw 3.125vw 0.46875vw rgba(0, 0, 0, .096);
@@ -75,6 +70,12 @@
                     border-radius: 0;
                 }
             }
+        }
+        &.max-width {
+            padding: 3vw 0 0 0;
+        }
+        &.not-padding {
+            padding: 0;
         }
     }
     .message-avatar {

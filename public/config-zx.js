@@ -52,7 +52,7 @@ const CONFIG = {
     },
     KST             : {
         // 快商通标识
-        PAGE_TAG: '###信息流-西安眼鼻中心',
+        PAGE_TAG: '###整形_综合页面',
         // 快商通链接
         // kq  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952
         // zx  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951
@@ -649,5 +649,4 @@ const CONFIG = {
         },
 
     },
-
 };

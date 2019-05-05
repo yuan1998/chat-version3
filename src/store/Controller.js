@@ -19,11 +19,20 @@ export default {
         showFooter  : true,
         showMask    : false,
         showModal   : false,
+        showSelect  : false,
         modelContent: '',
         modal       : cloneOf(defaultModalConfig),
     },
     mutations : {
+        showSelect(state, value) {
+            state.showSelect = value;
+        },
         routeIsShow(state, route) {
+            if (route === 'chat' && state.showSelect) {
+                state.showFooter = false;
+                return;
+            }
+
             state.showFooter = oneOf(route, showList);
         },
         showFooter(state, value) {
@@ -58,6 +67,9 @@ export default {
     getters   : {
         showFooter(state) {
             return state.showFooter
+        },
+        showSelect(state) {
+            return state.showSelect
         },
         showModal(state) {
             return state.showModal

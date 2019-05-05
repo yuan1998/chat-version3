@@ -43,7 +43,6 @@
             },
             className(item) {
                 let { className, theme } = item;
-                console.log('className :', className);
                 return (className || '') + ' ' + this.item.theme
             }
         },

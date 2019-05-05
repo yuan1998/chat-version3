@@ -1,21 +1,24 @@
 <template>
-    <div class="broadcast-wrapper ">
-        <div class="title">
-            {{ item.title }}
-        </div>
-        <div class="icon">
-            <div class="icon-el">
-                <img src="@/assets/tishi.gif" alt="" class="mc-img">
+    <div class="message-item-wrapper">
+        <div class="broadcast-wrapper ">
+            <div class="title">
+                {{ item.title }}
+            </div>
+            <div class="icon">
+                <div class="icon-el">
+                    <img referrerpolicy="no-referrer" src="@/assets/tishi.gif" alt="" class="mc-img">
+                </div>
+            </div>
+            <div class="content">
+                <transition-group tag="div" name="slide-change">
+                    <div :key="current" class="message-item">
+                        {{ message }}
+                    </div>
+                </transition-group>
             </div>
         </div>
-        <div class="content">
-            <transition-group tag="div" name="slide-change" >
-                <div :key="current" class="message-item">
-                    {{ message }}
-                </div>
-            </transition-group>
-        </div>
     </div>
+
 </template>
 
 <script>
@@ -49,16 +52,15 @@
                     this.current++;
                 }
             },
-            changeTimeout () {
+            changeTimeout() {
                 setTimeout(() => {
                     this.changeItem();
                     this.changeTimeout();
-                } ,this.duration);
+                }, this.duration);
             }
         },
         mounted() {
             this.changeTimeout();
-            console.log('this.item :', this.item);
         }
     }
 </script>
@@ -69,7 +71,7 @@
         position: absolute;
     }
 
-    .slide-change-enter-active,.slide-change-leave-active {
+    .slide-change-enter-active, .slide-change-leave-active {
         transition: all 500ms;
     }
 
