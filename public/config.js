@@ -563,19 +563,64 @@ const CONFIG = {
                 }
             },
             {
-                name  : '李雪',
-                career: '艺术生',
+                name  : '陈娜',
+                career: '美妆店主',
                 text  : {
-                    title     : '小清新<br>双眼皮',
-                    text1     : '开启素颜美眼时代',
-                    text2     : '灵动自然，是想要的撩人利器',
+                    title     : '自然<br>生态鼻',
+                    text1     : '全鼻精雕 美出真我',
+                    text2     : '精致立体 自然和谐',
                     cover_text: '她的主治医师是谁'
                 },
                 img   : {
-                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_01.png',
-                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_011.png'
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_02.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_022.png'
                 }
             },
+            {
+                name  : '毛毛',
+                career: '主播',
+                text  : {
+                    title     : '维密定制<br>美胸术',
+                    text1     : '大女人 真女神',
+                    text2     : '性感魅力指数直线上升',
+                    cover_text: '她的主治医师是谁'
+                },
+                img   : {
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_03.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_033.png'
+                }
+            },
+            {
+                name  : '小敏',
+                career: '教师',
+                text  : {
+                    title     : '线雕提升',
+                    text1     : '紧肤除皱 提拉回春',
+                    text2     : '不做出一些改变<br>永远不知道自己有多美',
+                    cover_text: '她的主治医师是谁'
+                },
+                img   : {
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_04.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_044.png'
+                }
+            },
+            {
+                name  : '杨明雪',
+                career: '大学生',
+                text  : {
+                    title     : '画美<br>OS祛斑',
+                    text1     : '祛斑嫩肤  还原肌底',
+                    text2     : '解锁少女 颜值时刻在线',
+                    cover_text: '她的主治医师是谁'
+                },
+                img   : {
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_05.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_055.png'
+                }
+            },
+
+
+
 
         ]
     },

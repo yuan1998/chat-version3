@@ -54,14 +54,12 @@
             background-color: #fff;
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(36, 37, 38, 0.18);
-
-
         }
 
         .context-info {
             width: 53.31%;
             text-align: center;
-            padding-top: 4vw;
+            padding-top: 3vw;
 
             .diff-img {
                 padding: 0 3.03030303vw;
