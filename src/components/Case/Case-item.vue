@@ -1,5 +1,5 @@
 <template>
-    <div class="case-item flex flex-auto">
+    <div class="case-item ">
         <div class="case-border flex flex-auto">
             <div class="flex-auto cover">
                 <img referrerpolicy="no-referrer" :src="item.img.cover" alt="" class="mc-img">
@@ -68,10 +68,6 @@
             .project-name {
                 font-size: 8vw;
                 line-height: 1.05;
-                height: 17vw;
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
                 color: #333333;
             }
 
@@ -91,6 +87,7 @@
                 }
                 .text2 {
                     font-size: 3.125vw;
+                    line-height: 1.2;
                     color: #78787a;
                 }
             }
