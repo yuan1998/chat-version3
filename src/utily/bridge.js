@@ -1,4 +1,7 @@
+import Cookie                      from 'js-cookie';
 import { queryOf, getUrlParamter } from '@/utily/util'
+import getSwtUrl                   from "./swtUrl";
+import { getReferrer }             from "./referrer";
 
 class Bridge {
 
@@ -34,15 +37,12 @@ class Bridge {
         this.messageCallback = options.messageCallback;
 
         /**
-         * 快商通初始链接
-         * @type {string}
-         */
-        this.kstUrl = options.kstUrl;
-
-        /**
          * 快商通聊天 标签
          */
-        this.tagText = options.tag;
+        this.tagText = options.tag || '';
+
+        // send Text
+        this.text = options.text || '';
 
         /**
          * 是否保存 iframe 元素. 如果为一次性 则传入该参数.
@@ -52,48 +52,59 @@ class Bridge {
         this.startChat = options.start;
 
         if (options.make) {
-            this.makeKstUrl(options.text, true)
+            return this.makeUrl(true)
         }
     }
 
+    makeUrl(make) {
+        let item = CONFIG.TYPE_OPTION;
+        if (!item || !item.type) {
+            console.warn('[Error] Create Bridge Option Not Exist !');
+            return;
+        }
 
-    /**
-     * 生成 快商通 窗口链接. 手动调用
-     * @param text 是否附带消息
-     * @param create 是否创建iframe 窗口
-     * @returns {void|String|Bridge} 如果create === true , 则直接创建iframe , 否则返回 url.
-     */
-    makeKstUrl(text, create) {
-        var ksChatLink = this.kstUrl;
+        if (typeof this[ `${item.type}UrlGenerate` ] === 'function') {
+            let url = this[ `${item.type}UrlGenerate` ](item);
+            return make ? this.createIFrame(url) : url;
+        }
+        else {
+            throw new Error("[Bridge Error] Generate Url Method Not Exist!");
+        }
 
-        var _ksChatLink = ksChatLink,
-            params      = getUrlParamter(_ksChatLink);
+    }
 
-        var cas = params[ 'cas' ] || '';
-        cas     = cas !== '' && document.cookie.match(new RegExp('(^| )' + cas + '_KS_' + cas + '=([^;]*)(;|$)'));
+    kstUrlGenerate(item) {
+        let params = getUrlParamter(item.url);
+        let cas    = params[ 'cas' ];
+        cas        = cas && Cookie.get(`${cas}_KS_${cas}`);
 
-        var _params = {
+        let query = {
             dp   : encodeURIComponent(window.location.href),
-            sText: encodeURIComponent(this.tagText || ''),
-            vi   : (cas != null && decodeURI(cas[ 2 ])) || '',
-            ref  : document.referrer || '',
+            sText: encodeURIComponent(this.tagText),
+            vi   : (cas && decodeURI(cas[ 2 ])) || '',
+            ref  : getReferrer(),
             ism  : 1
         };
 
-        if (text) {
-            _params.cv = text;
+        if (this.text) {
+            query.cv = this.text;
         }
 
-        ksChatLink += (~ksChatLink.indexOf('?') ? '&' : '?') + queryOf(_params);
+        query = queryOf(query);
+        return `${item.url}&${query}`;
 
-        if (create === true) {
-            return this.createIFrame(ksChatLink);
-        }
-        else {
-            return ksChatLink;
-        }
-    };
+        // return make ? this.createIFrame(url) : url;
+    }
 
+    swtUrlGenerate() {
+        if (typeof openZoosUrl !== 'function') {
+            throw new Error('[Error Bridge] Generate swt Url not Found Method `openZoosUrl`');
+        }
+
+        return getSwtUrl(this.tagText, this.text);
+
+        // return make ? this.createIFrame(url) : url;
+    }
 
     /**
      * 创建 Iframe 元素 . 手动调用 或者 在 makeKstUrl 后调用

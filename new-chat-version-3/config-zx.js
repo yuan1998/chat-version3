@@ -1,9 +1,5 @@
 const CONFIG = {
     BASE            : {
-        // 接入类型
-        TYPE            : 'cd_swt',
-        // 标识
-        PAGE_TAG        : '###信息流-西安眼鼻中心',
         // 默认页 :0-4
         ROOT            : 1,
         // 页面标题
@@ -54,36 +50,17 @@ const CONFIG = {
         AUTO_SAY        : true,
         AUTO_SAY_DELAY  : 10000,
     },
-    TYPE_OPTIONS    : {
-        kq    : {
-            type  : 'kst',
-            domain: 'https://vipk16-hztk11.kuaishang.cn/',
-            id    : 982318,
-            fi    : 118952,
-            cas   : 116432,
-        },
-        kq_xxl: {
-            type  : 'kst',
-            domain: 'https://vipk16-hztk11.kuaishang.cn/',
-            id    : 982318,
-            fi    : 127324,
-            cas   : 116432,
-        },
-        zx    : {
-            type  : 'kst',
-            domain: 'https://vipk16-hztk11.kuaishang.cn/',
-            id    : 553487,
-            fi    : 118951,
-            cas   : 116431,
-        },
-        cd_swt: {
-            type: 'swt',
-            js  : 'http://mqy.zoosnet.net/JS/LsJS.aspx?siteid=MQY16279901&lng=cn'
-        },
-        cq_swt: {
-            type: 'swt',
-            js  : 'http://mqy.zoosnet.net/JS/LsJS.aspx?siteid=NAC28268335&lng=cn'
-        },
+    KST             : {
+        // 快商通标识
+        PAGE_TAG: '###信息流-西安眼鼻中心',
+        // 快商通链接
+        // kq  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952
+        // zx  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951
+        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951',
+        // 快商通 js 代码
+        // kq  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>
+        // zx  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>
+        JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>',
     },
     MESSAGE         : {
         // 初始对话
@@ -212,7 +189,7 @@ const CONFIG = {
                 value  : '',
             },
             {
-                title  : '您的性别是?',
+                title: '您的性别是?',
                 options: [
                     '男',
                     '女',
@@ -231,11 +208,11 @@ const CONFIG = {
                                 title  : '您想咨询眼部的什么问题呢?',
                                 options: [
                                     {
-                                        value   : '双眼皮',
+                                        value : '双眼皮',
                                         children: [
                                             {
                                                 value  : '',
-                                                title  : '您希望用哪种方式呢?',
+                                                title: '您希望用哪种方式呢?',
                                                 options: [
                                                     '埋线', '切开', '三点', '眼综合'
                                                 ]
@@ -243,11 +220,11 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '眼袋',
+                                        value : '眼袋',
                                         children: [
                                             {
                                                 value  : '',
-                                                title  : '您希望用哪种方式祛眼袋呢?',
+                                                title: '您希望用哪种方式祛眼袋呢?',
                                                 options: [
                                                     '内切', '外切'
                                                 ]
@@ -255,11 +232,11 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '开眼角',
+                                        value : '开眼角',
                                         children: [
                                             {
                                                 value  : '',
-                                                title  : '您想咨询哪种眼角方式呢?',
+                                                title: '您想咨询哪种眼角方式呢?',
                                                 options: [
                                                     '内眼角', '外眼角'
                                                 ]
@@ -268,6 +245,13 @@ const CONFIG = {
                                     },
                                 ]
                             },
+                            {
+                                value  : '',
+                                title  : '您想通过哪种方式来补牙?',
+                                options: [
+                                    '种植牙', '全瓷牙', '烤瓷牙', '假牙'
+                                ]
+                            }
                         ]
                     },
                     {
@@ -278,11 +262,11 @@ const CONFIG = {
                                 title  : '您想咨询有关鼻部的哪些问题呢?',
                                 options: [
                                     {
-                                        value   : '隆鼻',
+                                        value: '隆鼻',
                                         children: [
                                             {
-                                                value  : '',
-                                                title  : '您想咨询哪种隆鼻方式呢?',
+                                                value: '',
+                                                title: '您想咨询哪种隆鼻方式呢?',
                                                 options: [
                                                     '膨体', '硅胶', '自体脂肪', '玻尿酸'
                                                 ]
@@ -290,11 +274,11 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '鼻修复',
+                                        value: '鼻修复',
                                         children: [
                                             {
-                                                value  : '',
-                                                title  : '您鼻部存在什么问题需要修复呢?',
+                                                value: '',
+                                                title: '您鼻部存在什么问题需要修复呢?',
                                                 options: [
                                                     '假体突出', '假体移位', '假体取出', '其他'
                                                 ]
@@ -302,11 +286,11 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '鼻矫正',
+                                        value: '鼻矫正',
                                         children: [
                                             {
-                                                value  : '',
-                                                title  : '您目前鼻部有什么问题?',
+                                                value: '',
+                                                title: '您目前鼻部有什么问题?',
                                                 options: [
                                                     '鹰钩鼻', '驼峰鼻', '宽鼻', '其他'
                                                 ]
@@ -315,6 +299,13 @@ const CONFIG = {
                                     },
                                 ]
                             },
+                            {
+                                value  : '',
+                                title  : '选择您想矫正的方式?',
+                                options: [
+                                    '金属矫正', '隐形矫正', '陶瓷矫正', '其他'
+                                ]
+                            }
                         ]
                     },
                     {
@@ -325,7 +316,7 @@ const CONFIG = {
                                 title  : '您想咨询皮肤的哪些问题呢？',
                                 options: [
                                     {
-                                        value   : '祛斑',
+                                        value : '祛斑',
                                         children: [
                                             {
                                                 value  : '',
@@ -337,7 +328,7 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '祛痘',
+                                        value : '祛痘',
                                         children: [
                                             {
                                                 value  : '',
@@ -349,7 +340,7 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '美白嫩肤',
+                                        value : '美白嫩肤',
                                         children: [
                                             {
                                                 value  : '',
@@ -373,11 +364,11 @@ const CONFIG = {
                                 title  : '您想咨询面部的哪些问题呢?',
                                 options: [
                                     {
-                                        value   : '丰额头',
+                                        value: '丰额头',
                                         children: [
                                             {
-                                                value  : '',
-                                                title  : '您希望改善额头用哪种方式呢?',
+                                                value:'',
+                                                title: '您希望改善额头用哪种方式呢?',
                                                 options: [
                                                     '假体', '玻尿酸', '自体脂肪', '其他'
                                                 ]
@@ -385,11 +376,11 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '垫下巴',
+                                        value: '垫下巴',
                                         children: [
                                             {
-                                                value  : '',
-                                                title  : '您改善下巴希望用哪种方式呢?',
+                                                value:'',
+                                                title: '您改善下巴希望用哪种方式呢?',
                                                 options: [
                                                     '假体', '玻尿酸', '自体脂肪', '其他'
                                                 ]
@@ -397,11 +388,11 @@ const CONFIG = {
                                         ]
                                     },
                                     {
-                                        value   : '改变脸型',
+                                        value: '改变脸型',
                                         children: [
                                             {
-                                                value  : '',
-                                                title  : '您想通过哪种方式来改变脸型呢?',
+                                                value:'',
+                                                title: '您想通过哪种方式来改变脸型呢?',
                                                 options: [
                                                     '注射瘦脸', '立体磨销', '面部吸脂', '其他'
                                                 ]
@@ -627,8 +618,6 @@ const CONFIG = {
                     diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_055.png'
                 }
             },
-
-
         ]
     },
     SELECT_ITEMS    : {
@@ -701,4 +690,5 @@ const CONFIG = {
         },
 
     },
+
 };

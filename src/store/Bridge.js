@@ -5,6 +5,8 @@ import { addImageProcess, oneOf } from "../utily/util";
 
 const oneMin = 1000 * 60;
 
+let firstMessage = true;
+
 export default {
     namespaced: true,
     state     : {
@@ -44,12 +46,20 @@ export default {
             let bridge = getters.bridge;
             if (bridge === null) {
                 bridge = new Bridge({
-                    tag   : CONFIG.KST.PAGE_TAG,
-                    make  : true,
-                    kstUrl: CONFIG.KST.URL,
-                    text  : value,
+                    tag : CONFIG.BASE.PAGE_TAG,
+                    make: true,
+                    text: value,
                     messageCallback(message) {
-                        dispatch('filterMessage', { message });
+
+                        switch (CONFIG.TYPE_OPTION.type) {
+                            case "kst":
+                                dispatch('filterMessage', { message });
+                                break;
+                            case "swt" :
+                                dispatch('swtFilterMessage', { message, type: 'back' });
+                                break;
+                        }
+
                     }
                 });
                 commit('bridge', bridge);
@@ -121,6 +131,23 @@ export default {
                     }
                 })
             }
+        },
+        swtFilterMessage({ dispatch }, { message, pass = false, type = 'default' }) {
+            message = [].concat(message);
+
+            if (type === 'back') {
+                if (firstMessage && message.length > 1) {
+                    firstMessage = false;
+                    return;
+                }
+
+                message = message.filter(e => !oneOf([ 'right', 'center' ], e.type));
+            }
+
+            dispatch('filterMessage', {
+                message,
+                pass,
+            })
         },
         filterMessage({ commit, dispatch }, { message, pass = false, duration = 0 }) {
             message = [].concat(message);
