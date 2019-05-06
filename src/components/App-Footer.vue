@@ -1,46 +1,5 @@
 <template>
     <div id="y-chat-footer">
-        <div class="footer-wrapper" style="display: none;">
-            <form id="chat-form"
-                  class="form-wrap"
-                  @submit.prevent="handleSubmit">
-                <div class="form-mask"
-                     @click="handleInputClick"
-                     v-if="!isChat"></div>
-                <input ref="fileInput"
-                       style="display: none;"
-                       type="file"
-                       name="image"
-                       accept="image/gif,image/jpeg,image/jpg,image/png"
-                       @change="handleUploadImage">
-                <div class=" form-input active">
-                    <div class="phone-icon-inner"
-                         v-if="icon === 'camera'"
-                         @click="clickInputFile">
-                        <img referrerpolicy="no-referrer" src="@/assets/camera-red.png" alt="" class="mc-img">
-                    </div>
-                    <a class="phone-icon-inner"
-                       :href="'tel:'+ tel"
-                       v-else-if="icon === 'phone'">
-                        <img referrerpolicy="no-referrer" src="@/assets/phone.jpg" alt="" class="mc-img">
-                    </a>
-                    <input v-model="superInput"
-                           autocomplete="off"
-                           type="text"
-                           name="message"
-                           class="message-input"
-                           ref="input"
-                           :placeholder="placeholder"
-                           @focus="handleFocus"
-                           id="form-input">
-                    <button type="submit"
-                            class="send-text">
-                        发送
-                    </button>
-                </div>
-            </form>
-            <div style="height: 5vw;display: block;" v-if="inputFocus"></div>
-        </div>
         <form class="footer-big-input" :style="{
             paddingBottom: (inputFocus ? '10vw' : '2vw')
         }" @submit.prevent="handleSubmit">
@@ -73,10 +32,9 @@
         data() {
             return {
                 inputFocus     : false,
-                icon           : CONFIG.THEME.FOOTER_ICON || 'camera',
                 tel            : CONFIG.BASE.TEL,
-                firstText      : CONFIG.CHAT.FIRST_TEXT,
-                buttonText     : CONFIG.CHAT.SEND_BUTTON_TEXT,
+                firstText      : CONFIG.CHAT_PAGE.FIRST_TEXT,
+                buttonText     : CONFIG.CHAT_PAGE.SEND_BUTTON_TEXT,
                 firstEnter     : true,
                 sayed          : false,
                 textPlaceholder: '',
@@ -89,7 +47,7 @@
             });
             this.textTransition();
 
-            if (CONFIG.CHAT_PAGE.KEYWORD_TO_INPUT && !CONFIG.CHAT.SELECT_START) {
+            if (CONFIG.CHAT_PAGE.KEYWORD_TO_INPUT && !CONFIG.CHAT_PAGE.SELECT_START) {
                 this.changeInput(CONFIG.KEYWORD);
             }
         },

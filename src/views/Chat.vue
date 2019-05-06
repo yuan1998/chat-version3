@@ -80,8 +80,8 @@
         },
         data() {
             return {
-                selectStart      : CONFIG.CHAT.SELECT_START || false,
-                type             : CONFIG.CHAT.SELECT_TYPE || 'default',
+                selectStart      : CONFIG.CHAT_PAGE.SELECT_START || false,
+                type             : CONFIG.CHAT_PAGE.SELECT_TYPE || 'default',
                 showJump         : false,
                 showComputePrice : false,
                 selectModule     : false,
@@ -204,10 +204,10 @@
             defaultModule() {
                 if (this.gMessage.length === 0) {
                     this.addConfigMessage('INIT_MESSAGE');
-                    if (CONFIG.CHAT.AUTO_SAY) {
+                    if (CONFIG.CHAT_PAGE.AUTO_SAY) {
                         setTimeout(() => {
                             this.handleSayAutoMessage();
-                        }, CONFIG.CHAT.AUTO_SAY_DELAY || 10000);
+                        }, CONFIG.CHAT_PAGE.AUTO_SAY_DELAY || 10000);
                     }
                 }
             },

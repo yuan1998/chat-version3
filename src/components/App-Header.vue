@@ -7,7 +7,12 @@
                         <img referrerpolicy="no-referrer" src="@/assets/back-icon.png" alt="" class="mc-img">
                     </div>
                 </div>
-                <div class="header-center" v-if="logoText" v-html="logoText"></div>
+                <div class="header-center" v-if="logo.IMG">
+                    <div class="logo-img">
+                        <img referrerpolicy="no-referrer" :src="logo.IMG" alt="" class="mc-img">
+                    </div>
+                </div>
+                <div class="header-center" v-else-if="logo.TEXT" v-html="logo.TEXT"></div>
                 <div class="header-center" v-else>
                     <div class="logo-img">
                         <img referrerpolicy="no-referrer" :src="logoImg" alt="" class="mc-img">
@@ -54,7 +59,7 @@
                 tel         : CONFIG.BASE.TEL,
                 showTel     : CONFIG.BASE.SHOW_TEL,
                 firstAnimate: true,
-                logoText    : CONFIG.BASE.HEADER_LOGO,
+                logo        : CONFIG.BASE.HEADER_LOGO,
                 logoImg     : logo,
             }
         },
