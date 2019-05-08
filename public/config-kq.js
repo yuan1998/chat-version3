@@ -1,16 +1,40 @@
 const CONFIG = {
     BASE            : {
-        // 默认页 :0-4
-        ROOT            : 1,
+        // 接入类型, 在 TYPE_OPTIONS 中定义
+        TYPE            : 'kq',
+        // 接入对话的标识
+        PAGE_TAG        : '###88888_00000',
+        // 默认页 :0-3
+        ROOT            : 2,
         // 页面标题
         WEB_TITLE       : '西安画美',
         // 头部LOGO
-        HEADER_LOGO     : '',
-        // 电话
+        HEADER_LOGO     : {
+            // IMG 优先级大于 TEXT.
+            IMG: 'http://47.92.132.225:7026/zt/zx-comprehensive-center/img/logo.9952d203.png',
+            TEXT: '',
+        },
+        // 电话,页面内一些电话功能的电话号码
         TEL             : '029-88828888',
+        // 是否显示页面右上角电话图标
         SHOW_TEL        : true,
+        // 显示底部聊天框的页面.
         SHOW_FOOTER_LIST: [ 'chat' ],
+        // 导航栏显示和页面位置
+        //            首页      案例     聊天      报价          预约           抽奖      联系我们(表单)
+        // 所有页面: ['home' , 'case' , 'chat' , 'price' , 'reservation' , 'lottery',   'concat'];
         ROUTER          : [
+            //例:
+            /**
+             {
+                 // 导航栏显示的文字
+                title: '医院简介',
+                // 页面的name.
+                name : 'home',
+                // 和name一致.
+                path : '/home'
+             },
+             */
             {
                 title: '医院简介',
                 name : 'home',
@@ -36,32 +60,40 @@ const CONFIG = {
     },
     THEME           : {
         // 页面主题 : ['blue' , 'red']
-        COLOR      : 'red',
-        // 聊天框图标 : ['phone' , 'camera']
-        FOOTER_ICON: 'camera',
+        COLOR      : 'blue',
     },
-    CHAT            : {
-        // 是否开启选择模式
-        SELECT_START    : false,
-        // 模式类型 : [ 'items', '' ]
-        SELECT_TYPE     : 'items',
-        FIRST_TEXT      : '',
-        SEND_BUTTON_TEXT: '发送',
-        AUTO_SAY        : true,
-        AUTO_SAY_DELAY  : 10000,
+    TYPE_OPTIONS    : {
+        kq    : {
+            type  : 'kst',
+            domain: 'https://vipk16-hztk11.kuaishang.cn/',
+            id    : 982318,
+            fi    : 118952,
+            cas   : 116432,
+        },
+        kq_xxl: {
+            type  : 'kst',
+            domain: 'https://vipk16-hztk11.kuaishang.cn/',
+            id    : 982318,
+            fi    : 127324,
+            cas   : 116432,
+        },
+        zx    : {
+            type  : 'kst',
+            domain: 'https://vipk16-hztk11.kuaishang.cn/',
+            id    : 553487,
+            fi    : 118951,
+            cas   : 116431,
+        },
+        cd_swt: {
+            type: 'swt',
+            js  : 'http://mqy.zoosnet.net/JS/LsJS.aspx?siteid=MQY16279901&lng=cn'
+        },
+        cq_swt: {
+            type: 'swt',
+            js  : 'http://mqy.zoosnet.net/JS/LsJS.aspx?siteid=NAC28268335&lng=cn'
+        },
     },
-    KST             : {
-        // 快商通标识
-        PAGE_TAG: '###口腔-信息流',
-        // 快商通链接
-        // kq  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952
-        // zx  : https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116431___553487&fi=118951
-        URL     : 'https://vipk16-hztk11.kuaishang.cn/bs/im.htm?cas=116432___982318&fi=118952',
-        // 快商通 js 代码
-        // kq  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>
-        // zx  : <script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=553487&fI=118951&ism=1" charset="utf-8"></script>
-        JS      : '<script type="text/javascript" src="https://vipk16-hztk11.kuaishang.cn/bs/ks.j?cI=982318&fI=118952&ism=1" charset="utf-8"></script>',
-    },
+    // 消息配置
     MESSAGE         : {
         // 初始对话
         INIT_MESSAGE         : [
@@ -140,33 +172,24 @@ const CONFIG = {
     },
     HOME_PAGE       : {
         // 开启图片首页
-        ENABLED       : true,
+        ENABLED: true,
         // 图片域名
-        BASE_URL      : 'http://kst.img.xamryy.cn/',
+        BASE_URL: 'http://kst.img.xamryy.cn/',
         // 图片目录
-        PATH          : '/baqi/zx-ty-image/',
+        PATH: '/baqi/hmppyyjj-images/',
         // 图片前缀
-        NAME          : 'bg_',
+        NAME: 'bg_',
         // 图片后缀
-        EXT           : '.jpg',
+        EXT: '.jpg',
         // 图片数量
-        COUNT         : 27,
+        COUNT: 21,
         // 事件,目前支持  ['router:/chat']
-        EVENTS        : {
-            10: {
-                click: [ 'router:/chat' ]
-            },
-            11: {
-                click: [ 'router:/chat' ]
-            },
-            16: {
-                click: [ 'router:/chat' ]
+        EVENTS: {
+            13: {
+                click: ['router:/chat']
             },
             17: {
-                click: [ 'router:/chat' ]
-            },
-            22: {
-                click: [ 'router:/chat' ]
+                click: ['router:/chat']
             },
         },
         // 当 ENABLED 为 false 时应用
@@ -247,11 +270,29 @@ const CONFIG = {
                     } ]
             } ],
     },
+    // 聊天页的配置
     CHAT_PAGE       : {
+        // 是否开启选择模式
+        SELECT_START    : false,
+        // 模式类型 : [ 'items' ]
+        SELECT_TYPE     : 'items',
+        // 未发送过消息时,输入框默认内容.
+        FIRST_TEXT      : '',
+        // 按钮 文字
+        SEND_BUTTON_TEXT: '发送',
+        // 开启超时自动问候
+        AUTO_SAY        : true,
+        // 问候秒数
+        AUTO_SAY_DELAY  : 10000,
+        // 左侧 头像
         AVATAR          : 'http://xl.xahmyy.com/zt/xxl-hm-syp/images/avatar_mbp.png',
+        // 将 关键词 输入到输入框
         KEYWORD_TO_INPUT: false,
+        // 未输入时显示的文字.
         PLACEHOLDER_TEXT: '请输入问题，10秒内获取答案！',
+        // 文字闪动间隔
         TEXT_DURATION   : 45,
+        // 文字完全显示后等待时间
         TEXT_DELAY      : 2200,
     },
     RESERVATION_PAGE: {
@@ -402,19 +443,62 @@ const CONFIG = {
                 }
             },
             {
-                name  : '李雪',
-                career: '艺术生',
+                name  : '陈娜',
+                career: '美妆店主',
                 text  : {
-                    title     : '小清新<br>双眼皮',
-                    text1     : '开启素颜美眼时代',
-                    text2     : '灵动自然，是想要的撩人利器',
+                    title     : '自然<br>生态鼻',
+                    text1     : '全鼻精雕 美出真我',
+                    text2     : '精致立体 自然和谐',
                     cover_text: '她的主治医师是谁'
                 },
                 img   : {
-                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_01.png',
-                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_011.png'
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_02.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_022.png'
                 }
             },
+            {
+                name  : '毛毛',
+                career: '主播',
+                text  : {
+                    title     : '维密定制<br>美胸术',
+                    text1     : '大女人 真女神',
+                    text2     : '性感魅力指数直线上升',
+                    cover_text: '她的主治医师是谁'
+                },
+                img   : {
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_03.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_033.png'
+                }
+            },
+            {
+                name  : '小敏',
+                career: '教师',
+                text  : {
+                    title     : '线雕提升',
+                    text1     : '紧肤除皱 提拉回春',
+                    text2     : '不做出一些改变<br>永远不知道自己有多美',
+                    cover_text: '她的主治医师是谁'
+                },
+                img   : {
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_04.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_044.png'
+                }
+            },
+            {
+                name  : '杨明雪',
+                career: '大学生',
+                text  : {
+                    title     : '画美<br>OS祛斑',
+                    text1     : '祛斑嫩肤  还原肌底',
+                    text2     : '解锁少女 颜值时刻在线',
+                    cover_text: '她的主治医师是谁'
+                },
+                img   : {
+                    cover: 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_05.png',
+                    diff : 'http://47.92.132.225:7026/zt/hm-zh/images/case_zh_055.png'
+                }
+            },
+
 
         ]
     },
@@ -488,5 +572,4 @@ const CONFIG = {
         },
 
     },
-
 };
