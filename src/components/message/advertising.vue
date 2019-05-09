@@ -23,7 +23,8 @@
         }
     }
 </script>
-
-<style scoped>
-
+<style>
+    .advertising {
+        flex:auto;
+    }
 </style>
