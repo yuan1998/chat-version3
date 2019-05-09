@@ -1,7 +1,7 @@
 const CONFIG = {
     BASE            : {
         // 接入类型, 在 TYPE_OPTIONS 中定义
-        TYPE            : 'cd_swt',
+        TYPE            : 'zx',
         // 接入对话的标识
         PAGE_TAG        : '###88888_00000',
         // 默认页 :0-3
