@@ -55,7 +55,6 @@ const CONFIG = {
                 name : 'price',
                 path : '/price'
             },
-
         ]
     },
     THEME           : {
@@ -147,7 +146,7 @@ const CONFIG = {
             {
                 type     : 'left',
                 animation: 'left-default',
-                value    : '本平台开通【自助查询价格系统】可直接输入姓名+手机+咨询项目，系统会以加密形式自动发送至您手机！',
+                value    : '还有在关注对话吗?',
             },
         ],
         // 对话中提交报价回复
