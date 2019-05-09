@@ -1,5 +1,5 @@
 <template>
-    <div class="case-item ">
+    <div class="case-item flex flex-none">
         <div class="case-border flex flex-auto">
             <div class="flex-auto cover">
                 <img referrerpolicy="no-referrer" :src="item.img.cover" alt="" class="mc-img">
@@ -25,7 +25,7 @@
 
 <script>
     export default {
-        props: ['item']
+        props: [ 'item' ]
     }
 </script>
 
