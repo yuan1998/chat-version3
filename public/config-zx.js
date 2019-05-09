@@ -5,7 +5,7 @@ const CONFIG = {
         // 接入对话的标识
         PAGE_TAG        : '###88888_00000',
         // 默认页 :0-3
-        ROOT            : 1,
+        ROOT            : 3,
         // 页面标题
         WEB_TITLE       : '西安画美',
         // 头部LOGO
