@@ -5,7 +5,7 @@ const CONFIG = {
         // 接入对话的标识
         PAGE_TAG        : '###88888_00000',
         // 默认页 :0-3
-        ROOT            : 3,
+        ROOT            : 2,
         // 页面标题
         WEB_TITLE       : '西安画美',
         // 头部LOGO
@@ -171,7 +171,7 @@ const CONFIG = {
     },
     HOME_PAGE       : {
         // 开启图片首页
-        ENABLED       : true,
+        ENABLED       : false,
         // 图片域名
         BASE_URL      : 'http://kst.img.xamryy.cn/',
         // 图片目录
@@ -203,8 +203,8 @@ const CONFIG = {
         // 当 ENABLED 为 false 时应用
         // TEMPLATE 为 HTML 内容
         // TEMPLATE_STYLE 为 css 内容
-        TEMPLATE      : '<h1 class="test-something">HELLO WORLD</h1>',
-        TEMPLATE_STYLE: '.test-something{font-size:30px;text-align:center;padding-top:50px;}',
+        TEMPLATE      : '<div class="home-page-container"><div class="row-wrap"><div class="i-row"><div class="home-yyjj"><div><img src="/zt/hm-images/hospotal_01.jpg"alt=""class="mc-img"></div><div><img src="/zt/hm-images/hospotal_02.jpg"alt=""class="mc-img"></div></div></div><div class="i-row"style="margin-top: 3vw;"><div class="home-tit"><span>温馨豪华欧式诊疗环境</span></div><div><img src="/zt/hm-images/yyjj_03.jpg"alt=""class="mc-img"></div></div></div><div class="default-info-text center"><!--<p>热线电话：<span class="red">(029)-88288888</span></p>--><p>地址：西安市新城区太华南路433号</p><p>地铁四号线【含元殿】D出口出，向北200米即到</p><p>市医广【2018】第200号&nbsp;&nbsp;陕ICP备18003416号</p></div></div>',
+        TEMPLATE_STYLE: '.home-page{padding-top:3.594vw;background-color:#ebebeb}.home-page .col-wrap,.home-page .row-wrap{padding:0 1.625vw}.home-page .cover-img{width:95.84615385vw;margin:0 auto;padding-bottom:4.8vw;padding-top:2.3vw}.home-page .col-logo{padding-top:2.656vw;padding-bottom:2vw}.home-page .logo-info{font-size:4.525vw;text-align:center}.home-page .home-tit{font-size:5vw;color:#000;margin:2vw 0;text-align:center;font-weight:bold}.home-page .home-tit img{vertical-align:middle;position:relative;top:-.5vw}.home-page .home-tit span{padding:0 2.5vw}.home-yyjj{font-size:4vw;color:#000;line-height:140%;margin:0 0 1vw}.default-info-text{background-color:#f2f2f2;font-size:2.344vw;color:#666;padding:2vw 0}.default-info-text.has-margin{margin-top:3.125vw}.default-info-text p{line-height:2}.default-info-text .red{color:red}',
     },
     PRICE_PAGE      : {
         ASK_COVER: 'http://kst.img.xamryy.cn/theme/2-1-red.jpg',
